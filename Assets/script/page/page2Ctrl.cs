@@ -1,0 +1,37 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class page2Ctrl : pageBase 
+{
+	// private Button checkButton;
+	void Awake () 
+	{
+		Button checkButton = nextBtn.GetComponent<Button> ();
+		checkButton.onClick.AddListener (nextPage);
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		
+	}
+
+	public override void onPageEnable()
+	{
+		UIMgr.Instance.setBackground (UIMgr.BG.A);
+		setNextBtnActive(false);
+		StartCoroutine (showNextBtn());
+	}
+
+	public IEnumerator showNextBtn()
+	{
+		yield return new WaitForSeconds (5);
+		setNextBtnActive(true);
+	}
+
+	public void nextPage()
+	{
+		pageMgr.Instance.nextPage (3);
+	}
+}

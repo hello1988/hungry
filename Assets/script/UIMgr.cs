@@ -13,6 +13,7 @@ public class UIMgr : MonoBehaviour
 	public enum BG
 	{
 		A,
+		C,
 	}
 
 	private static UIMgr _instance = null;
