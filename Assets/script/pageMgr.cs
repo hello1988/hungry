@@ -7,7 +7,15 @@ public class pageMgr : MonoBehaviour
 	[SerializeField]
 	private GameObject[] pageList;
 
+	private Stack<int> record = new Stack<int>();
+
 	private int curPage = 0;
+
+	private enum DIR
+	{
+		LEFT,
+		RIGHT,
+	}
 
 	private static pageMgr _instance = null;
 	public static pageMgr Instance
@@ -41,15 +49,34 @@ public class pageMgr : MonoBehaviour
 		
 	}
 
+	/**下一頁*/
 	public void nextPage( int nextPage )
 	{
 		if( (nextPage < 0) || (nextPage >= pageList.Length)){return;}
 
-		// TODO 換頁動畫
-		pageList [curPage].SetActive(false);
-		pageList [nextPage].SetActive(true);
-		pageList [nextPage].GetComponent<pageBase> ().onPageEnable ();
+		pageEffect (DIR.RIGHT, curPage, nextPage);
+
+		record.Push (curPage);
 		curPage = nextPage;
 
+	}
+
+	/**上一頁*/
+	public void prePage()
+	{
+		if (record.Count == 0) {return;}
+
+		int pre = record.Pop ();
+		pageEffect (DIR.LEFT, curPage, pre);
+
+		curPage = pre;
+	}
+
+	// TODO 換頁動畫
+	private void pageEffect( DIR dir, int curren, int target  )
+	{
+		pageList [curren].SetActive(false);
+		pageList [target].SetActive(true);
+		pageList [target].GetComponent<pageBase> ().onPageEnable ();
 	}
 }

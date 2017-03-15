@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class UIMgr : MonoBehaviour 
 {
 	[SerializeField]
+	private Image background;
+	[SerializeField]
 	private Sprite[] backgroundList;
 
 	public enum BG
@@ -31,8 +33,8 @@ public class UIMgr : MonoBehaviour
 		
 	}
 
-	public Sprite getBackground( BG index )
+	public void setBackground( BG index )
 	{
-		return backgroundList [(int)index];
+		background.sprite = backgroundList[(int)index];
 	}
 }

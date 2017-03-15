@@ -11,7 +11,7 @@ public class page0Ctrl : pageBase
 	// private Button checkButton;
 	void Awake () 
 	{
-		Button checkButton = checkBtn.GetComponent<Button> ();
+		Button checkButton = nextBtn.GetComponent<Button> ();
 		checkButton.onClick.AddListener (nextPage);
 	}
 	
@@ -22,10 +22,10 @@ public class page0Ctrl : pageBase
 
 	public override void onPageEnable()
 	{
-		setBackground (UIMgr.BG.A);
+		UIMgr.Instance.setBackground (UIMgr.BG.A);
 		bool isShowCheck = !string.IsNullOrEmpty (DataMgr.Instance.getStaffNumber ());
 
-		setCheckBtnActive(isShowCheck);
+		setNextBtnActive(isShowCheck);
 	}
 
 	public void onEndEdit()
@@ -34,7 +34,7 @@ public class page0Ctrl : pageBase
 
 		DataMgr.Instance.setStaffNumber(staffTxt.text);
 		bool isShowCheck = !string.IsNullOrEmpty (staffTxt.text);
-		setCheckBtnActive(isShowCheck);
+		setNextBtnActive(isShowCheck);
 	}
 
 	public void nextPage()
