@@ -5,6 +5,14 @@ using UnityEngine.UI;
 
 public class UIMgr : MonoBehaviour 
 {
+	[SerializeField]
+	private Sprite[] backgroundList;
+
+	public enum BG
+	{
+		A,
+	}
+
 	private static UIMgr _instance = null;
 	public static UIMgr Instance
 	{
@@ -23,5 +31,8 @@ public class UIMgr : MonoBehaviour
 		
 	}
 
-
+	public Sprite getBackground( BG index )
+	{
+		return backgroundList [(int)index];
+	}
 }
