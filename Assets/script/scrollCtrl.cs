@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,13 +22,10 @@ public class scrollCtrl : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		addItem ();
-		addItem ();
-		addItem ();
 
 	}
 
-	public void addItem()
+	public GameObject addItem()
 	{
 		GameObject clone = Instantiate<GameObject> (template);
 
@@ -39,6 +37,8 @@ public class scrollCtrl : MonoBehaviour
 
 		itemList.Add (clone);
 		rePosition (true);
+
+		return clone;
 	}
 
 	public void delItem( string name )
@@ -66,7 +66,7 @@ public class scrollCtrl : MonoBehaviour
 		RectTransform tempRect = template.GetComponent<RectTransform> ();
 		float yOffset = tempRect.sizeDelta.y + 30;
 
-		float newHeight = yOffset * itemList.Count;
+		float newHeight = Math.Max( scrollHeight, yOffset * itemList.Count );
 
 		RectTransform rect = this.GetComponent<RectTransform> ();
 		rect.sizeDelta = new Vector2 (rect.sizeDelta.x, newHeight);

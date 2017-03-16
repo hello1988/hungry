@@ -67,10 +67,12 @@
      <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplines.cs" />
      <Compile Include="Assets\LeanTween\Examples\Scripts\TestingAllCS.cs" />
      <Compile Include="Assets\LeanTween\Examples\Scripts\TestingUnitTests.cs" />
-     <Compile Include="Assets\script\Data\DataMgr.cs" />
-     <Compile Include="Assets\script\Data\custom.cs" />
+     <Compile Include="Assets\script\DataMgr.cs" />
      <Compile Include="Assets\script\DontDestroy.cs" />
      <Compile Include="Assets\script\UIMgr.cs" />
+     <Compile Include="Assets\script\custom\custom.cs" />
+     <Compile Include="Assets\script\custom\searchCustomCtrl.cs" />
+     <Compile Include="Assets\script\custom\searchCustomListener.cs" />
      <Compile Include="Assets\script\downloadMgr.cs" />
      <Compile Include="Assets\script\dragAndDrop.cs" />
      <Compile Include="Assets\script\dropAndClick.cs" />
