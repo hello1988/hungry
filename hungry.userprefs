@@ -1,11 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\script\page\page3Ctrl.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\script\Data\custom.cs">
     <Files>
-      <File FileName="Assets\script\pageMgr.cs" Line="1" Column="1" />
-      <File FileName="Assets\script\UIMgr.cs" Line="16" Column="4" />
-      <File FileName="Assets\script\page\pageBase.cs" Line="1" Column="1" />
-      <File FileName="Assets\script\page\page3Ctrl.cs" Line="30" Column="19" />
+      <File FileName="Assets\script\scrollCtrl.cs" Line="83" Column="39" />
+      <File FileName="Assets\script\page\page3Ctrl.cs" Line="38" Column="36" />
+      <File FileName="Assets\script\pageMgr.cs" Line="41" Column="20" />
+      <File FileName="Assets\script\Data\custom.cs" Line="24" Column="41" />
+      <File FileName="Assets\script\page\page0Ctrl.cs" Line="7" Column="2" />
+      <File FileName="Assets\script\downloadMgr.cs" Line="24" Column="39" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

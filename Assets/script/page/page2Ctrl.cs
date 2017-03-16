@@ -26,7 +26,7 @@ public class page2Ctrl : pageBase
 
 	public IEnumerator showNextBtn()
 	{
-		yield return new WaitForSeconds (5);
+		yield return new WaitForSeconds (1);
 		setNextBtnActive(true);
 	}
 

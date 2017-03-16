@@ -38,10 +38,11 @@ public class pageMgr : MonoBehaviour
 			page.SetActive (false);
 		}
 
-		pageList [0].SetActive (true);
-		pageBase page1 = pageList [0].GetComponent<pageBase> ();
-		page1.onPageEnable ();
-		curPage = 0;
+		int startPage = 3;
+		pageList [startPage].SetActive (true);
+		pageBase showPage = pageList [startPage].GetComponent<pageBase> ();
+		showPage.onPageEnable ();
+		curPage = startPage;
 	}
 	
 	// Update is called once per frame
