@@ -8,26 +8,29 @@ using UnityEngine.UI;
 
 public class dragAndDrop : MonoBehaviour,IDragHandler,IPointerDownHandler,IPointerUpHandler
 {
-	private Vector3 oriPos = Vector3.zero;
 	[SerializeField]
 	private GameObject targetArea;
+
+	private Vector3 oriPos = Vector3.zero;
+	private Vector3 touchStart = Vector3.zero;
+
 	public void Awake()
 	{
-		oriPos = transform.position;
 	}
 
 	public void OnDrag(PointerEventData eventData)
 	{
-		GetComponent<RectTransform>().pivot.Set(0,0);
+		Vector3 offset =  getCurMousePosition() - touchStart;
 
-		Vector3 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
-		transform.position = Camera.main.ScreenToWorldPoint( new Vector3(Input.mousePosition.x, Input.mousePosition.y,screenPosition.z));
-
+		transform.position = (oriPos+offset);
 	}
 
 	public void OnPointerDown(PointerEventData eventData)
 	{
+		oriPos = transform.position;
 		transform.localScale=new Vector3(0.7f,0.7f,0.7f);
+
+		touchStart = getCurMousePosition();
 	}
 
 	public void OnPointerUp(PointerEventData eventData)
@@ -36,9 +39,17 @@ public class dragAndDrop : MonoBehaviour,IDragHandler,IPointerDownHandler,IPoint
 		{
 			RectTransform rect = GetComponent<RectTransform> ();
 			RectTransform tarRect = targetArea.GetComponent<RectTransform> ();
-			Vector3 pos = this.gameObject.transform.localPosition;
+
+			GameObject refPoint = new GameObject ();
+			refPoint.name = "refPoint";
+			refPoint.transform.localScale = Vector3.one;
+			refPoint.transform.position = transform.position;
+			refPoint.transform.SetParent (targetArea.transform.parent);
+
+			Vector3 pos = refPoint.transform.localPosition;
 			Vector3 tarPos = targetArea.transform.localPosition;
 
+			Destroy (refPoint);
 
 			bool checkX = Math.Abs (pos.x - tarPos.x) < (rect.rect.width / 2 + tarRect.rect.width / 2);
 			bool checkY = Math.Abs (pos.y - tarPos.y) < (rect.rect.height / 2 + tarRect.rect.height / 2);
@@ -47,12 +58,12 @@ public class dragAndDrop : MonoBehaviour,IDragHandler,IPointerDownHandler,IPoint
 
 			if (checkX && checkY) 
 			{
-				Debug.logger.Log ("collision");
+				// Debug.logger.Log ("collision");
 				playEffect ();
 			}
 			else 
 			{
-				Debug.logger.Log ("no collision");
+				// Debug.logger.Log ("no collision");
 				resume ();
 			}
 		}
@@ -64,12 +75,19 @@ public class dragAndDrop : MonoBehaviour,IDragHandler,IPointerDownHandler,IPoint
 
 	private void playEffect()
 	{
-		LeanTween.scale(this.gameObject, new Vector3(0, 0, 0), 2f).setOnComplete(resume);
+		LeanTween.move (this.gameObject, targetArea.transform.position, 0.2f);
+		LeanTween.scale(this.gameObject, new Vector3(0, 0, 0), 0.3f).setOnComplete(resume);
 	}
 
 	private void resume()
 	{
 		transform.localScale=new Vector3(1f,1f,1f);
 		transform.position = oriPos;
+	}
+
+	private Vector3 getCurMousePosition()
+	{
+		float distance = UIMgr.Instance.getplaneDistance ();
+		return Camera.main.ScreenToWorldPoint( new Vector3(Input.mousePosition.x, Input.mousePosition.y, distance) );
 	}
 }

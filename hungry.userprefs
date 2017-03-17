@@ -2,9 +2,9 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\script\scrollCtrl.cs">
     <Files>
-      <File FileName="Assets\script\scrollCtrl.cs" Line="88" Column="58" />
-      <File FileName="Assets\script\page\page5Ctrl.cs" Line="12" Column="27" />
-      <File FileName="Assets\script\pageMgr.cs" Line="61" Column="22" />
+      <File FileName="Assets\script\page\page6Ctrl.cs" Line="20" Column="1" />
+      <File FileName="Assets\script\page\page5Ctrl.cs" Line="17" Column="3" />
+      <File FileName="Assets\script\scrollCtrl.cs" Line="42" Column="55" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

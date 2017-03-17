@@ -16,7 +16,8 @@ public class scrollCtrl : MonoBehaviour
 	private float scrollWidth = 0f;
 	void Awake()
 	{
-		RectTransform scrollRect = scrollPanel.GetComponent<RectTransform> ();
+		// RectTransform scrollRect = scrollPanel.GetComponent<RectTransform> ();
+		RectTransform scrollRect = this.GetComponent<RectTransform>();
 		scrollWidth = scrollRect.sizeDelta.x;
 		scrollHeight = scrollRect.sizeDelta.y;
 
@@ -26,14 +27,14 @@ public class scrollCtrl : MonoBehaviour
 	void Start () 
 	{
 		/* test
-		addItem ();
-		addItem ();
-		addItem ();
-		addItem ();
-		addItem ();
-		addItem ();
-		addItem ();
 		*/
+		addItem ();
+		addItem ();
+		addItem ();
+		addItem ();
+		addItem ();
+		addItem ();
+		addItem ();
 	}
 
 	public GameObject addItem()
@@ -107,7 +108,7 @@ public class scrollCtrl : MonoBehaviour
 
 		if (rollToTop) 
 		{
-			this.transform.localPosition = new Vector3(0,-((newHeight - scrollHeight) / 2),0);
+			transform.localPosition = new Vector3(transform.localPosition.x,-((newHeight - scrollHeight) / 2),0);
 		}
 	}
 }

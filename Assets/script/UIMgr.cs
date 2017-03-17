@@ -9,9 +9,10 @@ public class UIMgr : MonoBehaviour
 	private Image background;
 	[SerializeField]
 	private Sprite[] backgroundList;
-
 	[SerializeField]
 	private GameObject home;
+	[SerializeField]
+	private GameObject canvasObj;
 
 	public enum BG
 	{
@@ -46,5 +47,10 @@ public class UIMgr : MonoBehaviour
 	public void setHomeBtnVisible( bool visible )
 	{
 		home.SetActive (visible);
+	}
+
+	public float getplaneDistance()
+	{
+		return canvasObj.GetComponent<Canvas> ().planeDistance;
 	}
 }
