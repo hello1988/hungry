@@ -65,7 +65,16 @@ public class DataMgr : MonoBehaviour
 		custom cus = searchCustomList[indexInSearch];
 		searchCustomList.RemoveAt (indexInSearch);
 		confirmCustomList.Add (cus);
+	}
 
+	public void addCustomToConfirm( custom cus )
+	{
+		confirmCustomList.Add (cus);
+	}
+
+	public List<custom> getConfirmCustomList()
+	{
+		return confirmCustomList;
 	}
 
 	// TEST

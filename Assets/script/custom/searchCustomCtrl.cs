@@ -40,9 +40,11 @@ public class searchCustomCtrl : MonoBehaviour
 
 	public void showNextCustom ()
 	{
-		Vector3 pos = curCustom.transform.position;
+		Vector3 pos = curCustom.transform.localPosition;
 		// curCustom.transform.localPosition = Vector3.Lerp( pos, new Vector3(pos.x, (pos.y+5000),pos.z), 0.2f);
-		LeanTween.move(curCustom, new Vector3(pos.x, (pos.y+400), pos.z), 0.3f).setOnComplete(prepareNextCustome);
+
+		customIndex++;
+		LeanTween.moveLocalY(curCustom,pos.y+1200, 0.3f).setOnComplete(prepareNextCustome);
 		LeanTween.scale (nextCustom, Vector3.zero, 0.3f);
 	}
 
@@ -56,11 +58,9 @@ public class searchCustomCtrl : MonoBehaviour
 			return;
 		}
 
-		customIndex++;
-
 		setCurCustomImg();
 		setNextCustomImg ();
-		curCustom.GetComponent<searchCustomListener> ().resume ();
+		curCustom.GetComponent<searchCustomDetect> ().resume ();
 		LeanTween.scale (nextCustom, Vector3.one, 0.3f);
 	}
 
@@ -75,6 +75,7 @@ public class searchCustomCtrl : MonoBehaviour
 		custom cus = searchCustomList[customIndex];
 		pageCtrl.addCustomToConfirm (cus);
 		LeanTween.scale (curCustom , Vector3.zero, 0.3f).setOnComplete(prepareNextCustome);
+		DataMgr.Instance.moveCustomToConfirm (customIndex);
 	}
 
 

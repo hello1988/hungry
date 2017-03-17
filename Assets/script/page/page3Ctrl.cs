@@ -100,5 +100,6 @@ public class page3Ctrl : pageBase
 		input.text = "";
 		// 新客戶 加到確認名單
 		addCustomToConfirm( newCustom );
+		DataMgr.Instance.addCustomToConfirm (newCustom);
 	}
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class searchCustomListener : MonoBehaviour, IPointerDownHandler,IPointerUpHandler
+public class searchCustomDetect : MonoBehaviour, IPointerDownHandler,IPointerUpHandler
 {
 	private Vector3 oriPos = Vector3.zero;
 
@@ -13,7 +13,7 @@ public class searchCustomListener : MonoBehaviour, IPointerDownHandler,IPointerU
 	// Use this for initialization
 	public void Awake()
 	{
-		oriPos = transform.position;
+		oriPos = transform.localPosition;
 	}
 
 
@@ -42,8 +42,8 @@ public class searchCustomListener : MonoBehaviour, IPointerDownHandler,IPointerU
 
 	public void resume()
 	{
-		transform.position = new Vector3(oriPos.x, oriPos.y-100, oriPos.z );
-		LeanTween.move (this.gameObject, oriPos, 0.2f);
+		transform.localPosition = new Vector3(oriPos.x, oriPos.y-300, oriPos.z );
+		LeanTween.moveLocal (this.gameObject, oriPos, 0.3f);
 		LeanTween.scale (this.gameObject, Vector3.one, 0.3f );
 	}
 }
