@@ -10,6 +10,7 @@ public class page2Ctrl : pageBase
 	{
 		Button checkButton = nextBtn.GetComponent<Button> ();
 		checkButton.onClick.AddListener (nextPage);
+		homeVisible = false;
 	}
 	
 	// Update is called once per frame

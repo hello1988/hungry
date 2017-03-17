@@ -1,10 +1,10 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\script\pageMgr.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\script\scrollCtrl.cs">
     <Files>
-      <File FileName="Assets\script\custom\searchCustomCtrl.cs" Line="46" Column="17" />
-      <File FileName="Assets\script\custom\searchCustomDetect.cs" Line="45" Column="61" />
-      <File FileName="Assets\script\pageMgr.cs" Line="41" Column="20" />
+      <File FileName="Assets\script\scrollCtrl.cs" Line="88" Column="58" />
+      <File FileName="Assets\script\page\page5Ctrl.cs" Line="12" Column="27" />
+      <File FileName="Assets\script\pageMgr.cs" Line="61" Column="22" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

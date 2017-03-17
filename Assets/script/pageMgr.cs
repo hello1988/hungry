@@ -38,7 +38,7 @@ public class pageMgr : MonoBehaviour
 			page.SetActive (false);
 		}
 
-		int startPage = 0;
+		int startPage = 5;
 		pageList [startPage].SetActive (true);
 		pageBase showPage = pageList [startPage].GetComponent<pageBase> ();
 		showPage.onPageEnable ();

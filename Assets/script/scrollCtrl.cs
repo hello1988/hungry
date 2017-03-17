@@ -13,16 +13,27 @@ public class scrollCtrl : MonoBehaviour
 	private List<GameObject> itemList = new List<GameObject> ();
 	private int itemIndex = 0;
 	private float scrollHeight = 0f;
+	private float scrollWidth = 0f;
 	void Awake()
 	{
 		RectTransform scrollRect = scrollPanel.GetComponent<RectTransform> ();
+		scrollWidth = scrollRect.sizeDelta.x;
 		scrollHeight = scrollRect.sizeDelta.y;
+
 	}
 
 	// Use this for initialization
 	void Start () 
 	{
-
+		/* test
+		addItem ();
+		addItem ();
+		addItem ();
+		addItem ();
+		addItem ();
+		addItem ();
+		addItem ();
+		*/
 	}
 
 	public GameObject addItem()
@@ -30,9 +41,9 @@ public class scrollCtrl : MonoBehaviour
 		GameObject clone = Instantiate<GameObject> (template);
 
 		clone.name = string.Format("item{0}",itemIndex++);
+		clone.transform.SetParent( this.transform,false );
 		clone.transform.localScale = Vector3.one;
 		clone.transform.localPosition = Vector3.zero;
-		clone.transform.SetParent( this.transform,false );
 		clone.SetActive (true);
 
 		itemList.Add (clone);
@@ -64,18 +75,34 @@ public class scrollCtrl : MonoBehaviour
 	private void rePosition(bool rollToTop = false)
 	{
 		RectTransform tempRect = template.GetComponent<RectTransform> ();
+
+		float xOffset = tempRect.sizeDelta.x + 10;
 		float yOffset = tempRect.sizeDelta.y + 30;
 
-		float newHeight = Math.Max( scrollHeight, yOffset * itemList.Count );
+		int colCount = Convert.ToInt32 (Math.Floor (scrollWidth / xOffset));
+		int rowCount = Convert.ToInt32 (Math.Ceiling (itemList.Count / (float)colCount));
+
+		float newHeight = Math.Max( scrollHeight, yOffset * rowCount );
 
 		RectTransform rect = this.GetComponent<RectTransform> ();
 		rect.sizeDelta = new Vector2 (rect.sizeDelta.x, newHeight);
 
 		float top = (float)( (newHeight / 2.0) - yOffset/2.0 );
+		float totalWidth = colCount * xOffset;
+		float left = -(totalWidth/2)+(xOffset/2);
 
-		for( int index = 0;index < itemList.Count;index++ )
+		int itemCount = 0;
+		for( int index = 0;index < rowCount;index++ )
 		{
-			itemList [index].transform.localPosition = new Vector3(0,(top - yOffset*index),0);
+			for(int jIndex = 0;jIndex < colCount;jIndex++)
+			{
+				if (itemCount >= itemList.Count) {break;}
+
+				float x = left + xOffset * jIndex;
+				float y = top - yOffset * index;
+				itemList [itemCount].transform.localPosition = new Vector3(x, y,0);
+				itemCount++;
+			}
 		}
 
 		if (rollToTop) 

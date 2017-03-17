@@ -13,6 +13,8 @@ public class DataMgr : MonoBehaviour
 	// 要點餐的顧客
 	private List<custom> confirmCustomList = new List<custom>();
 
+	private custom orderingCustom;
+
 	private static DataMgr _instance = null;
 	public static DataMgr Instance
 	{
@@ -75,6 +77,18 @@ public class DataMgr : MonoBehaviour
 	public List<custom> getConfirmCustomList()
 	{
 		return confirmCustomList;
+	}
+
+	public void setOrderingCustom( int confirmIndex )
+	{
+		if ((confirmIndex < 0) || (confirmIndex >= this.confirmCustomList.Count)) {return;}
+
+		orderingCustom = confirmCustomList [confirmIndex];
+	}
+
+	public custom getOrderingCustom()
+	{
+		return orderingCustom;
 	}
 
 	// TEST

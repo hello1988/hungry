@@ -21,6 +21,7 @@ public class page4Ctrl : pageBase
 	{
 		Button checkButton = nextBtn.GetComponent<Button> ();
 		checkButton.onClick.AddListener (nextPage);
+		homeVisible = false;
 
 		left.onClick.AddListener (preCustom);
 		right.onClick.AddListener (nextCustom);

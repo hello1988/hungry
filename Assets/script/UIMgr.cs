@@ -10,10 +10,14 @@ public class UIMgr : MonoBehaviour
 	[SerializeField]
 	private Sprite[] backgroundList;
 
+	[SerializeField]
+	private GameObject home;
+
 	public enum BG
 	{
 		A,
 		C,
+		E,
 	}
 
 	private static UIMgr _instance = null;
@@ -37,5 +41,10 @@ public class UIMgr : MonoBehaviour
 	public void setBackground( BG index )
 	{
 		background.sprite = backgroundList[(int)index];
+	}
+
+	public void setHomeBtnVisible( bool visible )
+	{
+		home.SetActive (visible);
 	}
 }
