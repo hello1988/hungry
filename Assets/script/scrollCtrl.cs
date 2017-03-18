@@ -9,6 +9,10 @@ public class scrollCtrl : MonoBehaviour
 	private GameObject template;
 	[SerializeField]
 	private GameObject scrollPanel;
+	[SerializeField]
+	private int xSpace = 10;
+	[SerializeField]
+	private int ySpace = 30;
 
 	private List<GameObject> itemList = new List<GameObject> ();
 	private int itemIndex = 0;
@@ -77,8 +81,8 @@ public class scrollCtrl : MonoBehaviour
 	{
 		RectTransform tempRect = template.GetComponent<RectTransform> ();
 
-		float xOffset = tempRect.sizeDelta.x + 10;
-		float yOffset = tempRect.sizeDelta.y + 30;
+		float xOffset = tempRect.sizeDelta.x + xSpace;
+		float yOffset = tempRect.sizeDelta.y + ySpace;
 
 		int colCount = Convert.ToInt32 (Math.Floor (scrollWidth / xOffset));
 		int rowCount = Convert.ToInt32 (Math.Ceiling (itemList.Count / (float)colCount));

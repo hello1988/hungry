@@ -77,6 +77,7 @@
      <Compile Include="Assets\script\downloadMgr.cs" />
      <Compile Include="Assets\script\dragAndDrop.cs" />
      <Compile Include="Assets\script\homeCtrl.cs" />
+     <Compile Include="Assets\script\numberCtrl.cs" />
      <Compile Include="Assets\script\page\page0Ctrl.cs" />
      <Compile Include="Assets\script\page\page1Ctrl.cs" />
      <Compile Include="Assets\script\page\page2Ctrl.cs" />
@@ -84,6 +85,7 @@
      <Compile Include="Assets\script\page\page4Ctrl.cs" />
      <Compile Include="Assets\script\page\page5Ctrl.cs" />
      <Compile Include="Assets\script\page\page6Ctrl.cs" />
+     <Compile Include="Assets\script\page\page7Ctrl.cs" />
      <Compile Include="Assets\script\page\pageBase.cs" />
      <Compile Include="Assets\script\pageMgr.cs" />
      <Compile Include="Assets\script\scrollCtrl.cs" />
