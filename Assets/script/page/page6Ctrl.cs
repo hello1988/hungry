@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class page6Ctrl : pageBase 
 {
+	[SerializeField]
+	private GameObject filterScroll;
+
 	// private Button checkButton;
 	void Awake () 
 	{
@@ -22,6 +25,27 @@ public class page6Ctrl : pageBase
 	{
 		UIMgr.Instance.setBackground (UIMgr.BG.C);
 		setNextBtnActive(true);
+
+		resetScroll ();
+	}
+
+	private void resetScroll()
+	{
+		Dictionary<DataMgr.FilterType,Dictionary<int, filterInfo>> filterMap = filterInfo.getFilterMap ();
+		custom orderingCus = DataMgr.Instance.getOrderingCustom ();
+		Dictionary<DataMgr.FilterType, List<int>> preferFilter = orderingCus.getPreferFilter ();
+
+		scrollCtrl ctrl = filterScroll.GetComponent<scrollCtrl> ();
+		ctrl.reset ();
+		foreach(DataMgr.FilterType type in preferFilter.Keys)
+		{
+			foreach( int index in preferFilter[type] )
+			{
+				GameObject newObj = ctrl.addItem ();
+				checkFilter cFilter = newObj.GetComponent<checkFilter> ();
+				cFilter.setImage ( filterMap[type][index].sprite_S );
+			}
+		}
 	}
 
 	public void nextPage()

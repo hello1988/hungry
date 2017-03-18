@@ -10,6 +10,8 @@ public class dragAndDrop : MonoBehaviour,IDragHandler,IPointerDownHandler,IPoint
 {
 	[SerializeField]
 	private GameObject targetArea;
+	[SerializeField]
+	private page5Ctrl pageCtrl;
 
 	private Vector3 oriPos = Vector3.zero;
 	private Vector3 touchStart = Vector3.zero;
@@ -20,7 +22,7 @@ public class dragAndDrop : MonoBehaviour,IDragHandler,IPointerDownHandler,IPoint
 
 	public void OnDrag(PointerEventData eventData)
 	{
-		Vector3 offset =  getCurMousePosition() - touchStart;
+		Vector3 offset =  UIMgr.Instance.getCurMousePosition() - touchStart;
 
 		transform.position = (oriPos+offset);
 	}
@@ -28,9 +30,9 @@ public class dragAndDrop : MonoBehaviour,IDragHandler,IPointerDownHandler,IPoint
 	public void OnPointerDown(PointerEventData eventData)
 	{
 		oriPos = transform.position;
-		transform.localScale=new Vector3(0.7f,0.7f,0.7f);
+		transform.localScale=new Vector3(0.8f,0.8f,0.8f);
 
-		touchStart = getCurMousePosition();
+		touchStart = UIMgr.Instance.getCurMousePosition();
 	}
 
 	public void OnPointerUp(PointerEventData eventData)
@@ -60,6 +62,7 @@ public class dragAndDrop : MonoBehaviour,IDragHandler,IPointerDownHandler,IPoint
 			{
 				// Debug.logger.Log ("collision");
 				playEffect ();
+				pageCtrl.selectFilter();
 			}
 			else 
 			{
@@ -85,9 +88,4 @@ public class dragAndDrop : MonoBehaviour,IDragHandler,IPointerDownHandler,IPoint
 		transform.position = oriPos;
 	}
 
-	private Vector3 getCurMousePosition()
-	{
-		float distance = UIMgr.Instance.getplaneDistance ();
-		return Camera.main.ScreenToWorldPoint( new Vector3(Input.mousePosition.x, Input.mousePosition.y, distance) );
-	}
 }

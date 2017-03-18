@@ -31,14 +31,14 @@ public class scrollCtrl : MonoBehaviour
 	void Start () 
 	{
 		/* test
+		addItem ();
+		addItem ();
+		addItem ();
+		addItem ();
+		addItem ();
+		addItem ();
+		addItem ();
 		*/
-		addItem ();
-		addItem ();
-		addItem ();
-		addItem ();
-		addItem ();
-		addItem ();
-		addItem ();
 	}
 
 	public GameObject addItem()
@@ -84,7 +84,8 @@ public class scrollCtrl : MonoBehaviour
 		float xOffset = tempRect.sizeDelta.x + xSpace;
 		float yOffset = tempRect.sizeDelta.y + ySpace;
 
-		int colCount = Convert.ToInt32 (Math.Floor (scrollWidth / xOffset));
+		// 最少要一個 div 0會GG
+		int colCount = Math.Max(1, Convert.ToInt32 (Math.Floor (scrollWidth / xOffset)));
 		int rowCount = Convert.ToInt32 (Math.Ceiling (itemList.Count / (float)colCount));
 
 		float newHeight = Math.Max( scrollHeight, yOffset * rowCount );
@@ -114,5 +115,20 @@ public class scrollCtrl : MonoBehaviour
 		{
 			transform.localPosition = new Vector3(transform.localPosition.x,-((newHeight - scrollHeight) / 2),0);
 		}
+	}
+
+	public List<GameObject> getItemList()
+	{
+		return itemList;
+	}
+
+	public void reset()
+	{
+		for( int index = 0;index < itemList.Count;index++ )
+		{
+			Destroy (itemList[index]);
+		}
+		itemList.Clear ();
+		itemIndex = 0;
 	}
 }

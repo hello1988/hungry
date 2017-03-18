@@ -17,8 +17,6 @@ public class page4Ctrl : pageBase
 	// private Button checkButton;
 	void Awake () 
 	{
-		Button checkButton = nextBtn.GetComponent<Button> ();
-		checkButton.onClick.AddListener (nextPage);
 		homeVisible = false;
 
 		left.onClick.AddListener (preCustom);
@@ -72,13 +70,18 @@ public class page4Ctrl : pageBase
 	public override void onPageEnable()
 	{
 		UIMgr.Instance.setBackground (UIMgr.BG.C);
-		setNextBtnActive(true);
 		setCustomImg ();
 	}
 
 	public void nextPage()
 	{
 		pageMgr.Instance.nextPage (5);
+	}
+
+	public void onCustomClick()
+	{
+		DataMgr.Instance.setOrderingCustom (customIndex);
+		nextPage ();
 	}
 
 	private void updatePageBtn()

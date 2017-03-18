@@ -32,6 +32,8 @@ public class UIMgr : MonoBehaviour
 	private void Awake ()
 	{
 		_instance = this;
+		System.DateTime dt = new System.DateTime ();
+		(System.DateTime.Now-dt).TotalMilliseconds
 	}
 	
 	// Update is called once per frame
@@ -53,5 +55,11 @@ public class UIMgr : MonoBehaviour
 	public float getplaneDistance()
 	{
 		return canvasObj.GetComponent<Canvas> ().planeDistance;
+	}
+
+	public Vector3 getCurMousePosition()
+	{
+		float distance = getplaneDistance ();
+		return Camera.main.ScreenToWorldPoint( new Vector3(Input.mousePosition.x, Input.mousePosition.y, distance) );
 	}
 }

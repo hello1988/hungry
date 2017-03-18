@@ -75,7 +75,10 @@
      <Compile Include="Assets\script\custom\searchCustomCtrl.cs" />
      <Compile Include="Assets\script\custom\searchCustomDetect.cs" />
      <Compile Include="Assets\script\downloadMgr.cs" />
-     <Compile Include="Assets\script\dragAndDrop.cs" />
+     <Compile Include="Assets\script\filter\checkFilter.cs" />
+     <Compile Include="Assets\script\filter\dragAndDrop.cs" />
+     <Compile Include="Assets\script\filter\selectFilter.cs" />
+     <Compile Include="Assets\script\filter\switchCtrl.cs" />
      <Compile Include="Assets\script\homeCtrl.cs" />
      <Compile Include="Assets\script\numberCtrl.cs" />
      <Compile Include="Assets\script\page\page0Ctrl.cs" />

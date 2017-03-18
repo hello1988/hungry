@@ -4,14 +4,20 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class confirmCustomDetect  : MonoBehaviour, IPointerDownHandler,IPointerUpHandler
+public class confirmCustomDetect  : MonoBehaviour, IPointerDownHandler,IPointerUpHandler, IDragHandler
 {
+	[SerializeField]
+	private page4Ctrl parentObj;
+
 	private Vector3 startPos = Vector3.zero;
+	private Vector3 oriLocalPos = Vector3.zero;
 	private Vector3 oriPos = Vector3.zero;
+	private bool pressing = false;
 
 	// Use this for initialization
 	void Awake () {
-		oriPos = this.transform.localPosition;
+		oriLocalPos = transform.localPosition;
+		oriPos = transform.position;
 	}
 	
 	// Update is called once per frame
@@ -19,30 +25,51 @@ public class confirmCustomDetect  : MonoBehaviour, IPointerDownHandler,IPointerU
 		
 	}
 
+	public void OnDrag(PointerEventData eventData)
+	{
+		if (!pressing) {return;}
+		Vector3 curMousePosition = UIMgr.Instance.getCurMousePosition();
+
+		// 總長約 53
+		float xOffset = curMousePosition.x - startPos.x;
+		if (xOffset > 20.0) 
+		{
+			transform.parent.GetComponent<page4Ctrl> ().preCustom ();
+			pressing = false;
+		}
+		else if (xOffset < -20.0) 
+		{
+			transform.parent.GetComponent<page4Ctrl> ().nextCustom ();
+			pressing = false;
+		}
+		else 
+		{
+			transform.position = new Vector3 ((oriPos.x+xOffset), oriPos.y, oriPos.z);
+		}
+
+	}
+
 	public void OnPointerDown(PointerEventData eventData)
 	{
-		Vector3 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
-		startPos = Camera.main.ScreenToWorldPoint( new Vector3(Input.mousePosition.x, Input.mousePosition.y,screenPosition.z));
+		startPos = UIMgr.Instance.getCurMousePosition ();
+		pressing = true;
 	}
 
 	public void OnPointerUp(PointerEventData eventData)
 	{
-		Vector3 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
-		Vector3 endPos = Camera.main.ScreenToWorldPoint( new Vector3(Input.mousePosition.x, Input.mousePosition.y,screenPosition.z));
-
+		pressing = false;
+		Vector3 endPos = UIMgr.Instance.getCurMousePosition();
 		// Debug.logger.Log (string.Format("xOffset : {0}",(endPos.x - startPos.x)));
 
-		// 總長約 3.6
-		if ((endPos.x - startPos.x) > 0.7) 
-		{
-			this.transform.parent.GetComponent<page4Ctrl> ().preCustom ();
-		}
-		else if ((endPos.x - startPos.x) < -0.7) 
-		{
-			this.transform.parent.GetComponent<page4Ctrl> ().nextCustom ();
-		}
+		transform.localPosition = oriLocalPos;
 
+		if(Mathf.Abs(endPos.x - startPos.x) < 1.0)
+		{
+			// Debug.logger.Log ("OnPointerClick");
+			parentObj.onCustomClick();
+		}
 	}
+
 
 	public void setImageByCustom( custom cus )
 	{
@@ -61,7 +88,7 @@ public class confirmCustomDetect  : MonoBehaviour, IPointerDownHandler,IPointerU
 
 	public void resume()
 	{
-		LeanTween.moveLocal(this.gameObject, oriPos, 0.3f);
+		LeanTween.moveLocal(this.gameObject, oriLocalPos, 0.3f);
 		LeanTween.scale (this.gameObject, Vector3.one, 0.3f);
 	}
 }

@@ -76,6 +76,8 @@ public class pageMgr : MonoBehaviour
 	// TODO 換頁動畫
 	private void pageEffect( DIR dir, int curren, int target  )
 	{
+		UIMgr.Instance.setHomeBtnVisible (false);
+
 		pageList [curren].SetActive(false);
 		pageList [target].SetActive(true);
 		pageList [target].GetComponent<pageBase> ().onPageEnable ();

@@ -15,6 +15,8 @@ public class page3Ctrl : pageBase
 	private GameObject addCustomUI; // 臨時顧客UI
 	[SerializeField]
 	private Text newCustomName;	// 新顧客的名字
+	[SerializeField]
+	private GameObject tipText;	// 提示文字
 
 	// private Button checkButton;
 	void Awake () 
@@ -37,6 +39,7 @@ public class page3Ctrl : pageBase
 		searchUI.SetActive (false);
 		confirmScroll.SetActive (false);
 		addCustomUI.SetActive (false);
+		tipText.SetActive (false);
 
 		StartCoroutine (showCustom());
 	}
@@ -48,6 +51,7 @@ public class page3Ctrl : pageBase
 
 		// setNextBtnActive(true);
 		searchUI.SetActive (true);
+		tipText.SetActive (true);
 		searchUI.GetComponent<searchCustomCtrl>().refreshSearchList();
 
 		confirmScroll.SetActive (true);

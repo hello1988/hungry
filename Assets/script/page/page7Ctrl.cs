@@ -31,7 +31,7 @@ public class page7Ctrl : pageBase
 
 	public void showSwitchFilter()
 	{
-		
+		switchFilterUI.GetComponent<switchCtrl> ().showUI ();
 	}
 
 	public void nextPage()
