@@ -62,5 +62,6 @@ public class confirmCustomDetect  : MonoBehaviour, IPointerDownHandler,IPointerU
 	public void resume()
 	{
 		LeanTween.moveLocal(this.gameObject, oriPos, 0.3f);
+		LeanTween.scale (this.gameObject, Vector3.one, 0.3f);
 	}
 }

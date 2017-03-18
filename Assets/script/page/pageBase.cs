@@ -14,6 +14,9 @@ public class pageBase : MonoBehaviour
 
 	void OnEnable() 
 	{
+		// page 忘記關閉就啟動時 會發生這個錯誤
+		if (UIMgr.Instance == null) {return;}
+			
 		UIMgr.Instance.setHomeBtnVisible (homeVisible);
 	}
 

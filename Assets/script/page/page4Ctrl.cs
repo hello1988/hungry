@@ -8,8 +8,6 @@ public class page4Ctrl : pageBase
 	[SerializeField]
 	private GameObject curCustom;
 	[SerializeField]
-	private GameObject shadowCustom;
-	[SerializeField]
 	private Button left;
 	[SerializeField]
 	private Button right;
@@ -39,8 +37,8 @@ public class page4Ctrl : pageBase
 		if (customIndex <= 0) {return;}
 
 		customIndex--;
-		LeanTween.moveLocalX (curCustom.gameObject, 1300, 0.3f).setOnComplete(mirrorX);
-
+		LeanTween.moveLocalX (curCustom.gameObject, 1300, 0.3f);
+		LeanTween.scale (curCustom.gameObject, Vector3.zero, 0.3f).setOnComplete (mirrorX);
 	}
 
 	public void nextCustom()
@@ -49,7 +47,8 @@ public class page4Ctrl : pageBase
 		if ((customIndex + 1) >= confirmList.Count) {return;}
 
 		customIndex++;
-		LeanTween.moveLocalX (curCustom.gameObject, -1300, 0.3f).setOnComplete(mirrorX);
+		LeanTween.moveLocalX (curCustom.gameObject, -1300, 0.3f);
+		LeanTween.scale (curCustom.gameObject, Vector3.zero, 0.3f).setOnComplete (mirrorX);
 	}
 
 	public void mirrorX()
