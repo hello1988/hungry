@@ -7,7 +7,9 @@ public class page7Ctrl : pageBase
 {
 	[SerializeField]
 	private GameObject switchFilterUI;
-	// private Button checkButton;
+	[SerializeField]
+	private GameObject indexScroll;
+	private DataMgr.FilterType filterType =  DataMgr.FilterType.STAPLE;
 	void Awake () 
 	{
 		
@@ -27,6 +29,7 @@ public class page7Ctrl : pageBase
 	{
 		UIMgr.Instance.setBackground (UIMgr.BG.F);
 
+		resetScroll ();
 	}
 
 	public void showSwitchFilter()
@@ -42,5 +45,24 @@ public class page7Ctrl : pageBase
 	public void resetScroll( DataMgr.FilterType type )
 	{
 		Debug.logger.Log (string.Format("resetScroll : {0}",type));
+		filterType = type;
+		resetScroll ();
+	}
+
+	public void resetScroll()
+	{
+		// TODO 之後再做顧客偏好篩選
+		System.Random seed = new System.Random();
+		custom orderingCustom = DataMgr.Instance.getOrderingCustom();
+		scrollCtrl ctrl = indexScroll.GetComponent<scrollCtrl> ();
+		ctrl.reset ();
+
+		Dictionary<int, Sprite> spriteMap = spriteMgr.Instance.getIndexSpriteMap (filterType, false);
+		foreach( int index in spriteMap.Keys )
+		{
+			GameObject newObj = ctrl.addItem ();
+			int menuNumber = (seed.Next () % 9) + 1;
+			newObj.GetComponent<indexCtrl> ().setInfo (spriteMap [index], menuNumber);
+		}
 	}
 }

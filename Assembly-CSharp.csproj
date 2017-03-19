@@ -80,6 +80,9 @@
      <Compile Include="Assets\script\filter\selectFilter.cs" />
      <Compile Include="Assets\script\filter\switchCtrl.cs" />
      <Compile Include="Assets\script\homeCtrl.cs" />
+     <Compile Include="Assets\script\menu\indexCtrl.cs" />
+     <Compile Include="Assets\script\menu\menu.cs" />
+     <Compile Include="Assets\script\menu\menuMgr.cs" />
      <Compile Include="Assets\script\numberCtrl.cs" />
      <Compile Include="Assets\script\page\page0Ctrl.cs" />
      <Compile Include="Assets\script\page\page1Ctrl.cs" />
@@ -89,9 +92,12 @@
      <Compile Include="Assets\script\page\page5Ctrl.cs" />
      <Compile Include="Assets\script\page\page6Ctrl.cs" />
      <Compile Include="Assets\script\page\page7Ctrl.cs" />
+     <Compile Include="Assets\script\page\page8Ctrl.cs" />
      <Compile Include="Assets\script\page\pageBase.cs" />
      <Compile Include="Assets\script\pageMgr.cs" />
+     <Compile Include="Assets\script\playAni.cs" />
      <Compile Include="Assets\script\scrollCtrl.cs" />
+     <Compile Include="Assets\script\spriteMgr.cs" />
      <None Include="Assets\LeanTween\Examples\Archived\2dUnlitWithFade.shader" />
      <None Include="Assets\LeanTween\ReadMe.txt" />
      <None Include="Assets\LeanTween\License.txt" />

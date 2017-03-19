@@ -33,6 +33,8 @@ public class dragAndDrop : MonoBehaviour,IDragHandler,IPointerDownHandler,IPoint
 		transform.localScale=new Vector3(0.8f,0.8f,0.8f);
 
 		touchStart = UIMgr.Instance.getCurMousePosition();
+
+		targetArea.GetComponent<playAni> ().play ();
 	}
 
 	public void OnPointerUp(PointerEventData eventData)
@@ -86,6 +88,7 @@ public class dragAndDrop : MonoBehaviour,IDragHandler,IPointerDownHandler,IPoint
 	{
 		transform.localScale=new Vector3(1f,1f,1f);
 		transform.position = oriPos;
+		targetArea.GetComponent<playAni> ().stop ();
 	}
 
 }

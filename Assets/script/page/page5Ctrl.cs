@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -40,11 +41,10 @@ public class page5Ctrl : pageBase
 	public void onFilterClick( selectFilter arg )
 	{
 		focusFilter = arg;
-
-		Dictionary<DataMgr.FilterType,Dictionary<int, filterInfo>> filterMap = filterInfo.getFilterMap ();
 		DataMgr.FilterType type = focusFilter.getFilterType ();
 		int index = focusFilter.getFilterIndex ();
-		focusImage.sprite = filterMap [type] [index].sprite_L;
+
+		focusImage.sprite = spriteMgr.Instance.getSprite (type,true,index);
 	}
 
 	public void selectFilter()
@@ -75,17 +75,20 @@ public class page5Ctrl : pageBase
 	private void initFilterScroll()
 	{
 		scrollCtrl ctrl = filterScroll.GetComponent<scrollCtrl> ();
-		Dictionary<DataMgr.FilterType,Dictionary<int, filterInfo>> filterMap = filterInfo.getFilterMap ();
-		foreach (DataMgr.FilterType type in filterMap.Keys) 
+
+		foreach (DataMgr.FilterType type in Enum.GetValues(typeof(DataMgr.FilterType))) 
 		{
-			Dictionary<int, filterInfo> fInfo = filterMap [type];
-			foreach (int index in fInfo.Keys) 
+			string keyWord = spriteMgr.Instance.getFilterSpriteKeyWord (type, false);
+			if (string.IsNullOrEmpty (keyWord)) {continue;}
+
+			Dictionary<int, Sprite> spriteMap = spriteMgr.Instance.getSpriteMap (keyWord);
+			foreach (int index in spriteMap.Keys) 
 			{
 				GameObject newObj = ctrl.addItem ();
 				selectFilter fImg = newObj.GetComponent<selectFilter> ();
 				fImg.setFilterType (type);
 				fImg.setFilterIndex (index);
-				newObj.GetComponent<Image> ().sprite = filterMap [type] [index].sprite_S;
+				newObj.GetComponent<Image> ().sprite = spriteMap[index];
 			}
 		}
 

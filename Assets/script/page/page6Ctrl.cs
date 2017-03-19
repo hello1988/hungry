@@ -31,7 +31,6 @@ public class page6Ctrl : pageBase
 
 	private void resetScroll()
 	{
-		Dictionary<DataMgr.FilterType,Dictionary<int, filterInfo>> filterMap = filterInfo.getFilterMap ();
 		custom orderingCus = DataMgr.Instance.getOrderingCustom ();
 		Dictionary<DataMgr.FilterType, List<int>> preferFilter = orderingCus.getPreferFilter ();
 
@@ -43,7 +42,7 @@ public class page6Ctrl : pageBase
 			{
 				GameObject newObj = ctrl.addItem ();
 				checkFilter cFilter = newObj.GetComponent<checkFilter> ();
-				cFilter.setInfo ( type, index, filterMap[type][index].sprite_S );
+				cFilter.setInfo ( type, index, spriteMgr.Instance.getSprite(type, false, index) );
 			}
 		}
 	}

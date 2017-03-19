@@ -1,12 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\script\pageMgr.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\script\DataMgr.cs">
     <Files>
-      <File FileName="Assets\script\page\page6Ctrl.cs" Line="46" Column="55" />
-      <File FileName="Assets\script\filter\checkFilter.cs" Line="59" Column="99" />
-      <File FileName="Assets\script\filter\dragAndDrop.cs" Line="59" Column="12" />
-      <File FileName="Assets\script\UIMgr.cs" Line="36" Column="45" />
-      <File FileName="Assets\script\pageMgr.cs" Line="41" Column="20" />
+      <File FileName="Assets\script\menu\menuMgr.cs" Line="33" Column="33" />
+      <File FileName="Assets\script\menu\menu.cs" Line="12" Column="31" />
+      <File FileName="Assets\script\spriteMgr.cs" Line="120" Column="50" />
+      <File FileName="Assets\script\page\page7Ctrl.cs" Line="65" Column="76" />
+      <File FileName="Assets\script\DataMgr.cs" Line="48" Column="31" />
+      <File FileName="Assets\script\menu\indexCtrl.cs" Line="30" Column="39" />
+      <File FileName="Assets\script\numberCtrl.cs" Line="65" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

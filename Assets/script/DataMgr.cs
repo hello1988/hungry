@@ -11,6 +11,31 @@ public class DataMgr : MonoBehaviour
 		STAPLE,	// 主食
 	}
 
+	// 料理方式子分類
+	public enum Cook
+	{
+		FRY = 1,	// 炸
+		RAW,		// 生食
+		BROIL,		// 烤
+	}
+
+	// 食材子分類
+	public enum Food
+	{
+		BEEF = 1,	// 牛肉
+		LAMB,		// 羊肉
+		PORK,		// 豬肉
+		CHICKEN,	// 雞肉
+	}
+
+	// 主食子分類
+	public enum Staple
+	{
+		RICE = 1,	// 飯
+		SUSHI,		// 壽司
+		NOODLE,		// 麵
+	}
+
 	// 店員編號
 	private string staffNumber = "";
 	// 桌號
@@ -36,7 +61,6 @@ public class DataMgr : MonoBehaviour
 
 	public void Start()
 	{
-		filterInfo.buildFilterMap ();
 		orderingCustom = custom.createDefaultCustom ("default");
 		prepareFakeCustom ();
 	}
@@ -115,66 +139,3 @@ public class DataMgr : MonoBehaviour
 	}
 }
 
-class filterInfo
-{
-	public static readonly string smallImgPath = "cook/cook_S/cook{0}";
-	public static readonly string bigImgPath = "cook/cook_L/cook{0}";
-
-	private static Dictionary<DataMgr.FilterType,Dictionary<int, filterInfo>> filterMap;
-
-	public Sprite sprite_S;
-	public Sprite sprite_L;
-
-	public static void buildFilterMap()
-	{
-		filterMap = new Dictionary<DataMgr.FilterType,Dictionary<int, filterInfo>> ();
-
-		buildCookResStart ();
-	}
-
-	public static void buildCookResStart()
-	{
-		downloadMgr.Instance.downloadSprite (string.Format (smallImgPath, 1), downloadCallBack, new object[] {DataMgr.FilterType.COOK,"S",1,smallImgPath});
-		downloadMgr.Instance.downloadSprite (string.Format (bigImgPath, 1), downloadCallBack, new object[] {DataMgr.FilterType.COOK,"L",1,bigImgPath});
-	}
-
-	private static void downloadCallBack(Sprite sprite, object userData)
-	{
-		if (sprite == null) {return;}
-
-		object[] args = (object[])userData;
-		DataMgr.FilterType type = (DataMgr.FilterType) args[0];
-		string size = (string)args [1];
-		int index= (int)args [2];
-		string path = (string)args [3];
-
-		if (!filterMap.ContainsKey (type)) 
-		{
-			filterMap.Add (type, new Dictionary<int, filterInfo> ());
-		}
-
-		if (!filterMap [type].ContainsKey (index)) 
-		{
-			filterMap [type].Add (index, new filterInfo());
-		}
-
-		if (size == "S") 
-		{
-			filterMap [type] [index].sprite_S = sprite;
-		}
-		else if (size == "L") 
-		{
-			filterMap [type] [index].sprite_L = sprite;
-		}
-
-		index++;
-		string downloadPath = string.Format (path, index);
-		// Debug.logger.Log (string.Format("download path : {0}",downloadPath));
-		downloadMgr.Instance.downloadSprite (downloadPath, downloadCallBack, new object[] {DataMgr.FilterType.COOK,size,index,path});
-	}
-
-	public static Dictionary<DataMgr.FilterType,Dictionary<int, filterInfo>> getFilterMap ()
-	{
-		return filterMap;
-	}
-}
