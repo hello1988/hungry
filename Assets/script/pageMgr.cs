@@ -6,6 +6,8 @@ public class pageMgr : MonoBehaviour
 {
 	[SerializeField]
 	private GameObject[] pageList;
+	[SerializeField]
+	private int startPage = 0;
 
 	private Stack<int> record = new Stack<int>();
 
@@ -38,7 +40,6 @@ public class pageMgr : MonoBehaviour
 			page.SetActive (false);
 		}
 
-		int startPage = 0;
 		pageList [startPage].SetActive (true);
 		pageBase showPage = pageList [startPage].GetComponent<pageBase> ();
 		showPage.onPageEnable ();

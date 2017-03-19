@@ -80,9 +80,11 @@
      <Compile Include="Assets\script\filter\selectFilter.cs" />
      <Compile Include="Assets\script\filter\switchCtrl.cs" />
      <Compile Include="Assets\script\homeCtrl.cs" />
+     <Compile Include="Assets\script\menu\assistCtrl.cs" />
      <Compile Include="Assets\script\menu\indexCtrl.cs" />
      <Compile Include="Assets\script\menu\menu.cs" />
      <Compile Include="Assets\script\menu\menuMgr.cs" />
+     <Compile Include="Assets\script\menu\textToSpeech.cs" />
      <Compile Include="Assets\script\numberCtrl.cs" />
      <Compile Include="Assets\script\page\page0Ctrl.cs" />
      <Compile Include="Assets\script\page\page1Ctrl.cs" />

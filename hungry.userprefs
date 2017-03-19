@@ -1,14 +1,11 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\script\DataMgr.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\script\menu\textToSpeech.cs">
     <Files>
-      <File FileName="Assets\script\menu\menuMgr.cs" Line="33" Column="33" />
-      <File FileName="Assets\script\menu\menu.cs" Line="12" Column="31" />
-      <File FileName="Assets\script\spriteMgr.cs" Line="120" Column="50" />
-      <File FileName="Assets\script\page\page7Ctrl.cs" Line="65" Column="76" />
-      <File FileName="Assets\script\DataMgr.cs" Line="48" Column="31" />
-      <File FileName="Assets\script\menu\indexCtrl.cs" Line="30" Column="39" />
-      <File FileName="Assets\script\numberCtrl.cs" Line="65" Column="3" />
+      <File FileName="Assets\script\page\page8Ctrl.cs" Line="11" Column="30" />
+      <File FileName="Assets\script\UIMgr.cs" Line="15" Column="31" />
+      <File FileName="Assets\script\pageMgr.cs" Line="45" Column="28" />
+      <File FileName="Assets\script\menu\textToSpeech.cs" Line="10" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

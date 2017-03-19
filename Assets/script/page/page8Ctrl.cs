@@ -5,7 +5,10 @@ using UnityEngine.UI;
 
 public class page8Ctrl : pageBase 
 {
-	// private Button checkButton;
+	[SerializeField]
+	private GameObject mainMenu;
+	[SerializeField]
+	private GameObject[] assist;
 	void Awake () 
 	{
 		Button checkButton = nextBtn.GetComponent<Button> ();
