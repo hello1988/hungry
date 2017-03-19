@@ -53,6 +53,18 @@ public class custom
 		preferFilter [type].Add (filtlerIndex);
 	}
 
+	public void removePreferFilter( DataMgr.FilterType type, int filtlerIndex )
+	{
+		if (!preferFilter.ContainsKey (type)) {return;}
+
+		if (!preferFilter [type].Contains (filtlerIndex)) {return;}
+
+		preferFilter [type].Remove(filtlerIndex);
+
+		for(int idx = 0;idx < preferFilter[type].Count;idx++)
+			Debug.logger.Log (string.Format("preferFilter : {0}",preferFilter[type][idx]));
+	}
+
 	public Dictionary<DataMgr.FilterType, List<int>> getPreferFilter()
 	{
 		return preferFilter;

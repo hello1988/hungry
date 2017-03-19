@@ -38,4 +38,9 @@ public class page7Ctrl : pageBase
 	{
 		pageMgr.Instance.nextPage (8);
 	}
+
+	public void resetScroll( DataMgr.FilterType type )
+	{
+		Debug.logger.Log (string.Format("resetScroll : {0}",type));
+	}
 }

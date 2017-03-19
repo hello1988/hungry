@@ -14,10 +14,12 @@ public class checkFilter : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
 	[SerializeField]
 	private page6Ctrl pageCtrl;
 
-	Vector3 imgOriPos = Vector3.zero;
-	Vector3 delOriPos = Vector3.zero;
+	private Vector3 imgOriPos = Vector3.zero;
+	private Vector3 delOriPos = Vector3.zero;
 	private bool pressing = false;
 	private DateTime pressTime;
+	private DataMgr.FilterType filterType;
+	private int filterIndex;
 
 	// Use this for initialization
 	void Start () {
@@ -29,7 +31,7 @@ public class checkFilter : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
 	{
 		if (!pressing) {return;}
 
-		if ((System.DateTime.Now - pressTime).TotalMilliseconds < 1500) {return;}
+		if ((System.DateTime.Now - pressTime).TotalMilliseconds < 500) {return;}
 		longPress ();
 		pressing = false;
 	}
@@ -38,9 +40,6 @@ public class checkFilter : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
 	{
 		pressing = true;
 		pressTime = DateTime.Now;
-
-		imgOriPos = filterImg.transform.localPosition;
-		delOriPos = deleteBtn.transform.localPosition;
 	}
 
 	public void OnPointerUp(PointerEventData eventData)
@@ -48,14 +47,44 @@ public class checkFilter : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
 		pressing = false;
 	}
 
-	public void setImage( Sprite sprite )
+	public void setInfo( DataMgr.FilterType type, int index, Sprite sprite )
 	{
+		filterType = type;
+		filterIndex = index;
 		filterImg.sprite = sprite;
+
+		imgOriPos = filterImg.transform.localPosition;
+		delOriPos = deleteBtn.transform.localPosition;
 	}
 
 	private void longPress()
 	{
 		LeanTween.moveLocal (filterImg.gameObject, new Vector3((imgOriPos.x-190),imgOriPos.y,imgOriPos.z+20),0.3f);
 		LeanTween.moveLocal (deleteBtn, new Vector3((delOriPos.x-190),delOriPos.y,delOriPos.z+20),0.3f);
+
+		StopCoroutine(resume ());
+		StartCoroutine (resume ());
+	}
+
+	public IEnumerator resume()
+	{
+		yield return new WaitForSeconds (5);
+		LeanTween.moveLocal (filterImg.gameObject,imgOriPos,0.3f);
+		LeanTween.moveLocal (deleteBtn, delOriPos,0.3f);
+	}
+
+	public void deleteFilter()
+	{
+		pageCtrl.deleteFilter (gameObject);
+	}
+
+	public DataMgr.FilterType getFilterType()
+	{
+		return filterType;
+	}
+
+	public int getFilterIndex()
+	{
+		return filterIndex;
 	}
 }

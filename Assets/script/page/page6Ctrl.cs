@@ -43,7 +43,7 @@ public class page6Ctrl : pageBase
 			{
 				GameObject newObj = ctrl.addItem ();
 				checkFilter cFilter = newObj.GetComponent<checkFilter> ();
-				cFilter.setImage ( filterMap[type][index].sprite_S );
+				cFilter.setInfo ( type, index, filterMap[type][index].sprite_S );
 			}
 		}
 	}
@@ -51,5 +51,15 @@ public class page6Ctrl : pageBase
 	public void nextPage()
 	{
 		pageMgr.Instance.nextPage (7);
+	}
+
+	public void deleteFilter(GameObject delItem)
+	{
+		checkFilter chkFilter = delItem.GetComponent<checkFilter> ();
+		scrollCtrl ctrl = filterScroll.GetComponent<scrollCtrl> ();
+
+		ctrl.delItem (delItem.name);
+		custom orderingCus = DataMgr.Instance.getOrderingCustom ();
+		orderingCus.removePreferFilter ( chkFilter.getFilterType(), chkFilter.getFilterIndex() );
 	}
 }

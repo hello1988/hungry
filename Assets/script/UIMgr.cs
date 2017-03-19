@@ -32,8 +32,6 @@ public class UIMgr : MonoBehaviour
 	private void Awake ()
 	{
 		_instance = this;
-		System.DateTime dt = new System.DateTime ();
-		(System.DateTime.Now-dt).TotalMilliseconds
 	}
 	
 	// Update is called once per frame
