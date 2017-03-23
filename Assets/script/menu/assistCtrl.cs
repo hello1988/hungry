@@ -10,9 +10,15 @@ public class assistCtrl : MonoBehaviour
 	private GameObject mainMenu;
 	[SerializeField]
 	private Image[] imagesList;
+	[SerializeField]
+	private Button backBtn;
 	// Use this for initialization
-	void Start () {
-		
+	void Awake () 
+	{
+		if (backBtn != null) 
+		{
+			backBtn.onClick.AddListener (backToMainMenu);
+		}
 	}
 	
 	// Update is called once per frame
@@ -32,6 +38,13 @@ public class assistCtrl : MonoBehaviour
 		gameObject.SetActive (false);
 	}
 
+	public void show()
+	{
+		transform.localScale = Vector3.zero;
+		gameObject.SetActive (true);
+		LeanTween.scale (gameObject, Vector3.one, 0.3f);
+	}
+
 	public void setSprite( Sprite[] sprites )
 	{
 		int size = Math.Min (sprites.Length, imagesList.Length );
@@ -41,4 +54,10 @@ public class assistCtrl : MonoBehaviour
 			imagesList [index].sprite = sprites [index];
 		}
 	}
+
+	public void OnMaskClick()
+	{
+		backToMainMenu ();
+	}
+
 }

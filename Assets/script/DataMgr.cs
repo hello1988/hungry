@@ -46,6 +46,7 @@ public class DataMgr : MonoBehaviour
 	private List<custom> confirmCustomList = new List<custom>();
 
 	private custom orderingCustom;
+	private int curMenuID;
 
 	private static DataMgr _instance = null;
 	public static DataMgr Instance
@@ -122,6 +123,16 @@ public class DataMgr : MonoBehaviour
 	public custom getOrderingCustom()
 	{
 		return orderingCustom;
+	}
+
+	public void setCurrentMenuID( int menuID )
+	{
+		curMenuID = menuID;
+	}
+
+	public int getCurrentMenuID()
+	{
+		return curMenuID;
 	}
 
 	// TEST

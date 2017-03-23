@@ -6,6 +6,10 @@ using UnityEngine.UI;
 
 public class indexCtrl : MonoBehaviour, IPointerClickHandler
 {
+	[SerializeField]
+	private page7Ctrl pageCtrl;
+
+	public int subIndex;
 	// Use this for initialization
 	void Start () {
 		
@@ -16,7 +20,10 @@ public class indexCtrl : MonoBehaviour, IPointerClickHandler
 		
 	}
 
-
+	public void setSubIndex( int idx )
+	{
+		subIndex = idx;
+	}
 
 	public void setInfo( Sprite sprite, int menuNum )
 	{
@@ -27,6 +34,6 @@ public class indexCtrl : MonoBehaviour, IPointerClickHandler
 
 	public void OnPointerClick (PointerEventData eventData)
 	{
-		Debug.logger.Log ("OnPointerClick");
+		pageCtrl.nextPage (subIndex);
 	}
 }

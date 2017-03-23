@@ -8,7 +8,7 @@ public class page8Ctrl : pageBase
 	[SerializeField]
 	private GameObject mainMenu;
 	[SerializeField]
-	private GameObject[] assist;
+	private GameObject[] assistList;
 	void Awake () 
 	{
 		Button checkButton = nextBtn.GetComponent<Button> ();
@@ -25,10 +25,29 @@ public class page8Ctrl : pageBase
 		UIMgr.Instance.setBackground (UIMgr.BG.F);
 
 		setNextBtnActive(true);
+		mainMenu.SetActive (true);
+		foreach( GameObject assist in assistList )
+		{
+			assist.SetActive (false);
+		}
+	}
+
+	public void showAssist( int assistIndex )
+	{
+		if( (assistIndex < 0) || (assistIndex >= assistList.Length)){return ;}
+
+		// mainMenu.SetActive (false);
+		foreach( GameObject assist in assistList )
+		{
+			assist.SetActive (false);
+		}
+
+		assistList [assistIndex].GetComponent<assistCtrl> ().show ();
 	}
 
 	public void nextPage()
 	{
 		pageMgr.Instance.nextPage (9);
 	}
+
 }

@@ -37,14 +37,13 @@ public class page7Ctrl : pageBase
 		switchFilterUI.GetComponent<switchCtrl> ().showUI ();
 	}
 
-	public void nextPage()
+	public void nextPage( int subIndex )
 	{
 		pageMgr.Instance.nextPage (8);
 	}
 
 	public void resetScroll( DataMgr.FilterType type )
 	{
-		Debug.logger.Log (string.Format("resetScroll : {0}",type));
 		filterType = type;
 		resetScroll ();
 	}
@@ -61,8 +60,12 @@ public class page7Ctrl : pageBase
 		foreach( int index in spriteMap.Keys )
 		{
 			GameObject newObj = ctrl.addItem ();
+			// TODO 幾道菜等表單建好再計算
 			int menuNumber = (seed.Next () % 9) + 1;
-			newObj.GetComponent<indexCtrl> ().setInfo (spriteMap [index], menuNumber);
+
+			indexCtrl idxCtrl = newObj.GetComponent<indexCtrl> ();
+			idxCtrl.setInfo (spriteMap [index], menuNumber);
+			idxCtrl.setSubIndex (index);
 		}
 	}
 }

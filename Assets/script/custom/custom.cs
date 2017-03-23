@@ -1,18 +1,20 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class custom 
 {
-	public Sprite cusPhoto;
-	public Sprite cusName;
-	public readonly int customID;
-	private Dictionary<DataMgr.FilterType, List<int>> preferFilter;
+	private static Dictionary<string,Sprite> defaultSprite;	// 預設圖片
+	private static int customIndex = 1;	// 顧客流水號
 
-	// public delegate void dSprite(Sprite sprite, object userData = null);
-	private static Dictionary<string,Sprite> defaultSprite;
-	private static int customIndex = 1;
+	public Sprite cusPhoto;	// 顧客圖
+	public Sprite cusName;	// 顧客名字(TODO : 嵌入字型後 改為string)
+	public readonly int customID;	// 顧客流水號
+	private Dictionary<DataMgr.FilterType, List<int>> preferFilter;	// 顧客偏好過濾器
+	private List<menu> preferMenu;	// 顧客偏好菜單
+
 
 	public static void loadDefaultSprite(Sprite sprite, object userData)
 	{
@@ -32,6 +34,12 @@ public class custom
 	{
 		customID = customIndex++;
 		preferFilter = new Dictionary<DataMgr.FilterType, List<int>>();
+		foreach( DataMgr.FilterType type in Enum.GetValues(typeof(DataMgr.FilterType)))
+		{
+			preferFilter.Add(type,new List<int>());
+		}
+
+		preferMenu = new List<menu>();
 
 		if (defaultSprite != null) {return;}
 
@@ -43,11 +51,6 @@ public class custom
 
 	public void addPreferFilter( DataMgr.FilterType type, int filtlerIndex )
 	{
-		if (!preferFilter.ContainsKey (type)) 
-		{
-			preferFilter.Add (type, new List<int> ());
-		}
-
 		if (preferFilter [type].Contains (filtlerIndex)) {return;}
 
 		preferFilter [type].Add (filtlerIndex);
@@ -66,4 +69,15 @@ public class custom
 	{
 		return preferFilter;
 	}
+
+	public void setPreferMenu(  List<menu> menuList )
+	{
+		preferMenu = menuList;
+	}
+
+	public List<menu> getPreferMenu()
+	{
+		return preferMenu;
+	}
+
 }
