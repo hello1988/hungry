@@ -43,6 +43,7 @@ public class assistCtrl : MonoBehaviour
 		transform.localScale = Vector3.zero;
 		gameObject.SetActive (true);
 		LeanTween.scale (gameObject, Vector3.one, 0.3f);
+		LeanTween.moveLocal (gameObject, Vector3.zero, 0.3f);
 	}
 
 	public void setSprite( Sprite[] sprites )

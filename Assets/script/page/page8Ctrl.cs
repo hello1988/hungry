@@ -42,6 +42,7 @@ public class page8Ctrl : pageBase
 			assist.SetActive (false);
 		}
 
+		assistList [assistIndex].transform.position = UIMgr.Instance.getCurMousePosition();
 		assistList [assistIndex].GetComponent<assistCtrl> ().show ();
 	}
 

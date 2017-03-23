@@ -85,6 +85,7 @@
      <Compile Include="Assets\script\menu\indexCtrl.cs" />
      <Compile Include="Assets\script\menu\menu.cs" />
      <Compile Include="Assets\script\menu\menuMgr.cs" />
+     <Compile Include="Assets\script\menu\sauseCtrl.cs" />
      <Compile Include="Assets\script\menu\showAssist.cs" />
      <Compile Include="Assets\script\menu\textToSpeech.cs" />
      <Compile Include="Assets\script\numberCtrl.cs" />
@@ -98,6 +99,7 @@
      <Compile Include="Assets\script\page\page7Ctrl.cs" />
      <Compile Include="Assets\script\page\page8Ctrl.cs" />
      <Compile Include="Assets\script\page\pageBase.cs" />
+     <Compile Include="Assets\script\page\pointDrag.cs" />
      <Compile Include="Assets\script\pageMgr.cs" />
      <Compile Include="Assets\script\playAni.cs" />
      <Compile Include="Assets\script\scrollCtrl.cs" />

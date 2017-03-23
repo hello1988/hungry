@@ -12,6 +12,8 @@ public class dragAndDrop : MonoBehaviour,IDragHandler,IPointerDownHandler,IPoint
 	private GameObject targetArea;
 	[SerializeField]
 	private page5Ctrl pageCtrl;
+	[SerializeField]
+	private GameObject nextImg;
 
 	private Vector3 oriPos = Vector3.zero;
 	private Vector3 touchStart = Vector3.zero;
@@ -35,6 +37,7 @@ public class dragAndDrop : MonoBehaviour,IDragHandler,IPointerDownHandler,IPoint
 		touchStart = UIMgr.Instance.getCurMousePosition();
 
 		targetArea.GetComponent<playAni> ().play ();
+		nextImg.SetActive (false);
 	}
 
 	public void OnPointerUp(PointerEventData eventData)
@@ -89,6 +92,7 @@ public class dragAndDrop : MonoBehaviour,IDragHandler,IPointerDownHandler,IPoint
 		transform.localScale=new Vector3(1f,1f,1f);
 		transform.position = oriPos;
 		targetArea.GetComponent<playAni> ().stop ();
+		nextImg.SetActive (true);
 	}
 
 }
