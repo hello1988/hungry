@@ -11,6 +11,7 @@ public class sauseCtrl : MonoBehaviour
 
 	private Vector3 oriPos;
 	private Vector2 oriSize;
+	private float left;
 	// Use this for initialization
 	void Awake () 
 	{
@@ -18,11 +19,19 @@ public class sauseCtrl : MonoBehaviour
 
 		RectTransform rect = progressImg.GetComponent<RectTransform> ();
 		oriSize = rect.sizeDelta;
+
+		left = oriPos.x - oriSize.x / 2;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
+	}
+
+	public void assistInit()
+	{
+		Debug.logger.Log ("assistInit");
+		setProgress (0.5f);
 	}
 
 	public void setProgress( float progress )
@@ -32,6 +41,7 @@ public class sauseCtrl : MonoBehaviour
 		RectTransform rect = progressImg.GetComponent<RectTransform> ();
 		rect.sizeDelta = new Vector2(width, oriSize.y);
 
-		// int posX = 
+		float posX = left + width / 2;
+		progressImg.transform.localPosition = new Vector3( posX, oriPos.y, oriPos.z );
 	}
 }

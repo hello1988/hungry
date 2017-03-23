@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class selectFilter : MonoBehaviour, IPointerClickHandler
 {
@@ -46,8 +47,17 @@ public class selectFilter : MonoBehaviour, IPointerClickHandler
 		pageCtrl.onFilterClick (this);
 	}
 
-	public void setSelected(bool select)
+	public void setSelected(bool selected)
 	{
-		Debug.logger.Log (string.Format("setSelected : {0}",select));
+		Debug.logger.Log (string.Format("setSelected : {0}",selected));
+		Image img = GetComponent<Image> ();
+		if (selected) 
+		{
+			img.color = new Color32 (35, 24, 21, 153);
+		}
+		else
+		{
+			img.color = new Color32 (255, 255, 255, 255);
+		}
 	}
 }

@@ -12,7 +12,10 @@ public class assistCtrl : MonoBehaviour
 	private Image[] imagesList;
 	[SerializeField]
 	private Button backBtn;
-	// Use this for initialization
+	[SerializeField]
+	private GameObject[] initList;
+
+	Vector3 oriPos = Vector3.zero;
 	void Awake () 
 	{
 		if (backBtn != null) 
@@ -29,6 +32,7 @@ public class assistCtrl : MonoBehaviour
 	public void backToMainMenu()
 	{
 		LeanTween.scale (gameObject, Vector3.zero, 0.3f).setOnComplete(hide);
+		LeanTween.moveLocal (gameObject, oriPos, 0.3f);
 		mainMenu.SetActive (true);
 
 	}
@@ -41,9 +45,15 @@ public class assistCtrl : MonoBehaviour
 	public void show()
 	{
 		transform.localScale = Vector3.zero;
+		oriPos = transform.localPosition;
 		gameObject.SetActive (true);
 		LeanTween.scale (gameObject, Vector3.one, 0.3f);
 		LeanTween.moveLocal (gameObject, Vector3.zero, 0.3f);
+
+		foreach (GameObject initObj in initList) 
+		{
+			initObj.SendMessage ("assistInit");
+		}
 	}
 
 	public void setSprite( Sprite[] sprites )
