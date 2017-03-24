@@ -53,7 +53,7 @@ public class selectFilter : MonoBehaviour, IPointerClickHandler
 		Image img = GetComponent<Image> ();
 		if (selected) 
 		{
-			img.color = new Color32 (35, 24, 21, 153);
+			img.color = new Color32 (185, 170, 175, 150);
 		}
 		else
 		{
