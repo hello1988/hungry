@@ -74,7 +74,8 @@
      <Compile Include="Assets\script\custom\custom.cs" />
      <Compile Include="Assets\script\custom\searchCustomCtrl.cs" />
      <Compile Include="Assets\script\custom\searchCustomDetect.cs" />
-     <Compile Include="Assets\script\demoClick.cs" />
+     <Compile Include="Assets\script\demo\demoClick.cs" />
+     <Compile Include="Assets\script\demo\demoSlide.cs" />
      <Compile Include="Assets\script\downloadMgr.cs" />
      <Compile Include="Assets\script\filter\checkFilter.cs" />
      <Compile Include="Assets\script\filter\dragAndDrop.cs" />

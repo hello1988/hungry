@@ -13,6 +13,8 @@ public class page9Ctrl : pageBase
 	private Sprite waitSprite;
 	[SerializeField]
 	private Image img;
+	[SerializeField]
+	private GameObject checkMenu;
 
 	private int demoIndex;
 	void Awake () 
@@ -31,7 +33,18 @@ public class page9Ctrl : pageBase
 
 	public override void onPageEnable()
 	{
-		UIMgr.Instance.setBackground (UIMgr.BG.F);
+		UIMgr.Instance.setBackground (UIMgr.BG.H);
+
+		checkMenu.SetActive (true);
+		img.gameObject.SetActive (false);
+
+	}
+
+	public void onTmpCheckClick()
+	{
+		checkMenu.SetActive (false);
+		img.gameObject.SetActive (true);
+
 		demoIndex = 0;
 		setImg ();
 	}
