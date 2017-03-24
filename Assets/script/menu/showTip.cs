@@ -36,6 +36,7 @@ public class showTip : MonoBehaviour, IPointerClickHandler
 
 	public void OnPointerClick (PointerEventData eventData)
 	{
+		StopAllCoroutines ();
 		bool isShow = true;
 		if (tipImage == null) 
 		{
@@ -58,6 +59,7 @@ public class showTip : MonoBehaviour, IPointerClickHandler
 			Image img = tipImage.GetComponent<Image> ();
 			img.sprite = assCtrl.getTipSprite (tipIndex);
 			img.SetNativeSize ();
+			StartCoroutine (hideTip());
 		}
 
 		tipBG.SetActive (isShow);
@@ -77,5 +79,12 @@ public class showTip : MonoBehaviour, IPointerClickHandler
 		rect.sizeDelta = parentRect.sizeDelta;
 
 		return newObj;
+	}
+
+	public IEnumerator hideTip()
+	{
+		yield return new WaitForSeconds (3);
+		tipBG.SetActive (false);
+		tipImage.SetActive (false);
 	}
 }
