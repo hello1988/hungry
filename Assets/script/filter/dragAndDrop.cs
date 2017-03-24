@@ -16,6 +16,7 @@ public class dragAndDrop : MonoBehaviour,IDragHandler,IPointerDownHandler,IPoint
 	private GameObject nextImg;
 
 	private Vector3 oriPos = Vector3.zero;
+	private Vector3 oriLocalPos = Vector3.zero;
 	private Vector3 touchStart = Vector3.zero;
 
 	public void Awake()
@@ -32,6 +33,7 @@ public class dragAndDrop : MonoBehaviour,IDragHandler,IPointerDownHandler,IPoint
 	public void OnPointerDown(PointerEventData eventData)
 	{
 		oriPos = transform.position;
+		oriLocalPos = transform.localPosition;
 		transform.localScale=new Vector3(0.8f,0.8f,0.8f);
 
 		touchStart = UIMgr.Instance.getCurMousePosition();
@@ -90,7 +92,8 @@ public class dragAndDrop : MonoBehaviour,IDragHandler,IPointerDownHandler,IPoint
 	private void resume()
 	{
 		transform.localScale=new Vector3(1f,1f,1f);
-		transform.position = oriPos;
+		// transform.position = oriPos;
+		transform.localPosition = oriLocalPos;
 		targetArea.GetComponent<playAni> ().stop ();
 		nextImg.SetActive (true);
 	}
