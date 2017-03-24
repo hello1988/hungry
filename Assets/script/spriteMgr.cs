@@ -116,16 +116,23 @@ public class spriteMgr : MonoBehaviour
 
 	private void downloadCallBack(Sprite sprite, object userData)
 	{
-		if (sprite == null) {return;}
 		object[] args = (object[])userData;
 		string path = (string) args[0];
 		string keyWord = (string) args[1];
 		int counter = (int)args [2];
 
+		if (sprite != null)
+		{
+			spriteMap [keyWord].Add (counter, sprite);
+		}
+
 		// Debug.logger.Log (string.Format("d path : {0}",string.Format (path, counter) ));
-		spriteMap [keyWord].Add (counter, sprite);
 		counter++;
-		downloadMgr.Instance.downloadSprite (string.Format (path, counter), downloadCallBack, new object[]{path, keyWord, counter});
+		if (counter <= 20) 
+		{
+			downloadMgr.Instance.downloadSprite (string.Format (path, counter), downloadCallBack, new object[]{path, keyWord, counter});
+		}
+
 
 	}
 

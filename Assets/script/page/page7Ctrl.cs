@@ -9,7 +9,7 @@ public class page7Ctrl : pageBase
 	private GameObject switchFilterUI;
 	[SerializeField]
 	private GameObject indexScroll;
-	private DataMgr.FilterType filterType =  DataMgr.FilterType.STAPLE;
+	private DataMgr.FilterType filterType =  DataMgr.FilterType.COOK;
 	void Awake () 
 	{
 		

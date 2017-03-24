@@ -49,7 +49,7 @@ public class selectFilter : MonoBehaviour, IPointerClickHandler
 
 	public void setSelected(bool selected)
 	{
-		Debug.logger.Log (string.Format("setSelected : {0}",selected));
+		// Debug.logger.Log (string.Format("setSelected : {0}",selected));
 		Image img = GetComponent<Image> ();
 		if (selected) 
 		{

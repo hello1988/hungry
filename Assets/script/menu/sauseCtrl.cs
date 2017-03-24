@@ -30,7 +30,7 @@ public class sauseCtrl : MonoBehaviour
 
 	public void assistInit()
 	{
-		Debug.logger.Log ("assistInit");
+		// Debug.logger.Log ("assistInit");
 		setProgress (0.5f);
 	}
 
