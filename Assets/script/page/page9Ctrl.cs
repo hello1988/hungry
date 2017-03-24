@@ -31,6 +31,7 @@ public class page9Ctrl : pageBase
 
 	public override void onPageEnable()
 	{
+		StopAllCoroutines ();
 		UIMgr.Instance.setBackground (UIMgr.BG.H);
 
 		checkMenu.SetActive (true);
@@ -61,6 +62,8 @@ public class page9Ctrl : pageBase
 		{
 			img.gameObject.SetActive (false);
 			setNextBtnActive (true);
+
+			StartCoroutine (delayToNextPage());
 		}
 	}
 
@@ -69,8 +72,16 @@ public class page9Ctrl : pageBase
 		img.sprite = demoSprite[demoIndex];
 	}
 
+	public IEnumerator delayToNextPage()
+	{
+		yield return new WaitForSeconds (3);
+
+		nextPage ();
+	}
+
 	public void nextPage()
 	{
+		StopAllCoroutines ();
 		pageMgr.Instance.homePage();
 	}
 
