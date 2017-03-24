@@ -17,7 +17,7 @@ public class page4Ctrl : pageBase
 	// private Button checkButton;
 	void Awake () 
 	{
-		homeVisible = false;
+		// homeVisible = false;
 
 		left.onClick.AddListener (preCustom);
 		right.onClick.AddListener (nextCustom);
