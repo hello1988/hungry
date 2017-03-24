@@ -49,7 +49,8 @@ public class page3Ctrl : pageBase
 		yield return new WaitForSeconds (1);
 		loadImg.SetActive (false);
 
-		// setNextBtnActive(true);
+		bool isShow = (DataMgr.Instance.getConfirmCustomList().Count > 0);
+		setNextBtnActive(isShow);
 		searchUI.SetActive (true);
 		tipText.SetActive (true);
 		searchUI.GetComponent<searchCustomCtrl>().refreshSearchList();
