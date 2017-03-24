@@ -11,7 +11,7 @@ public class dragAndDrop : MonoBehaviour,IDragHandler,IPointerDownHandler,IPoint
 	[SerializeField]
 	private GameObject targetArea;
 	[SerializeField]
-	private page5Ctrl pageCtrl;
+	private GameObject notifyObj;
 	[SerializeField]
 	private GameObject nextImg;
 
@@ -69,7 +69,7 @@ public class dragAndDrop : MonoBehaviour,IDragHandler,IPointerDownHandler,IPoint
 			{
 				// Debug.logger.Log ("collision");
 				playEffect ();
-				pageCtrl.selectFilter();
+				notifyObj.SendMessage("onItemDrop",gameObject);
 			}
 			else 
 			{

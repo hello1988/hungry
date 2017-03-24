@@ -47,7 +47,7 @@ public class page5Ctrl : pageBase
 		focusImage.sprite = spriteMgr.Instance.getSprite (type,true,index);
 	}
 
-	public void selectFilter()
+	public void onItemDrop(GameObject item)
 	{
 		if (focusFilter == null) {return;}
 

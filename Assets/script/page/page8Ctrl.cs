@@ -46,6 +46,11 @@ public class page8Ctrl : pageBase
 		assistList [assistIndex].GetComponent<assistCtrl> ().show ();
 	}
 
+	public void onItemDrop(GameObject item)
+	{
+		Debug.logger.Log (string.Format("p8 onItemDrop : {0}",item.name));
+	}
+
 	public void nextPage()
 	{
 		pageMgr.Instance.nextPage (9);
