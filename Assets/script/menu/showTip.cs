@@ -12,6 +12,7 @@ public class showTip : MonoBehaviour, IPointerClickHandler
 	private int tipIndex;
 
 	private GameObject tipImage = null;
+	private GameObject tipBG = null;
 	void Start () 
 	{
 		
@@ -24,7 +25,7 @@ public class showTip : MonoBehaviour, IPointerClickHandler
 
 	void OnEnable()
 	{
-		StopAllCoroutines ();
+		// StopAllCoroutines ();
 
 		if (tipImage != null) 
 		{
@@ -34,32 +35,46 @@ public class showTip : MonoBehaviour, IPointerClickHandler
 
 	public void OnPointerClick (PointerEventData eventData)
 	{
+		bool isShow = true;
 		if (tipImage == null) 
 		{
-			tipImage = new GameObject ();
-			tipImage.name = string.Format ("tipImage{0}",(tipIndex+1));
-			tipImage.AddComponent<Image> ();
-			tipImage.transform.SetParent (transform);
-			tipImage.transform.localPosition = Vector3.zero;
-			tipImage.transform.localScale = Vector3.one;
+			tipBG = createImageObj ();
+			tipBG.name = "BG";
+			Color color = new Color32 (255, 255, 255, 105);
+			Image bgImg = tipBG.GetComponent<Image> ();
+			bgImg.color = color;
 
-			RectTransform rect = tipImage.GetComponent<RectTransform> ();
-			RectTransform parentRect = GetComponent<RectTransform> ();
-			rect.sizeDelta = parentRect.sizeDelta;
-
-			Image img = tipImage.GetComponent<Image> ();
-			img.sprite = assCtrl.getTipSprite (tipIndex);
+			tipImage = createImageObj();
+			tipImage.name = string.Format ("tipImage{0}", (tipIndex + 1));
+		} 
+		else 
+		{
+			isShow = !tipImage.activeInHierarchy;
 		}
 
-		tipImage.SetActive (true);
-		StopAllCoroutines ();
-		StartCoroutine (resume());
+		if (isShow) 
+		{
+			Image img = tipImage.GetComponent<Image> ();
+			img.sprite = assCtrl.getTipSprite (tipIndex);
+			img.SetNativeSize ();
+		}
+
+		tipBG.SetActive (isShow);
+		tipImage.SetActive (isShow);
 	}
 
-	public IEnumerator resume()
+	public GameObject createImageObj()
 	{
-		yield return new WaitForSeconds (10);
+		GameObject newObj = new GameObject ();
+		newObj.AddComponent<Image> ();
+		newObj.transform.SetParent (transform);
+		newObj.transform.localPosition = Vector3.zero;
+		newObj.transform.localScale = Vector3.one;
 
-		tipImage.SetActive (false);
+		RectTransform rect = newObj.GetComponent<RectTransform> ();
+		RectTransform parentRect = GetComponent<RectTransform> ();
+		rect.sizeDelta = parentRect.sizeDelta;
+
+		return newObj;
 	}
 }
