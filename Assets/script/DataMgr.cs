@@ -137,5 +137,15 @@ public class DataMgr : MonoBehaviour
 		cus.cusName = Resources.Load<Sprite>("custom/name2");
 		searchCustomList.Add (cus);
 	}
+
+	public void resetData()
+	{
+		staffNumber = "";
+		tableNumber = "";
+		searchCustomList = new List<custom>();
+		confirmCustomList = new List<custom>();
+
+		Start ();
+	}
 }
 

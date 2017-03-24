@@ -86,6 +86,23 @@ public class pageMgr : MonoBehaviour
 
 	public void homePage()
 	{
-		
+		resetData ();
+		DataMgr.Instance.resetData ();
+
+		foreach( GameObject page in pageList )
+		{
+			page.SetActive (false);
+		}
+
+		curPage = 0;
+		pageList [curPage].SetActive (true);
+		pageBase showPage = pageList [curPage].GetComponent<pageBase> ();
+		showPage.onPageEnable ();
+		UIMgr.Instance.setHomeBtnVisible (false);
+	}
+
+	public void resetData()
+	{
+		record.Clear ();
 	}
 }

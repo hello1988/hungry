@@ -56,6 +56,8 @@ public class page3Ctrl : pageBase
 		searchUI.GetComponent<searchCustomCtrl>().refreshSearchList();
 
 		confirmScroll.SetActive (true);
+		scrollCtrl ctrl = confirmScroll.GetComponentInChildren<scrollCtrl> ();
+		ctrl.reset ();
 	}
 
 	public void addCustomToConfirm( custom cus )

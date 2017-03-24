@@ -10,8 +10,6 @@ public class page9Ctrl : pageBase
 	[SerializeField]
 	private Sprite[] demoSprite;
 	[SerializeField]
-	private Sprite waitSprite;
-	[SerializeField]
 	private Image img;
 	[SerializeField]
 	private GameObject checkMenu;
@@ -37,7 +35,7 @@ public class page9Ctrl : pageBase
 
 		checkMenu.SetActive (true);
 		img.gameObject.SetActive (false);
-
+		setNextBtnActive (false);
 	}
 
 	public void onTmpCheckClick()
@@ -55,16 +53,14 @@ public class page9Ctrl : pageBase
 		if (demoIndex < demoSprite.Length) 
 		{
 			setImg ();
-			setNextBtnActive (false);
 
 			RectTransform rect = img.GetComponent<RectTransform> ();
 			rect.sizeDelta = new Vector2 (1536, 2048);
 		}
 		else
 		{
-			img.sprite = waitSprite;
+			img.gameObject.SetActive (false);
 			setNextBtnActive (true);
-			img.SetNativeSize ();
 		}
 	}
 

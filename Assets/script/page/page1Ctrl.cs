@@ -24,8 +24,9 @@ public class page1Ctrl : pageBase
 	public override void onPageEnable()
 	{
 		UIMgr.Instance.setBackground (UIMgr.BG.A);
-		bool isShowCheck = !string.IsNullOrEmpty (DataMgr.Instance.getTableNumber ());
+		tableTxt.transform.parent.GetComponent<InputField> ().text = "";
 
+		bool isShowCheck = !string.IsNullOrEmpty (DataMgr.Instance.getTableNumber ());
 		setNextBtnActive(isShowCheck);
 	}
 
