@@ -21,6 +21,8 @@ public class dragAndDrop : MonoBehaviour,IDragHandler,IPointerDownHandler,IPoint
 
 	public void Awake()
 	{
+		oriPos = transform.position;
+		oriLocalPos = transform.localPosition;
 	}
 
 	public void OnDrag(PointerEventData eventData)
@@ -32,8 +34,6 @@ public class dragAndDrop : MonoBehaviour,IDragHandler,IPointerDownHandler,IPoint
 
 	public void OnPointerDown(PointerEventData eventData)
 	{
-		oriPos = transform.position;
-		oriLocalPos = transform.localPosition;
 		transform.localScale=new Vector3(0.8f,0.8f,0.8f);
 
 		touchStart = UIMgr.Instance.getCurMousePosition();
