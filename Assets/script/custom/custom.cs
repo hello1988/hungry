@@ -14,7 +14,7 @@ public class custom
 	public readonly int customID;	// 顧客流水號
 	private Dictionary<DataMgr.FilterType, List<int>> preferFilter;	// 顧客偏好過濾器
 	private List<menu> preferMenu;	// 顧客偏好菜單
-
+	private int viewingIndex;	// 正在看的菜單
 
 	public static void loadDefaultSprite(Sprite sprite, object userData)
 	{
@@ -40,6 +40,12 @@ public class custom
 		}
 
 		preferMenu = new List<menu>();
+
+		// Test
+		preferMenu.Add( menuMgr.Instance.getMenuByID(3) );
+		preferMenu.Add( menuMgr.Instance.getMenuByID(2) );
+		preferMenu.Add( menuMgr.Instance.getMenuByID(1) );
+		viewingIndex = 0;
 
 		if (defaultSprite != null) {return;}
 
@@ -80,4 +86,17 @@ public class custom
 		return preferMenu;
 	}
 
+	/**
+	* offset 
+	* = 0 表示目前正在看的菜單
+	* > 0 表示下一道菜
+	* < 0 表示上一道菜
+	*/
+	public menu getMenu( int offset )
+	{
+		if (offset > 0) { viewingIndex = (viewingIndex + 1) % preferMenu.Count; }
+		else if (offset < 0) { viewingIndex = (viewingIndex + preferMenu.Count - 1) % preferMenu.Count; }
+
+		return preferMenu [viewingIndex];
+	}
 }

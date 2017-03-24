@@ -59,7 +59,6 @@ public class assistCtrl : MonoBehaviour
 	public void setSprite( Sprite[] sprites )
 	{
 		int size = Math.Min (sprites.Length, imagesList.Length );
-
 		for( int index = 0;index < size;index++ )
 		{
 			imagesList [index].sprite = sprites [index];

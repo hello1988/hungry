@@ -29,6 +29,7 @@ public class showTip : MonoBehaviour, IPointerClickHandler
 
 		if (tipImage != null) 
 		{
+			tipBG.SetActive (false);
 			tipImage.SetActive (false);
 		}
 	}

@@ -47,12 +47,26 @@ public class menuMgr : MonoBehaviour
 		cus.setPreferMenu( preferMenu );
 	}
 
+	public menu getMenuByID( int menuID )
+	{
+		for (int index = 0; index < menuList.Count; index++) 
+		{
+			if (menuList [index].getMenuID () != menuID) {continue;}
+
+			return menuList [index];
+		}
+
+		return null;
+	}
+
 	private void buildMenuMap()
 	{
 		menuList = new List<menu> ();
 
 		// test
 		menuList.Add(new menu(1,"menu1",100,DataMgr.Cook.BROIL,DataMgr.Food.BEEF,DataMgr.Staple.NOODLE));
+		menuList.Add(new menu(2,"menu2",200,DataMgr.Cook.FRY,DataMgr.Food.CHICKEN,DataMgr.Staple.RICE));
+		menuList.Add(new menu(3,"menu3",300,DataMgr.Cook.RAW,DataMgr.Food.LAMB,DataMgr.Staple.SUSHI));
 	}
 
 }

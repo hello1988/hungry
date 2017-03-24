@@ -19,13 +19,11 @@ public class assist3Ctrl : MonoBehaviour
 
 	public void assistInit()
 	{
-		
+		custom curCustom = DataMgr.Instance.getOrderingCustom ();
+		menu m = curCustom.getMenu (0);
+		spriteList = m.getWordSpriteList();
 	}
 
-	public void setSpriteList( Sprite[] tipSpriteList )
-	{
-		spriteList = tipSpriteList;
-	}
 
 	public Sprite getTipSprite( int index )
 	{
