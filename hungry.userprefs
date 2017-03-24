@@ -1,15 +1,18 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\script\page\page8Ctrl.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\script\homeCtrl.cs">
     <Files>
-      <File FileName="Assets\script\menu\assist3Ctrl.cs" Line="31" Column="3" />
-      <File FileName="Assets\script\menu\showTip.cs" Line="37" Column="57" />
-      <File FileName="Assets\script\page\page8Ctrl.cs" Line="94" Column="45" />
+      <File FileName="Assets\script\menu\assist3Ctrl.cs" Line="1" Column="1" />
+      <File FileName="Assets\script\menu\showTip.cs" Line="1" Column="1" />
+      <File FileName="Assets\script\page\page8Ctrl.cs" Line="1" Column="1" />
       <File FileName="Assets\script\spriteMgr.cs" Line="1" Column="1" />
       <File FileName="Assets\script\menu\menuMgr.cs" Line="1" Column="1" />
-      <File FileName="Assets\script\menu\menu.cs" Line="75" Column="106" />
-      <File FileName="Assets\script\menu\assistCtrl.cs" Line="55" Column="36" />
-      <File FileName="Assets\script\filter\dragAndDrop.cs" Line="39" Column="45" />
+      <File FileName="Assets\script\menu\menu.cs" Line="1" Column="1" />
+      <File FileName="Assets\script\menu\assistCtrl.cs" Line="1" Column="1" />
+      <File FileName="Assets\script\filter\dragAndDrop.cs" Line="1" Column="1" />
+      <File FileName="Assets\script\page\page9Ctrl.cs" Line="23" Column="3" />
+      <File FileName="Assets\script\pageMgr.cs" Line="87" Column="24" />
+      <File FileName="Assets\script\homeCtrl.cs" Line="80" Column="25" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

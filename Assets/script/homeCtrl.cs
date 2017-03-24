@@ -10,6 +10,10 @@ public class homeCtrl : MonoBehaviour
 	private GameObject menu;
 	[SerializeField]
 	private GameObject customUI;
+	[SerializeField]
+	private GameObject backBtn;
+	[SerializeField]
+	private GameObject infoBtn;
 
 	private Vector3 menuOriPos = Vector3.zero;
 	// Use this for initialization
@@ -42,8 +46,10 @@ public class homeCtrl : MonoBehaviour
 			menu.transform.localPosition = circle.transform.localPosition;
 			menu.SetActive (true);
 
+			infoBtn.transform.localPosition = backBtn.transform.localPosition;
+
 			LeanTween.scale (menu, Vector3.one, 0.3f);
-			LeanTween.moveLocal (menu, menuOriPos, 0.3f);
+			LeanTween.moveLocal (menu, menuOriPos, 0.3f).setOnComplete(showInfoBtn);
 		}
 	}
 
@@ -69,6 +75,11 @@ public class homeCtrl : MonoBehaviour
 			showCustomInfo ();
 		}
 
+	}
+
+	public void showInfoBtn()
+	{
+		LeanTween.moveLocalY (infoBtn,-120,0.3f);
 	}
 
 	private void showCustomInfo()

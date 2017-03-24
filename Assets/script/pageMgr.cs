@@ -83,4 +83,9 @@ public class pageMgr : MonoBehaviour
 		pageList [target].SetActive(true);
 		pageList [target].GetComponent<pageBase> ().onPageEnable ();
 	}
+
+	public void homePage()
+	{
+		
+	}
 }
