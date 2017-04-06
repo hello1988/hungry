@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,14 +7,21 @@ using UnityEngine.UI;
 public class page0Ctrl : pageBase 
 {
 	[SerializeField]
-	private Text staffTxt;
+	private InputField inputText;
+	[SerializeField]
+	private Image tipImg;
+	[SerializeField]
+	private Sprite[] tipList;
 
-	// private Button checkButton;
+	private string[] collectList;
+
 	void Awake () 
 	{
 		Button checkButton = nextBtn.GetComponent<Button> ();
 		checkButton.onClick.AddListener (nextPage);
 		homeVisible = false;
+
+		collectList = new string[tipList.Length];
 	}
 	
 	// Update is called once per frame
@@ -24,23 +32,84 @@ public class page0Ctrl : pageBase
 	public override void onPageEnable()
 	{
 		UIMgr.Instance.setBackground (UIMgr.BG.A);
-		staffTxt.transform.parent.GetComponent<InputField> ().text = "";
+		inputText.text = "";
 
-		bool isShowCheck = !string.IsNullOrEmpty (DataMgr.Instance.getStaffNumber ());
-		setNextBtnActive(isShowCheck);
+		initCollectList ();
+		setTipImage( 0 );
+		setNextBtnActive(false);
 	}
 
 	public void onEndEdit()
 	{
-		if (staffTxt == null) {return;}
+		int nextTipIndex = -1;
+		for( int index = 0;index < collectList.Length;index++ )
+		{
+			if( !string.IsNullOrEmpty( collectList [index] ))
+			{
+				continue;
+			}
 
-		DataMgr.Instance.setStaffNumber(staffTxt.text);
-		bool isShowCheck = !string.IsNullOrEmpty (staffTxt.text);
-		setNextBtnActive(isShowCheck);
+			// 特例 顧客人數特別處理
+			if (index == 2) 
+			{
+				int iVal;
+				if (!int.TryParse (inputText.text, out iVal)) 
+				{
+					inputText.text = "";
+					break;
+				}
+			}
+
+			collectList [index] = inputText.text;
+			inputText.contentType = (index < 2) ? InputField.ContentType.Alphanumeric : InputField.ContentType.IntegerNumber;
+			setTipImage( index + 1 );
+			break;
+		}
+
+		if (isNextBtnShow ()) 
+		{
+			setNextBtnActive (true);
+		}
+		else 
+		{
+			inputText.text = "";
+		}
 	}
 
 	public void nextPage()
 	{
+		DataMgr.Instance.setStaffNumber(collectList [0]);
+		DataMgr.Instance.setTableNumber(collectList [1]);
+		DataMgr.Instance.setCustomNum(int.Parse(collectList [2]));
+
 		pageMgr.Instance.nextPage (1);
+	}
+
+	private void initCollectList()
+	{
+		for( int index = 0;index < collectList.Length;index++ )
+		{
+			collectList [index] = "";
+		}
+	}
+
+	private bool isNextBtnShow()
+	{
+		for( int index = 0;index < collectList.Length;index++ )
+		{
+			if( string.IsNullOrEmpty( collectList [index] ))
+			{
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	private void setTipImage( int index )
+	{
+		if ((index < 0) || (index >= tipList.Length)) {return;}
+
+		tipImg.sprite = tipList [index];
 	}
 }

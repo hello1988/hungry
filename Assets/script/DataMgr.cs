@@ -40,6 +40,8 @@ public class DataMgr : MonoBehaviour
 	private string staffNumber = "";
 	// 桌號
 	private string tableNumber = "";
+	// 顧客人數
+	private int customNum = 0;
 	// 搜尋到的顧客
 	private List<custom> searchCustomList = new List<custom>();
 	// 要點餐的顧客
@@ -70,19 +72,14 @@ public class DataMgr : MonoBehaviour
 		staffNumber = staff;
 	}
 
-	public string getStaffNumber()
-	{
-		return staffNumber;
-	}
-
 	public void setTableNumber( string table )
 	{
 		tableNumber = table;
 	}
 
-	public string getTableNumber()
+	public void setCustomNum( int num )
 	{
-		return tableNumber;
+		customNum = num;
 	}
 
 	public List<custom> getSearchCustomList()
