@@ -106,6 +106,7 @@
      <Compile Include="Assets\script\pageMgr.cs" />
      <Compile Include="Assets\script\playAni.cs" />
      <Compile Include="Assets\script\scrollCtrl.cs" />
+     <Compile Include="Assets\script\slidAndClick.cs" />
      <Compile Include="Assets\script\spriteMgr.cs" />
      <Compile Include="Assets\script\tweenAlpha.cs" />
      <None Include="Assets\LeanTween\Examples\Archived\2dUnlitWithFade.shader" />

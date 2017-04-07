@@ -10,6 +10,8 @@ public class page3Ctrl : pageBase
 	private Image focusImage;	// 過濾器(大圖)
 	[SerializeField]
 	private GameObject filterScroll; // 過濾器捲動區
+	[SerializeField]
+	private GameObject budget;
 
 	private selectFilter focusFilter;
 
@@ -19,6 +21,8 @@ public class page3Ctrl : pageBase
 		Button checkButton = nextBtn.GetComponent<Button> ();
 		checkButton.onClick.AddListener (nextPage);
 
+		budget.GetComponent<slidAndClick> ().setCallBack (slidAndClick.Direction.UP, addBudget);
+		budget.GetComponent<slidAndClick> ().setCallBack (slidAndClick.Direction.DOWN, minusBudget);
 	}
 
 	void Start()
@@ -31,6 +35,9 @@ public class page3Ctrl : pageBase
 		UIMgr.Instance.setBackground (UIMgr.BG.E);
 		setNextBtnActive(true);
 		resetScrollItem ();
+
+		custom cus = DataMgr.Instance.getOrderingCustom ();
+		budget.GetComponent<numberCtrl>().setValue (cus.budget);
 	}
 
 	// Update is called once per frame
@@ -55,6 +62,20 @@ public class page3Ctrl : pageBase
 		orderingCus.addPreferFilter ( focusFilter.getFilterType(), focusFilter.getFilterIndex() );
 
 		focusFilter.setSelected (true);
+	}
+
+	public void addBudget()
+	{
+		custom cus = DataMgr.Instance.getOrderingCustom ();
+		cus.budget += 20;
+		budget.GetComponent<numberCtrl>().setValue (cus.budget);
+	}
+
+	public void minusBudget()
+	{
+		custom cus = DataMgr.Instance.getOrderingCustom ();
+		cus.budget = Math.Max( (cus.budget-20), 0 );
+		budget.GetComponent<numberCtrl>().setValue (cus.budget);
 	}
 
 	public void nextPage()
