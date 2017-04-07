@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class demoClick : MonoBehaviour, IPointerClickHandler 
 {
 	[SerializeField]
-	private page9Ctrl pageCtrl;
+	private page7Ctrl pageCtrl;
 	// Use this for initialization
 	void Start () {
 		

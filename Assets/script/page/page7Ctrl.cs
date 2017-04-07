@@ -1,71 +1,89 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class page7Ctrl : pageBase 
+// public class page8Ctrl : pageBase, IPointerDownHandler, IPointerUpHandler
+public class page7Ctrl : pageBase
 {
 	[SerializeField]
-	private GameObject switchFilterUI;
+	private Sprite[] demoSprite;
 	[SerializeField]
-	private GameObject indexScroll;
-	private DataMgr.FilterType filterType =  DataMgr.FilterType.STAPLE;
+	private Image img;
+	[SerializeField]
+	private GameObject checkMenu;
+
+	private int demoIndex;
 	void Awake () 
 	{
-		
-	}
+		Button checkButton = nextBtn.GetComponent<Button> ();
+		checkButton.onClick.AddListener (nextPage);
 
-	void Start()
-	{
-		switchFilterUI.SetActive (false);
+		homeVisible = false;
 	}
-
+	
 	// Update is called once per frame
-	void Update () {
-		
+	void Update () 
+	{
+
 	}
 
 	public override void onPageEnable()
 	{
-		UIMgr.Instance.setBackground (UIMgr.BG.F);
+		StopAllCoroutines ();
+		UIMgr.Instance.setBackground (UIMgr.BG.H);
 
-		resetScroll ();
+		checkMenu.SetActive (true);
+		img.gameObject.SetActive (false);
+		setNextBtnActive (false);
 	}
 
-	public void showSwitchFilter()
+	public void onTmpCheckClick()
 	{
-		switchFilterUI.GetComponent<switchCtrl> ().showUI ();
+		checkMenu.SetActive (false);
+		img.gameObject.SetActive (true);
+
+		demoIndex = 0;
+		setImg ();
 	}
 
-	public void nextPage( int subIndex )
+	public void onImgClick()
 	{
-		pageMgr.Instance.nextPage (8);
-	}
-
-	public void resetScroll( DataMgr.FilterType type )
-	{
-		filterType = type;
-		resetScroll ();
-	}
-
-	public void resetScroll()
-	{
-		// TODO 之後再做顧客偏好篩選
-		System.Random seed = new System.Random();
-		custom orderingCustom = DataMgr.Instance.getOrderingCustom();
-		scrollCtrl ctrl = indexScroll.GetComponent<scrollCtrl> ();
-		ctrl.reset ();
-
-		Dictionary<int, Sprite> spriteMap = spriteMgr.Instance.getIndexSpriteMap (filterType, false);
-		foreach( int index in spriteMap.Keys )
+		demoIndex++;
+		if (demoIndex < demoSprite.Length) 
 		{
-			GameObject newObj = ctrl.addItem ();
-			// TODO 幾道菜等表單建好再計算
-			int menuNumber = (seed.Next () % 9) + 1;
+			setImg ();
 
-			indexCtrl idxCtrl = newObj.GetComponent<indexCtrl> ();
-			idxCtrl.setInfo (spriteMap [index], menuNumber);
-			idxCtrl.setSubIndex (index);
+			RectTransform rect = img.GetComponent<RectTransform> ();
+			rect.sizeDelta = new Vector2 (1536, 2048);
+		}
+		else
+		{
+			img.gameObject.SetActive (false);
+			setNextBtnActive (true);
+
+			StartCoroutine (delayToNextPage());
 		}
 	}
+
+	private void setImg()
+	{
+		img.sprite = demoSprite[demoIndex];
+	}
+
+	public IEnumerator delayToNextPage()
+	{
+		yield return new WaitForSeconds (3);
+
+		nextPage ();
+	}
+
+	public void nextPage()
+	{
+		StopAllCoroutines ();
+		pageMgr.Instance.homePage();
+	}
+
+
 }

@@ -8,7 +8,7 @@ public class showAssist : MonoBehaviour, IPointerClickHandler
 	[SerializeField]
 	private int assistIndex;
 	[SerializeField]
-	private page8Ctrl pageCtrl;
+	private page6Ctrl pageCtrl;
 	// Use this for initialization
 	void Start () {
 		

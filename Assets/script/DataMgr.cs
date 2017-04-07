@@ -87,21 +87,10 @@ public class DataMgr : MonoBehaviour
 		return searchCustomList;
 	}
 
-	public void moveCustomToConfirm ( int indexInSearch )
-	{
-		if ((indexInSearch < 0) || (indexInSearch >= searchCustomList.Count)) 
-		{
-			return;
-		}
 
-		custom cus = searchCustomList[indexInSearch];
-		searchCustomList.RemoveAt (indexInSearch);
-		confirmCustomList.Add (cus);
-	}
-
-	public void addCustomToConfirm( custom cus )
+	public void setConfirmCustomList( List<custom> cusList )
 	{
-		confirmCustomList.Add (cus);
+		confirmCustomList = cusList;
 	}
 
 	public List<custom> getConfirmCustomList()
@@ -126,12 +115,12 @@ public class DataMgr : MonoBehaviour
 	{
 		custom cus = new custom ();
 		cus.cusPhoto = Resources.Load<Sprite>("custom/photo1");
-		cus.cusName = Resources.Load<Sprite>("custom/name1");
+		cus.cusName = "陳大明";
 		searchCustomList.Add (cus);
 
 		cus = new custom ();
 		cus.cusPhoto = Resources.Load<Sprite>("custom/photo2");
-		cus.cusName = Resources.Load<Sprite>("custom/name2");
+		cus.cusName = "王小明";
 		searchCustomList.Add (cus);
 	}
 

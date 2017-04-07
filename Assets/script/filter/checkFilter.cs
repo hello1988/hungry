@@ -12,7 +12,7 @@ public class checkFilter : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
 	[SerializeField]
 	private GameObject deleteBtn;
 	[SerializeField]
-	private page6Ctrl pageCtrl;
+	private page4Ctrl pageCtrl;
 
 	private Vector3 imgOriPos = Vector3.zero;
 	private Vector3 delOriPos = Vector3.zero;

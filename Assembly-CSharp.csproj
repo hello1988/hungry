@@ -70,10 +70,8 @@
      <Compile Include="Assets\script\DataMgr.cs" />
      <Compile Include="Assets\script\DontDestroy.cs" />
      <Compile Include="Assets\script\UIMgr.cs" />
-     <Compile Include="Assets\script\custom\confirmCustomDetect.cs" />
+     <Compile Include="Assets\script\custom\alternateCustom.cs" />
      <Compile Include="Assets\script\custom\custom.cs" />
-     <Compile Include="Assets\script\custom\searchCustomCtrl.cs" />
-     <Compile Include="Assets\script\custom\searchCustomDetect.cs" />
      <Compile Include="Assets\script\demo\demoClick.cs" />
      <Compile Include="Assets\script\demo\demoSlide.cs" />
      <Compile Include="Assets\script\downloadMgr.cs" />
@@ -95,14 +93,13 @@
      <Compile Include="Assets\script\menu\textToSpeech.cs" />
      <Compile Include="Assets\script\numberCtrl.cs" />
      <Compile Include="Assets\script\page\page0Ctrl.cs" />
+     <Compile Include="Assets\script\page\page1Ctrl.cs" />
      <Compile Include="Assets\script\page\page2Ctrl.cs" />
      <Compile Include="Assets\script\page\page3Ctrl.cs" />
      <Compile Include="Assets\script\page\page4Ctrl.cs" />
      <Compile Include="Assets\script\page\page5Ctrl.cs" />
      <Compile Include="Assets\script\page\page6Ctrl.cs" />
      <Compile Include="Assets\script\page\page7Ctrl.cs" />
-     <Compile Include="Assets\script\page\page8Ctrl.cs" />
-     <Compile Include="Assets\script\page\page9Ctrl.cs" />
      <Compile Include="Assets\script\page\pageBase.cs" />
      <Compile Include="Assets\script\page\pointDrag.cs" />
      <Compile Include="Assets\script\page\riceCtrl.cs" />
@@ -110,6 +107,7 @@
      <Compile Include="Assets\script\playAni.cs" />
      <Compile Include="Assets\script\scrollCtrl.cs" />
      <Compile Include="Assets\script\spriteMgr.cs" />
+     <Compile Include="Assets\script\tweenAlpha.cs" />
      <None Include="Assets\LeanTween\Examples\Archived\2dUnlitWithFade.shader" />
      <None Include="Assets\LeanTween\ReadMe.txt" />
      <None Include="Assets\LeanTween\License.txt" />

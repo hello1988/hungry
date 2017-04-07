@@ -1,8 +1,9 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\script\page\page9Ctrl.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\script\custom\alternateCustom.cs">
     <Files>
-      <File FileName="Assets\script\page\page9Ctrl.cs" Line="41" Column="2" />
+      <File FileName="Assets\script\page\page2Ctrl.cs" Line="38" Column="37" />
+      <File FileName="Assets\script\custom\alternateCustom.cs" Line="28" Column="18" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

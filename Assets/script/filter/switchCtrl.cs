@@ -8,7 +8,7 @@ public class switchCtrl : MonoBehaviour , IPointerClickHandler
 	[SerializeField]
 	private GameObject mask;
 	[SerializeField]
-	private page7Ctrl pageCtrl;
+	private page5Ctrl pageCtrl;
 
 	// Use this for initialization
 	void Start () {

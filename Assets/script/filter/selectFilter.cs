@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class selectFilter : MonoBehaviour, IPointerClickHandler
 {
 	[SerializeField]
-	private page5Ctrl pageCtrl;
+	private page3Ctrl pageCtrl;
 
 	private DataMgr.FilterType filterType;
 	private int filterIndex;

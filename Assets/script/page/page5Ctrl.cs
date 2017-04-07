@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,30 +6,18 @@ using UnityEngine.UI;
 public class page5Ctrl : pageBase 
 {
 	[SerializeField]
-	private Image focusImage;	// 過濾器(大圖)
+	private GameObject switchFilterUI;
 	[SerializeField]
-	private GameObject filterScroll; // 過濾器捲動區
-
-	private selectFilter focusFilter;
-
-
+	private GameObject indexScroll;
+	private DataMgr.FilterType filterType =  DataMgr.FilterType.STAPLE;
 	void Awake () 
 	{
-		Button checkButton = nextBtn.GetComponent<Button> ();
-		checkButton.onClick.AddListener (nextPage);
-
+		
 	}
 
 	void Start()
 	{
-		initFilterScroll ();
-	}
-
-	public override void onPageEnable()
-	{
-		UIMgr.Instance.setBackground (UIMgr.BG.E);
-		setNextBtnActive(true);
-		resetScrollItem ();
+		switchFilterUI.SetActive (false);
 	}
 
 	// Update is called once per frame
@@ -38,59 +25,47 @@ public class page5Ctrl : pageBase
 		
 	}
 
-	public void onFilterClick( selectFilter arg )
+	public override void onPageEnable()
 	{
-		focusFilter = arg;
-		DataMgr.FilterType type = focusFilter.getFilterType ();
-		int index = focusFilter.getFilterIndex ();
+		UIMgr.Instance.setBackground (UIMgr.BG.F);
 
-		focusImage.sprite = spriteMgr.Instance.getSprite (type,true,index);
+		resetScroll ();
 	}
 
-	public void onItemDrop(GameObject item)
+	public void showSwitchFilter()
 	{
-		if (focusFilter == null) {return;}
-
-		custom orderingCus = DataMgr.Instance.getOrderingCustom ();
-		orderingCus.addPreferFilter ( focusFilter.getFilterType(), focusFilter.getFilterIndex() );
-
-		focusFilter.setSelected (true);
+		switchFilterUI.GetComponent<switchCtrl> ().showUI ();
 	}
 
-	public void nextPage()
+	public void nextPage( int subIndex )
 	{
 		pageMgr.Instance.nextPage (6);
 	}
 
-	private void resetScrollItem()
+	public void resetScroll( DataMgr.FilterType type )
 	{
-		scrollCtrl ctrl = filterScroll.GetComponent<scrollCtrl> ();
-		foreach (GameObject obj in ctrl.getItemList()) 
-		{
-			selectFilter fImg = obj.GetComponent<selectFilter> ();
-			fImg.setSelected (false);
-		}
+		filterType = type;
+		resetScroll ();
 	}
 
-	private void initFilterScroll()
+	public void resetScroll()
 	{
-		scrollCtrl ctrl = filterScroll.GetComponent<scrollCtrl> ();
+		// TODO 之後再做顧客偏好篩選
+		System.Random seed = new System.Random();
+		custom orderingCustom = DataMgr.Instance.getOrderingCustom();
+		scrollCtrl ctrl = indexScroll.GetComponent<scrollCtrl> ();
+		ctrl.reset ();
 
-		foreach (DataMgr.FilterType type in Enum.GetValues(typeof(DataMgr.FilterType))) 
+		Dictionary<int, Sprite> spriteMap = spriteMgr.Instance.getIndexSpriteMap (filterType, false);
+		foreach( int index in spriteMap.Keys )
 		{
-			string keyWord = spriteMgr.Instance.getFilterSpriteKeyWord (type, false);
-			if (string.IsNullOrEmpty (keyWord)) {continue;}
+			GameObject newObj = ctrl.addItem ();
+			// TODO 幾道菜等表單建好再計算
+			int menuNumber = (seed.Next () % 9) + 1;
 
-			Dictionary<int, Sprite> spriteMap = spriteMgr.Instance.getSpriteMap (keyWord);
-			foreach (int index in spriteMap.Keys) 
-			{
-				GameObject newObj = ctrl.addItem ();
-				selectFilter fImg = newObj.GetComponent<selectFilter> ();
-				fImg.setFilterType (type);
-				fImg.setFilterIndex (index);
-				newObj.GetComponent<Image> ().sprite = spriteMap[index];
-			}
+			indexCtrl idxCtrl = newObj.GetComponent<indexCtrl> ();
+			idxCtrl.setInfo (spriteMap [index], menuNumber);
+			idxCtrl.setSubIndex (index);
 		}
-
 	}
 }

@@ -10,7 +10,7 @@ public class custom
 	private static int customIndex = 1;	// 顧客流水號
 
 	public Sprite cusPhoto;	// 顧客圖
-	public Sprite cusName;	// 顧客名字(TODO : 嵌入字型後 改為string)
+	public String cusName;	// 顧客名字
 	public readonly int customID;	// 顧客流水號
 	private Dictionary<DataMgr.FilterType, List<int>> preferFilter;	// 顧客偏好過濾器
 	private List<menu> preferMenu;	// 顧客偏好菜單
@@ -26,7 +26,7 @@ public class custom
 	{
 		custom cus = new custom ();
 		cus.cusPhoto = defaultSprite ["photo"];
-		cus.cusName = defaultSprite ["name"];
+		cus.cusName = string.Format("新顧客{0}",cus.customID);
 		return cus;
 	}
 
@@ -52,7 +52,7 @@ public class custom
 		defaultSprite = new Dictionary<string, Sprite> ();
 
 		downloadMgr.Instance.downloadSprite ("custom/photo1",custom.loadDefaultSprite,"photo");
-		downloadMgr.Instance.downloadSprite ("custom/name1",custom.loadDefaultSprite,"name");
+		// downloadMgr.Instance.downloadSprite ("custom/name1",custom.loadDefaultSprite,"name");
 	}
 
 	public void addPreferFilter( DataMgr.FilterType type, int filtlerIndex )

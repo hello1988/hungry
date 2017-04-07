@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class indexCtrl : MonoBehaviour, IPointerClickHandler
 {
 	[SerializeField]
-	private page7Ctrl pageCtrl;
+	private page5Ctrl pageCtrl;
 
 	public int subIndex;
 	// Use this for initialization

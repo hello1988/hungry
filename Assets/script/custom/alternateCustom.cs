@@ -1,0 +1,68 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+
+public class alternateCustom : MonoBehaviour, IPointerClickHandler 
+{
+	[SerializeField]
+	private GameObject photo;
+	[SerializeField]
+	private int oriSize = 300;		// 圖像原始尺寸
+	[SerializeField]
+	private int selectedSize = 250;	// 點擊後的尺寸
+
+	private custom customData;
+	private bool isSelected;
+
+	// Use this for initialization
+	void Start () {
+		
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		
+	}
+
+	public void init(custom cus)
+	{
+		customData = cus;
+		isSelected = false;
+		setPhotoSize (oriSize);
+
+		Image img = photo.GetComponent<Image> ();
+		img.sprite = cus.cusPhoto;
+	}
+
+	public custom getCustom()
+	{
+		return customData;
+	}
+
+	public bool getSelected()
+	{
+		return isSelected;
+	}
+
+	public void OnPointerClick (PointerEventData eventData)
+	{
+		isSelected = !isSelected;
+
+		if (isSelected) 
+		{
+			setPhotoSize (selectedSize);
+		}
+		else 
+		{
+			setPhotoSize (oriSize);
+		}
+	}
+
+	private void setPhotoSize( int length )
+	{
+		RectTransform rect = photo.GetComponent<RectTransform> ();
+		rect.sizeDelta = Vector2.one*length;
+	}
+}
