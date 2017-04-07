@@ -63,6 +63,7 @@ public class DataMgr : MonoBehaviour
 
 	public void Start()
 	{
+		prepareFakeCustom ();
 	}
 
 	public void setStaffNumber( string staff )
@@ -114,7 +115,6 @@ public class DataMgr : MonoBehaviour
 		if( orderingCustom == null )
 		{
 			orderingCustom = custom.createDefaultCustom ("default");
-			prepareFakeCustom ();
 		}
 		return orderingCustom;
 	}

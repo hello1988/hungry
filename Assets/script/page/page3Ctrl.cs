@@ -97,20 +97,18 @@ public class page3Ctrl : pageBase
 	{
 		scrollCtrl ctrl = filterScroll.GetComponent<scrollCtrl> ();
 
-		foreach (DataMgr.FilterType type in Enum.GetValues(typeof(DataMgr.FilterType))) 
-		{
-			string keyWord = spriteMgr.Instance.getFilterSpriteKeyWord (type, false);
-			if (string.IsNullOrEmpty (keyWord)) {continue;}
+		DataMgr.FilterType type = DataMgr.FilterType.COOK;
+		string keyWord = spriteMgr.Instance.getFilterSpriteKeyWord (type, false);
+		if (string.IsNullOrEmpty (keyWord)) {return;;}
 
-			Dictionary<int, Sprite> spriteMap = spriteMgr.Instance.getSpriteMap (keyWord);
-			foreach (int index in spriteMap.Keys) 
-			{
-				GameObject newObj = ctrl.addItem ();
-				selectFilter fImg = newObj.GetComponent<selectFilter> ();
-				fImg.setFilterType (type);
-				fImg.setFilterIndex (index);
-				newObj.GetComponent<Image> ().sprite = spriteMap[index];
-			}
+		Dictionary<int, Sprite> spriteMap = spriteMgr.Instance.getSpriteMap (keyWord);
+		foreach (int index in spriteMap.Keys) 
+		{
+			GameObject newObj = ctrl.addItem ();
+			selectFilter fImg = newObj.GetComponent<selectFilter> ();
+			fImg.setFilterType (type);
+			fImg.setFilterIndex (index);
+			newObj.GetComponent<Image> ().sprite = spriteMap[index];
 		}
 
 	}
