@@ -98,11 +98,16 @@ public class DataMgr : MonoBehaviour
 		return confirmCustomList;
 	}
 
-	public void setOrderingCustom( int confirmIndex )
+	public void setOrderingCustom( custom orderCus )
 	{
-		if ((confirmIndex < 0) || (confirmIndex >= this.confirmCustomList.Count)) {return;}
+		foreach (custom cus in confirmCustomList) 
+		{
+			if (orderCus.customID != cus.customID) {continue;}
 
-		orderingCustom = confirmCustomList [confirmIndex];
+			orderingCustom = orderCus;
+			break;
+		}
+
 	}
 
 	public custom getOrderingCustom()

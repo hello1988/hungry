@@ -57,7 +57,10 @@ public class page2Ctrl : pageBase
 		List<custom> confirmList = getConfirmList ();
 		if (confirmList.Count <= 0) {return ;}
 
+		// 設定點餐顧客 並把第一個設為點餐中
 		DataMgr.Instance.setConfirmCustomList (confirmList);
+		DataMgr.Instance.setOrderingCustom (confirmList[0]);
+
 		pageMgr.Instance.nextPage (3);
 	}
 
