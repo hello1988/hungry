@@ -41,7 +41,6 @@ public class page0Ctrl : pageBase
 
 	public void onEndEdit()
 	{
-		int nextTipIndex = -1;
 		for( int index = 0;index < collectList.Length;index++ )
 		{
 			if( !string.IsNullOrEmpty( collectList [index] ))
