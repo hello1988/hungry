@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: d8d4d091c09900645a850bdfdf5769a4
-timeCreated: 1491642358
+guid: ed46cbb8d1e2e4b4a9fa9823d5111a19
+timeCreated: 1491643632
 licenseType: Free
 TrueTypeFontImporter:
   serializedVersion: 4
@@ -9,10 +9,12 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: Kozuka Gothic Pro
+  fontName: DFHei Std
   fontNames:
-  - Kozuka Gothic Pro
-  fallbackFontReferences: []
+  - DFHei Std
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: da3e91e56cb3043658a639cef121d993, type: 3}
+  - {fileID: 12800000, guid: 4dabdd6b6a8e44752863c122bab16ae5, type: 3}
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1
