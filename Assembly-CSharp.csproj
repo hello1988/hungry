@@ -69,7 +69,6 @@
      <Compile Include="Assets\LeanTween\Examples\Scripts\TestingUnitTests.cs" />
      <Compile Include="Assets\script\DataMgr.cs" />
      <Compile Include="Assets\script\DontDestroy.cs" />
-     <Compile Include="Assets\script\TextToSpeechManager.cs" />
      <Compile Include="Assets\script\UIMgr.cs" />
      <Compile Include="Assets\script\custom\alternateCustom.cs" />
      <Compile Include="Assets\script\custom\custom.cs" />
@@ -130,6 +129,12 @@
  </Reference>
  <Reference Include="UnityEngine.VR">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+ <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.iOS.Extensions.Common">
+ <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Common.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
