@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Text.RegularExpressions;
+using HoloToolkit.Unity;
 
 public class textToSpeech : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		StartCoroutine (translate ("我是泰儒"));
+		// StartCoroutine (translate ("我是泰儒"));
+		ttsTest();
 	}
 	
 	// Update is called once per frame
@@ -27,5 +29,11 @@ public class textToSpeech : MonoBehaviour {
 		AudioSource audio = this.GetComponent<AudioSource> ();
 		audio.clip = www.GetAudioClip (false, false, AudioType.MPEG);
 		audio.Play ();
+	}
+
+	private void ttsTest()
+	{
+		TextToSpeechManager tts = new TextToSpeechManager ();
+		tts.SpeakText("我是泰儒");
 	}
 }
