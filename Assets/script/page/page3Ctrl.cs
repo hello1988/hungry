@@ -85,11 +85,15 @@ public class page3Ctrl : pageBase
 
 	private void resetScrollItem()
 	{
+		custom cus = DataMgr.Instance.getOrderingCustom ();
+		Dictionary<DataMgr.FilterType, List<int>> preferFilter = cus.getPreferFilter ();
 		scrollCtrl ctrl = filterScroll.GetComponent<scrollCtrl> ();
 		foreach (GameObject obj in ctrl.getItemList()) 
 		{
 			selectFilter fImg = obj.GetComponent<selectFilter> ();
-			fImg.setSelected (false);
+
+			bool isSelected = preferFilter [fImg.getFilterType ()].Contains (fImg.getFilterIndex());
+			fImg.setSelected (isSelected);
 		}
 	}
 

@@ -46,11 +46,10 @@ public class alternateCustom : MonoBehaviour, IPointerClickHandler
 		return isSelected;
 	}
 
-	public void OnPointerClick (PointerEventData eventData)
+	public void setSelected( bool selected )
 	{
-		isSelected = !isSelected;
-
-		if (isSelected) 
+		isSelected = selected;
+		if (selected) 
 		{
 			setPhotoSize (selectedSize);
 		}
@@ -58,6 +57,11 @@ public class alternateCustom : MonoBehaviour, IPointerClickHandler
 		{
 			setPhotoSize (oriSize);
 		}
+	}
+
+	public void OnPointerClick (PointerEventData eventData)
+	{
+		setSelected (!isSelected);
 	}
 
 	private void setPhotoSize( int length )

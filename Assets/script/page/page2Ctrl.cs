@@ -67,12 +67,23 @@ public class page2Ctrl : pageBase
 	private void initAlternateCustom()
 	{
 		List<custom> searchList = DataMgr.Instance.getSearchCustomList ();
+		List<custom> confirmList = DataMgr.Instance.getConfirmCustomList ();
 		int size = Math.Min (customList.Length, searchList.Count);
 
 		for( int index = 0;index < size;index++ )
 		{
 			customList [index].gameObject.SetActive (true);
 			customList [index].init (searchList [index]);
+
+			// 如果已經在確認名單的 設定為以選取
+			for (int confirmIndex = 0; confirmIndex < confirmList.Count; confirmIndex++) 
+			{
+				if (confirmList [confirmIndex].customID == searchList [index].customID) 
+				{
+					customList [index].setSelected (true);
+					break;
+				}
+			}
 		}
 	}
 
