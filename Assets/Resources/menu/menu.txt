@@ -1,5 +1,5 @@
 {"data":[
-{"Speech1": "炸蝦烏龍麵語音1", "menuName": "炸蝦烏龍麵", "cookWay": "1", "Speech6": "炸蝦烏龍麵語音6", "menuID": "1", "Speech8": "炸蝦烏龍麵語音8", "price": "160", "useFood": "1", "useStaple": "1", "Speech5": "炸蝦烏龍麵語音5"},
+{"Speech1": "蔬物天婦羅", "menuName": "炸蝦烏龍麵", "cookWay": "1", "Speech6": "大白蝦", "menuID": "1", "Speech8": "手桿烏龍麵", "price": "160", "useFood": "1", "useStaple": "1", "Speech5": "脆爽口"},
 {"Speech1": "宜蘭三星蔥", "menuName": "蔥燒豬肉丼", "cookWay": "1", "Speech6": "溫泉蛋", "menuID": "3", "Speech8": "豬里肌肉彈口", "price": "160", "useFood": "1", "useStaple": "1", "Speech5": "醬獨門"},
-{"Speech1": "蟹肉茶碗蒸語音1", "menuName": "蟹肉茶碗蒸", "cookWay": "1", "Speech6": "蟹肉茶碗蒸語音6", "menuID": "2", "Speech8": "蟹肉茶碗蒸語音8", "price": "160", "useFood": "1", "useStaple": "1", "Speech5": "蟹肉茶碗蒸語音5"}
+{"Speech1": "帝王蟹肉", "menuName": "蟹肉茶碗蒸", "cookWay": "1", "Speech6": "雞腿肉", "menuID": "2", "Speech8": "九州鮮香菇", "price": "60", "useFood": "1", "useStaple": "1", "Speech5": "有機蛋"}
 ]}
