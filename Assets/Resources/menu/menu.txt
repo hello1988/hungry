@@ -1,0 +1,3 @@
+{"data":[
+{"Speech1": "宜蘭三星蔥", "menuName": "蔥燒豬肉丼", "cookWay": "1", "Speech6": "溫泉蛋", "menuID": "1", "Speech8": "豬里肌肉彈口", "price": "160", "useFood": "1", "useStaple": "1", "Speech5": "醬獨門"}
+]}

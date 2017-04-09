@@ -1,17 +1,10 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\script\DataMgr.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\script\menu\menuMgr.cs">
     <Files>
-      <File FileName="Assets\script\menu\textToSpeech.cs" Line="51" Column="7" />
-      <File FileName="Assets\script\menu\menuMgr.cs" Line="1" Column="1" />
-      <File FileName="Assets\script\menu\assist3Ctrl.cs" Line="1" Column="1" />
-      <File FileName="Assets\script\menu\menu.cs" Line="1" Column="1" />
-      <File FileName="Assets\script\page\page6Ctrl.cs" Line="1" Column="1" />
-      <File FileName="Assets\script\menu\assistCtrl.cs" Line="1" Column="1" />
-      <File FileName="Assets\script\menu\assist2Ctrl.cs" Line="27" Column="21" />
-      <File FileName="Assets\script\menu\clickAndSpeech.cs" Line="1" Column="1" />
-      <File FileName="Assets\script\SavWav.cs" Line="138" Column="2" />
-      <File FileName="Assets\script\DataMgr.cs" Line="44" Column="23" />
+      <File FileName="Assets\script\menu\menuMgr.cs" Line="82" Column="33" />
+      <File FileName="Assets\script\downloadMgr.cs" Line="24" Column="3" />
+      <File FileName="Assets\script\menu\menu.cs" Line="148" Column="24" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

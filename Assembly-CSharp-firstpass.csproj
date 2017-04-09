@@ -53,6 +53,7 @@
      <Compile Include="Assets\Plugins\LeanTween\LeanTween.cs" />
      <None Include="Assets\LeanTween\Examples\Archived\2dUnlitWithFade.shader" />
      <None Include="Assets\LeanTween\ReadMe.txt" />
+     <None Include="Assets\Resources\menu\menu.txt" />
      <None Include="Assets\LeanTween\License.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

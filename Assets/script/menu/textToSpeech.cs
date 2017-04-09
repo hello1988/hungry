@@ -44,7 +44,10 @@ public class textToSpeech : MonoBehaviour {
 
 			// https://docs.unity3d.com/355/Documentation/ScriptReference/WWW.GetAudioClip.html
 			clip = www.GetAudioClip (false, false, AudioType.WAV);
-			clipMap.Add (audioKey, clip);
+			if (!clipMap.ContainsKey (audioKey)) 
+			{
+				clipMap.Add (audioKey, clip);
+			}
 		} 
 		else 
 		{

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -128,4 +129,25 @@ public class menu
 		assist3wordList [index] = sprite;
 	}
 
+}
+
+[Serializable]
+class menuStruct
+{
+	public int menuID;
+	public string menuName;
+	public int price;
+	public int cookWay;
+	public int useFood;
+	public int useStaple;
+	public string Speech1;
+	public string Speech5;
+	public string Speech6;
+	public string Speech8;
+	/*
+	public menu createMenu()
+	{
+		
+	}
+	*/
 }

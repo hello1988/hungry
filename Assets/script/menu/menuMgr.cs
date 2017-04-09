@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -73,6 +74,23 @@ public class menuMgr : MonoBehaviour
 		menuList.Add(new menu(1,"menu1",100,DataMgr.Cook.BROIL,DataMgr.Food.BEEF,DataMgr.Staple.NOODLE));
 		menuList.Add(new menu(2,"menu2",200,DataMgr.Cook.FRY,DataMgr.Food.CHICKEN,DataMgr.Staple.RICE));
 		menuList.Add(new menu(3,"menu3",300,DataMgr.Cook.RAW,DataMgr.Food.LAMB,DataMgr.Staple.SUSHI));
+
+		/* Json 表單讀取流程
+		 * 除了雷 我沒有別的字可以形容Unity
+		TextAsset menuStr = Resources.Load<TextAsset>("menu/menu");
+		string jsonText = menuStr.text.Replace ("\n", "");
+		menuInfo jsonObj = JsonUtility.FromJson<menuInfo>(menuStr.text);
+		foreach( menuStruct mStruct in jsonObj.data )
+		{
+			menuList.Add (mStruct.createMenu());
+		}
+		*/
 	}
 
+}
+
+[Serializable]
+class menuInfo
+{
+	public menuStruct[] data;
 }
