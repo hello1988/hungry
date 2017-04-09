@@ -37,7 +37,7 @@ public class menu
 	/**輔助頁2要說出來的文字*/
 	private Dictionary<string, string> assistSpeechText;
 
-	public menu( int ID, string name, int price, DataMgr.Cook cook, DataMgr.Food food, DataMgr.Staple staple )
+	public menu( int ID, string name, int price, DataMgr.Cook cook, DataMgr.Food food, DataMgr.Staple staple, Dictionary<string, string> speechText )
 	{
 		menuID = ID;
 		menuName = name;
@@ -45,9 +45,9 @@ public class menu
 		cookWay = cook;
 		useFood = food;
 		useStaple = staple;
+		assistSpeechText = speechText;
 
 		loadMenuSprite ();
-		loadSpeechText ();
 	}
 
 	public int getMenuID(){return menuID;}
@@ -89,16 +89,6 @@ public class menu
 		}
 	}
 
-	private void loadSpeechText()
-	{
-		assistSpeechText = new Dictionary<string, string> ();
-		// TEST
-		assistSpeechText.Add("1", "宜蘭三星蔥");
-		assistSpeechText.Add("5", "醬獨門");
-		assistSpeechText.Add("6", "溫泉蛋");
-		assistSpeechText.Add("8", "豬里肌肉彈口");
-	}
-
 	public void loadMainSprite(Sprite sprite, object userData)
 	{
 		// Debug.logger.Log (string.Format("loadMainSprite({0},{1})",sprite, userData));
@@ -131,6 +121,13 @@ public class menu
 
 }
 
+#pragma warning disable 0649
+[Serializable]
+class menuInfo
+{
+	public menuStruct[] data;
+}
+
 [Serializable]
 class menuStruct
 {
@@ -144,10 +141,19 @@ class menuStruct
 	public string Speech5;
 	public string Speech6;
 	public string Speech8;
-	/*
+
 	public menu createMenu()
 	{
-		
+		Dictionary<string, string> speechText = new Dictionary<string, string> ();
+		// TEST
+		speechText.Add("1", Speech1);
+		speechText.Add("5", Speech5);
+		speechText.Add("6", Speech6);
+		speechText.Add("8", Speech8);
+
+		menu m = new menu ( menuID, menuName, price, (DataMgr.Cook)cookWay, (DataMgr.Food)useFood, (DataMgr.Staple)useStaple, speechText );
+		return m;
 	}
-	*/
+
 }
+#pragma warning restore 0649

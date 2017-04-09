@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class assist2Ctrl : MonoBehaviour {
+public class assist2Ctrl : MonoBehaviour 
+{
 
-	private Dictionary<string, string> speechTextMap;
+	private menu curMenu;
 	// Use this for initialization
 	void Start () {
 		
@@ -18,14 +19,17 @@ public class assist2Ctrl : MonoBehaviour {
 	public void assistInit()
 	{
 		custom curCustom = DataMgr.Instance.getOrderingCustom ();
-		menu m = curCustom.getMenu (0);
-		speechTextMap = m.getAssistSpeechText ();
+		curMenu = curCustom.getMenu (0);
 	}
 
 	public void playTextSpeech(string speechKey)
 	{
+		if (curMenu == null) {return;}
+
+		Dictionary<string, string> speechTextMap = curMenu.getAssistSpeechText ();
 		if (!speechTextMap.ContainsKey ( speechKey )) {return;}
 
-		menuMgr.Instance.menuToSpeech (speechKey, speechTextMap[speechKey]);
+		string audioKey = string.Format ("menuSpeech_{0}_{1}",curMenu.getMenuID(), speechKey);
+		menuMgr.Instance.menuToSpeech (audioKey, speechTextMap[speechKey]);
 	}
 }
