@@ -1,11 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class assist3Ctrl : MonoBehaviour 
-{
-	private Sprite[] spriteList; 
+public class assist2Ctrl : MonoBehaviour {
+
+	private Dictionary<string, string> speechTextMap;
 	// Use this for initialization
 	void Start () {
 		
@@ -20,15 +19,13 @@ public class assist3Ctrl : MonoBehaviour
 	{
 		custom curCustom = DataMgr.Instance.getOrderingCustom ();
 		menu m = curCustom.getMenu (0);
-		spriteList = m.getWordSpriteList();
+		speechTextMap = m.getAssistSpeechText ();
 	}
 
-
-	public Sprite getTipSprite( int index )
+	public void playTextSpeech(string speechKey)
 	{
-		if ((index < 0) || (index >= spriteList.Length)) {return null;}
+		if (!speechTextMap.ContainsKey ( speechKey )) {return;}
 
-		return spriteList [index];
+		menuMgr.Instance.menuToSpeech (speechKey, speechTextMap[speechKey]);
 	}
-
 }

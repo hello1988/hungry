@@ -14,17 +14,27 @@ public class menu
 	private static readonly string assistWordPath = "menu/{0}/assist3/w{1}";
 	private static readonly int assistWordNum = 5;
 
-
+	/**菜單編號*/
 	private int menuID;
+	/**菜單名稱*/
 	private string menuName;
+	/**價格*/
 	private int price;
+	/**料理方式*/
 	private DataMgr.Cook cookWay;
+	/**使用食材*/
 	private DataMgr.Food useFood;
+	/**主食*/
 	private DataMgr.Staple useStaple;
 
+	/**菜單主頁圖片*/
 	private Sprite[] mainSpriteList;
+	/**4個輔助頁的圖片*/
 	private Sprite[][] assist1SpriteList; 
-	private Sprite[] assistwordList;
+	/**輔助頁3的半透明文字*/
+	private Sprite[] assist3wordList;
+	/**輔助頁2要說出來的文字*/
+	private Dictionary<string, string> assistSpeechText;
 
 	public menu( int ID, string name, int price, DataMgr.Cook cook, DataMgr.Food food, DataMgr.Staple staple )
 	{
@@ -36,6 +46,7 @@ public class menu
 		useStaple = staple;
 
 		loadMenuSprite ();
+		loadSpeechText ();
 	}
 
 	public int getMenuID(){return menuID;}
@@ -45,7 +56,8 @@ public class menu
 	public DataMgr.Food getUseFood(){return useFood;}
 	public DataMgr.Staple getUseStaple(){return useStaple;}
 	public Sprite[] getMainSpriteList(){return mainSpriteList;}
-	public Sprite[] getWordSpriteList(){return assistwordList;}
+	public Sprite[] getWordSpriteList(){return assist3wordList;}
+	public Dictionary<string, string> getAssistSpeechText(){return assistSpeechText;}
 
 	private void loadMenuSprite()
 	{
@@ -68,12 +80,22 @@ public class menu
 			}
 		}
 
-		assistwordList = new Sprite[assistWordNum];
+		assist3wordList = new Sprite[assistWordNum];
 		for( int index = 0;index < assistWordNum;index++ )
 		{
 			// Debug.logger.Log (string.Format("down path : {0}",string.Format (assistWordPath, menuID, (index + 1))));
 			downloadMgr.Instance.downloadSprite (string.Format(assistWordPath,menuID,(index+1)),loadWordSpriteList,index);
 		}
+	}
+
+	private void loadSpeechText()
+	{
+		assistSpeechText = new Dictionary<string, string> ();
+		// TEST
+		assistSpeechText.Add("1", "宜蘭三星蔥");
+		assistSpeechText.Add("5", "醬獨門");
+		assistSpeechText.Add("6", "溫泉蛋");
+		assistSpeechText.Add("8", "豬里肌肉彈口");
 	}
 
 	public void loadMainSprite(Sprite sprite, object userData)
@@ -103,7 +125,7 @@ public class menu
 	{
 		// Debug.logger.Log (string.Format("loadMainSprite({0},{1})",sprite, userData));
 		int index = (int)userData;
-		assistwordList [index] = sprite;
+		assist3wordList [index] = sprite;
 	}
 
 }

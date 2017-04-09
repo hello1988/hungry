@@ -59,6 +59,12 @@ public class menuMgr : MonoBehaviour
 		return null;
 	}
 
+	public void menuToSpeech( string audioKey, string txt )
+	{
+		textToSpeech tts = GetComponent<textToSpeech> ();
+		StartCoroutine (tts.speech (audioKey, txt, "zh-tw"));
+	}
+
 	private void buildMenuMap()
 	{
 		menuList = new List<menu> ();
