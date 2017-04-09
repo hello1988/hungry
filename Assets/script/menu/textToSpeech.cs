@@ -5,9 +5,13 @@ using UnityEngine;
 using System.Text.RegularExpressions;
 
 
-public class textToSpeech : MonoBehaviour {
+public class textToSpeech : MonoBehaviour 
+{
+	[SerializeField]
+	private int speed = -4;
+
 	private static readonly string RRS_APIKey = "d0dd2c9bf5d94993bb96111e01e649ee";
-	private static readonly string RRS_URL = "http://api.voicerss.org/?key={0}&hl={1}&src={2}&r=-4&c=WAV";
+	private static readonly string RRS_URL = "http://api.voicerss.org/?key={0}&hl={1}&src={2}&r={3}&c=WAV";
 	// private static readonly string GOOGLE_URL = "http://translate.google.com/translate_tts?ie=UTF-8&total=1&idx=0&textlen=32&client=tw-ob&q={0}&tl={1}";
 
 	Dictionary<string, AudioClip> clipMap = new Dictionary<string, AudioClip>();
@@ -37,7 +41,7 @@ public class textToSpeech : MonoBehaviour {
 			string result = rgx.Replace (text, "%20");
 
 			// string url = string.Format (GOOGLE_URL, result, language);
-			string url = string.Format (RRS_URL, RRS_APIKey, language, result);
+			string url = string.Format (RRS_URL, RRS_APIKey, language, result,speed);
 
 			WWW www = new WWW (url);
 			yield return www;
