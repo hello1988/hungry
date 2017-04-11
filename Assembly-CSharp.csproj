@@ -82,6 +82,7 @@
      <Compile Include="Assets\script\filter\switchCtrl.cs" />
      <Compile Include="Assets\script\homeCtrl.cs" />
      <Compile Include="Assets\script\maskClick.cs" />
+     <Compile Include="Assets\script\menu\appetite.cs" />
      <Compile Include="Assets\script\menu\assist2Ctrl.cs" />
      <Compile Include="Assets\script\menu\assist3Ctrl.cs" />
      <Compile Include="Assets\script\menu\assistCtrl.cs" />
@@ -90,6 +91,9 @@
      <Compile Include="Assets\script\menu\mainMenuCtrl.cs" />
      <Compile Include="Assets\script\menu\menu.cs" />
      <Compile Include="Assets\script\menu\menuMgr.cs" />
+     <Compile Include="Assets\script\menu\riceCtrl.cs" />
+     <Compile Include="Assets\script\menu\riceDrag.cs" />
+     <Compile Include="Assets\script\menu\sauceDrag.cs" />
      <Compile Include="Assets\script\menu\sauseCtrl.cs" />
      <Compile Include="Assets\script\menu\showAssist.cs" />
      <Compile Include="Assets\script\menu\showTip.cs" />
@@ -104,8 +108,6 @@
      <Compile Include="Assets\script\page\page6Ctrl.cs" />
      <Compile Include="Assets\script\page\page7Ctrl.cs" />
      <Compile Include="Assets\script\page\pageBase.cs" />
-     <Compile Include="Assets\script\page\pointDrag.cs" />
-     <Compile Include="Assets\script\page\riceCtrl.cs" />
      <Compile Include="Assets\script\pageMgr.cs" />
      <Compile Include="Assets\script\playAni.cs" />
      <Compile Include="Assets\script\scrollCtrl.cs" />

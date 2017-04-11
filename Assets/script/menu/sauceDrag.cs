@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class pointDrag : MonoBehaviour,IDragHandler
+public class sauceDrag : MonoBehaviour,IDragHandler
 {
 	[SerializeField]
 	private sauseCtrl sause;
