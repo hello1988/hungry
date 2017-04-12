@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class indexCtrl : MonoBehaviour, IPointerClickHandler
+public class subFilterCtrl : MonoBehaviour, IPointerClickHandler
 {
 	[SerializeField]
-	private page5Ctrl pageCtrl;
+	private GameObject target;
 
 	public int subIndex;
 	// Use this for initialization
@@ -34,6 +34,6 @@ public class indexCtrl : MonoBehaviour, IPointerClickHandler
 
 	public void OnPointerClick (PointerEventData eventData)
 	{
-		pageCtrl.nextPage (subIndex);
+		target.SendMessage ("OnSubFilterClick", gameObject);
 	}
 }

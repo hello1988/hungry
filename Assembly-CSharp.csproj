@@ -87,7 +87,6 @@
      <Compile Include="Assets\script\menu\assist3Ctrl.cs" />
      <Compile Include="Assets\script\menu\assistCtrl.cs" />
      <Compile Include="Assets\script\menu\clickAndSpeech.cs" />
-     <Compile Include="Assets\script\menu\indexCtrl.cs" />
      <Compile Include="Assets\script\menu\mainMenuCtrl.cs" />
      <Compile Include="Assets\script\menu\menu.cs" />
      <Compile Include="Assets\script\menu\menuMgr.cs" />
@@ -97,6 +96,9 @@
      <Compile Include="Assets\script\menu\sauseCtrl.cs" />
      <Compile Include="Assets\script\menu\showAssist.cs" />
      <Compile Include="Assets\script\menu\showTip.cs" />
+     <Compile Include="Assets\script\menu\subFilterCtrl.cs" />
+     <Compile Include="Assets\script\menu\switchMenuCtrl.cs" />
+     <Compile Include="Assets\script\menu\switchMenuDrag.cs" />
      <Compile Include="Assets\script\menu\textToSpeech.cs" />
      <Compile Include="Assets\script\numberCtrl.cs" />
      <Compile Include="Assets\script\page\page0Ctrl.cs" />

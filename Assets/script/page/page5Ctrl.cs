@@ -37,7 +37,12 @@ public class page5Ctrl : pageBase
 		switchFilterUI.GetComponent<switchCtrl> ().showUI ();
 	}
 
-	public void nextPage( int subIndex )
+	public void OnSubFilterClick( GameObject clickedObj )
+	{
+		nextPage();
+	}
+
+	public void nextPage(  )
 	{
 		pageMgr.Instance.nextPage (6);
 	}
@@ -63,9 +68,9 @@ public class page5Ctrl : pageBase
 			// TODO 幾道菜等表單建好再計算
 			int menuNumber = (seed.Next () % 9) + 1;
 
-			indexCtrl idxCtrl = newObj.GetComponent<indexCtrl> ();
-			idxCtrl.setInfo (spriteMap [index], menuNumber);
-			idxCtrl.setSubIndex (index);
+			subFilterCtrl sCtrl = newObj.GetComponent<subFilterCtrl> ();
+			sCtrl.setInfo (spriteMap [index], menuNumber);
+			sCtrl.setSubIndex (index);
 		}
 	}
 }
