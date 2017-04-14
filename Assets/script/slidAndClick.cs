@@ -23,14 +23,13 @@ public class slidAndClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
 	[SerializeField]
 	private Axis detectAxis = Axis.X;	// 偵測軸線
-	[SerializeField]
-	private GameObject touchPoint;
 
+	private GameObject touchPoint;
 	private Vector3 startPos = Vector3.zero;
 	private dSlideCallBack[] callBackList = new dSlideCallBack[4];
 
-	void Start () {
-		
+	void Awake () {
+		touchPoint = new GameObject ("touchPoint");	
 	}
 	
 	// Update is called once per frame
