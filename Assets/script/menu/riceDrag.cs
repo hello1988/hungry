@@ -83,8 +83,12 @@ public class riceDrag : MonoBehaviour,IDragHandler, IPointerDownHandler, IPointe
 			float distance = Math.Min( Math.Abs ( appetitePos.x - pos.x ), fadeDistance );
 			float alpha = (fadeDistance - distance) / fadeDistance;
 
-			Image img = appetiteList [index].GetComponent<Image> ();
-			img.color = new Color (1,1,1,alpha);
+			foreach(Image img in appetiteList [index].GetComponentsInChildren<Image>())
+			{
+				img.color = new Color (1,1,1,alpha);
+			}
+			// Image img = appetiteList [index].GetComponent<Image> ();
+			// img.color = new Color (1,1,1,alpha);
 		}
 	}
 
