@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using Const;
 
-public class checkFilter : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
+public class checkFilter : MonoBehaviour,IPointerDownHandler,IPointerUpHandler,IDragHandler, IBeginDragHandler, IEndDragHandler
 {
 	[SerializeField]
 	private Image filterImg;
@@ -14,40 +14,80 @@ public class checkFilter : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
 	private GameObject deleteBtn;
 	[SerializeField]
 	private page4Ctrl pageCtrl;
+	[SerializeField]
+	private ScrollRect scrollRectParent;
+	[SerializeField]
+	private int dragDistance = 190;
 
+	private Vector3 oriPos = Vector3.zero;
 	private Vector3 imgOriPos = Vector3.zero;
 	private Vector3 delOriPos = Vector3.zero;
-	private bool pressing = false;
-	private DateTime pressTime;
+	private Vector3 startPos = Vector3.zero;
+	private GameObject touchPoint;
+
 	private FilterType filterType;
 	private int filterIndex;
 
 	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () 
-	{
-		if (!pressing) {return;}
+	void Start () {}
 
-		if ((System.DateTime.Now - pressTime).TotalMilliseconds < 500) {return;}
-		longPress ();
-		pressing = false;
-	}
+	// Update is called once per frame
+	void Update () {}
+
 
 	public void OnPointerDown(PointerEventData eventData)
 	{
-		pressing = true;
-		pressTime = DateTime.Now;
+		GameObject tPoint = getTouchPoint ();
+		tPoint.transform.position = UIMgr.Instance.getCurMousePosition ();
+		startPos = tPoint.transform.localPosition;
 	}
 
 	public void OnPointerUp(PointerEventData eventData)
 	{
-		pressing = false;
+		GameObject tPoint = getTouchPoint ();
+		tPoint.transform.position = UIMgr.Instance.getCurMousePosition ();
+		Vector3 endPos = tPoint.transform.localPosition;
+
+		float moveDistance = Math.Abs( endPos.x - startPos.x );
+		float offsetX = 0;
+		if (moveDistance >= (dragDistance / 2)) 
+		{
+			offsetX = -dragDistance;
+		}
+
+		filterImg.transform.localPosition = new Vector3( imgOriPos.x+offsetX, imgOriPos.y, imgOriPos.z ); 
+		deleteBtn.transform.localPosition = new Vector3( delOriPos.x+offsetX, delOriPos.y, delOriPos.z ); 
 	}
-		
+
+	public void OnBeginDrag (PointerEventData eventData)
+	{
+		// 把事件也轉給 ScrollRect
+		scrollRectParent.OnBeginDrag (eventData);
+	}
+
+	public void OnEndDrag (PointerEventData eventData)
+	{
+		// 把事件也轉給 ScrollRect
+		scrollRectParent.OnEndDrag (eventData);
+	}
+
+	public void OnDrag (PointerEventData eventData)
+	{
+		// 把事件也轉給 ScrollRect
+		scrollRectParent.OnDrag (eventData);
+
+		GameObject tPoint = getTouchPoint ();
+		tPoint.transform.position = UIMgr.Instance.getCurMousePosition ();
+		Vector3 pos = tPoint.transform.localPosition;
+		float offetX = pos.x - startPos.x;
+
+		float posX = Math.Max ( Math.Min(imgOriPos.x+offetX, imgOriPos.x), imgOriPos.x-dragDistance);
+		filterImg.transform.localPosition = new Vector3( posX, imgOriPos.y, imgOriPos.z ); 
+
+		posX = Math.Max ( Math.Min(delOriPos.x+offetX, delOriPos.x), delOriPos.x-dragDistance);
+		deleteBtn.transform.localPosition = new Vector3( posX, delOriPos.y, delOriPos.z ); 
+
+	}
 
 	public void setInfo( FilterType type, int index, Sprite sprite )
 	{
@@ -57,22 +97,6 @@ public class checkFilter : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
 
 		imgOriPos = filterImg.transform.localPosition;
 		delOriPos = deleteBtn.transform.localPosition;
-	}
-
-	private void longPress()
-	{
-		LeanTween.moveLocal (filterImg.gameObject, new Vector3((imgOriPos.x-190),imgOriPos.y,imgOriPos.z+20),0.3f);
-		LeanTween.moveLocal (deleteBtn, new Vector3((delOriPos.x-190),delOriPos.y,delOriPos.z+20),0.3f);
-
-		StopCoroutine(resume ());
-		StartCoroutine (resume ());
-	}
-
-	public IEnumerator resume()
-	{
-		yield return new WaitForSeconds (3);
-		LeanTween.moveLocal (filterImg.gameObject,imgOriPos,0.3f);
-		LeanTween.moveLocal (deleteBtn, delOriPos,0.3f);
 	}
 
 	public void deleteFilter()
@@ -88,5 +112,24 @@ public class checkFilter : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
 	public int getFilterIndex()
 	{
 		return filterIndex;
+	}
+
+	private GameObject getTouchPoint()
+	{
+		if (touchPoint != null) 
+		{
+			return touchPoint;
+		}
+
+		Transform trans = transform.parent.Find ("touchPoint");
+		touchPoint = (trans != null) ? trans.gameObject : null;
+		if (touchPoint != null) 
+		{
+			return touchPoint;
+		}
+
+		touchPoint = new GameObject ("touchPoint");
+		touchPoint.transform.SetParent (transform.parent);
+		return touchPoint;
 	}
 }
