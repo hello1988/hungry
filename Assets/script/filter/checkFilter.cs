@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using Const;
 
 public class checkFilter : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
 {
@@ -18,7 +19,7 @@ public class checkFilter : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
 	private Vector3 delOriPos = Vector3.zero;
 	private bool pressing = false;
 	private DateTime pressTime;
-	private DataMgr.FilterType filterType;
+	private FilterType filterType;
 	private int filterIndex;
 
 	// Use this for initialization
@@ -46,8 +47,9 @@ public class checkFilter : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
 	{
 		pressing = false;
 	}
+		
 
-	public void setInfo( DataMgr.FilterType type, int index, Sprite sprite )
+	public void setInfo( FilterType type, int index, Sprite sprite )
 	{
 		filterType = type;
 		filterIndex = index;
@@ -78,7 +80,7 @@ public class checkFilter : MonoBehaviour,IPointerDownHandler,IPointerUpHandler
 		pageCtrl.deleteFilter (gameObject);
 	}
 
-	public DataMgr.FilterType getFilterType()
+	public FilterType getFilterType()
 	{
 		return filterType;
 	}

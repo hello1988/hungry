@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Const;
 
 public class page5Ctrl : pageBase 
 {
@@ -9,7 +10,7 @@ public class page5Ctrl : pageBase
 	private GameObject switchFilterUI;
 	[SerializeField]
 	private GameObject indexScroll;
-	private DataMgr.FilterType filterType =  DataMgr.FilterType.STAPLE;
+	private FilterType filterType =  FilterType.STAPLE;
 	void Awake () 
 	{
 		
@@ -47,7 +48,7 @@ public class page5Ctrl : pageBase
 		pageMgr.Instance.nextPage (6);
 	}
 
-	public void resetScroll( DataMgr.FilterType type )
+	public void resetScroll( FilterType type )
 	{
 		filterType = type;
 		resetScroll ();

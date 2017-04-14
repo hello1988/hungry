@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Const;
 
 public class page3Ctrl : pageBase 
 {
@@ -48,7 +49,7 @@ public class page3Ctrl : pageBase
 	public void onFilterClick( selectFilter arg )
 	{
 		focusFilter = arg;
-		DataMgr.FilterType type = focusFilter.getFilterType ();
+		FilterType type = focusFilter.getFilterType ();
 		int index = focusFilter.getFilterIndex ();
 
 		focusImage.sprite = spriteMgr.Instance.getSprite (type,true,index);
@@ -86,7 +87,7 @@ public class page3Ctrl : pageBase
 	private void resetScrollItem()
 	{
 		custom cus = DataMgr.Instance.getOrderingCustom ();
-		Dictionary<DataMgr.FilterType, List<int>> preferFilter = cus.getPreferFilter ();
+		Dictionary<FilterType, List<int>> preferFilter = cus.getPreferFilter ();
 		scrollCtrl ctrl = filterScroll.GetComponent<scrollCtrl> ();
 		foreach (GameObject obj in ctrl.getItemList()) 
 		{
@@ -101,7 +102,7 @@ public class page3Ctrl : pageBase
 	{
 		scrollCtrl ctrl = filterScroll.GetComponent<scrollCtrl> ();
 
-		DataMgr.FilterType type = DataMgr.FilterType.COOK;
+		FilterType type = FilterType.COOK;
 		string keyWord = spriteMgr.Instance.getFilterSpriteKeyWord (type, false);
 		if (string.IsNullOrEmpty (keyWord)) {return;;}
 

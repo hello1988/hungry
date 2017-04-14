@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Const;
 
 public class custom 
 {
@@ -14,7 +15,7 @@ public class custom
 	public readonly int customID;	// 顧客流水號
 	public int budget = 300;
 
-	private Dictionary<DataMgr.FilterType, List<int>> preferFilter;	// 顧客偏好過濾器
+	private Dictionary<FilterType, List<int>> preferFilter;	// 顧客偏好過濾器
 	private List<menu> preferMenu;	// 顧客偏好菜單
 	private int viewingIndex;	// 正在看的菜單
 
@@ -35,8 +36,8 @@ public class custom
 	public custom()
 	{
 		customID = customIndex++;
-		preferFilter = new Dictionary<DataMgr.FilterType, List<int>>();
-		foreach( DataMgr.FilterType type in Enum.GetValues(typeof(DataMgr.FilterType)))
+		preferFilter = new Dictionary<FilterType, List<int>>();
+		foreach( FilterType type in Enum.GetValues(typeof(FilterType)))
 		{
 			preferFilter.Add(type,new List<int>());
 		}
@@ -57,14 +58,14 @@ public class custom
 		// downloadMgr.Instance.downloadSprite ("custom/name1",custom.loadDefaultSprite,"name");
 	}
 
-	public void addPreferFilter( DataMgr.FilterType type, int filtlerIndex )
+	public void addPreferFilter( FilterType type, int filtlerIndex )
 	{
 		if (preferFilter [type].Contains (filtlerIndex)) {return;}
 
 		preferFilter [type].Add (filtlerIndex);
 	}
 
-	public void removePreferFilter( DataMgr.FilterType type, int filtlerIndex )
+	public void removePreferFilter( FilterType type, int filtlerIndex )
 	{
 		if (!preferFilter.ContainsKey (type)) {return;}
 
@@ -73,7 +74,7 @@ public class custom
 		preferFilter [type].Remove(filtlerIndex);
 	}
 
-	public Dictionary<DataMgr.FilterType, List<int>> getPreferFilter()
+	public Dictionary<FilterType, List<int>> getPreferFilter()
 	{
 		return preferFilter;
 	}

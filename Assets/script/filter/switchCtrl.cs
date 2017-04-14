@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Const;
 
 public class switchCtrl : MonoBehaviour , IPointerClickHandler
 {
@@ -50,22 +51,22 @@ public class switchCtrl : MonoBehaviour , IPointerClickHandler
 	// 以料理方式排序
 	public void onSwitch1Click()
 	{
-		resetScroll( DataMgr.FilterType.COOK );
+		resetScroll( FilterType.COOK );
 	}
 
 	// 以食材排序
 	public void onSwitch2Click()
 	{
-		resetScroll( DataMgr.FilterType.FOOD );
+		resetScroll( FilterType.FOOD );
 	}
 
 	// 以主食排序
 	public void onSwitch3Click()
 	{
-		resetScroll( DataMgr.FilterType.STAPLE );
+		resetScroll( FilterType.STAPLE );
 	}
 
-	private void resetScroll(DataMgr.FilterType switchType)
+	private void resetScroll(FilterType switchType)
 	{
 		hideUI ();
 		pageCtrl.resetScroll (switchType);

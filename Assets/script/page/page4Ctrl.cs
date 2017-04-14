@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Const;
 
 public class page4Ctrl : pageBase 
 {
@@ -32,11 +33,11 @@ public class page4Ctrl : pageBase
 	private void resetScroll()
 	{
 		custom orderingCus = DataMgr.Instance.getOrderingCustom ();
-		Dictionary<DataMgr.FilterType, List<int>> preferFilter = orderingCus.getPreferFilter ();
+		Dictionary<FilterType, List<int>> preferFilter = orderingCus.getPreferFilter ();
 
 		scrollCtrl ctrl = filterScroll.GetComponent<scrollCtrl> ();
 		ctrl.reset ();
-		foreach(DataMgr.FilterType type in preferFilter.Keys)
+		foreach(FilterType type in preferFilter.Keys)
 		{
 			foreach( int index in preferFilter[type] )
 			{

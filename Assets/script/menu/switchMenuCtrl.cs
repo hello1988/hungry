@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Const;
 
 public class switchMenuCtrl : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class switchMenuCtrl : MonoBehaviour
 	[SerializeField]
 	private GameObject switchFilter;
 
-	DataMgr.FilterType filterType;
+	FilterType filterType;
 	void Awake () 
 	{
 		mask.SetActive (false);
@@ -30,7 +31,7 @@ public class switchMenuCtrl : MonoBehaviour
 		leftBar.setInfo ( left, right );
 		switchFilter.SetActive (false);
 
-		filterType = DataMgr.FilterType.COOK;
+		filterType = FilterType.COOK;
 		resetScroll ();
 	}
 	
@@ -65,7 +66,7 @@ public class switchMenuCtrl : MonoBehaviour
 		mask.SetActive (true);
 	}
 
-	public void resetScroll ( DataMgr.FilterType type )
+	public void resetScroll ( FilterType type )
 	{
 		filterType = type;
 		resetScroll ();
@@ -101,16 +102,17 @@ public class switchMenuCtrl : MonoBehaviour
 		hideMenu (0.3f);
 	}
 
-	public void showSwitchFilter()
+	public void OnFilterBtnClick()
 	{
-		switchFilter.SetActive (true);
+		bool isShow = !switchFilter.activeInHierarchy;
+		switchFilter.SetActive (isShow);
 	}
 
 	public void OnSwitchFilterClick( int filterID )
 	{
 		switchFilter.SetActive (false);
 
-		DataMgr.FilterType type = (DataMgr.FilterType)filterID;
+		FilterType type = (FilterType)filterID;
 		resetScroll (type);
 	}
 }

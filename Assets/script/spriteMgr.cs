@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Const;
 
 public class spriteMgr : MonoBehaviour 
 {
@@ -145,13 +146,13 @@ public class spriteMgr : MonoBehaviour
 		return spriteMap [keyWord] [spriteIndex];
 	}
 
-	public Sprite getSprite( DataMgr.FilterType type, bool isLarge, int spriteIndex )
+	public Sprite getSprite( FilterType type, bool isLarge, int spriteIndex )
 	{
 		string keyWord = getFilterSpriteKeyWord (type, isLarge);
 		return getSprite (keyWord, spriteIndex);
 	}
 
-	public Dictionary<int, Sprite> getIndexSpriteMap( DataMgr.FilterType type, bool isLarge )
+	public Dictionary<int, Sprite> getIndexSpriteMap( FilterType type, bool isLarge )
 	{
 		string keyWord = getIndexSpriteKeyWord( type, isLarge );
 		if (string.IsNullOrEmpty (keyWord)) { return new Dictionary<int, Sprite> ();}
@@ -164,32 +165,32 @@ public class spriteMgr : MonoBehaviour
 		return spriteMap [keyWord];
 	}
 
-	public string getFilterSpriteKeyWord (DataMgr.FilterType type, bool isLarge)
+	public string getFilterSpriteKeyWord (FilterType type, bool isLarge)
 	{
 		switch (type) 
 		{
-		case DataMgr.FilterType.COOK:
+		case FilterType.COOK:
 			return (isLarge) ? spriteMgr.KeyWord.FILTER_COOK_L:spriteMgr.KeyWord.FILTER_COOK;
-		case DataMgr.FilterType.FOOD:
+		case FilterType.FOOD:
 			return (isLarge) ? spriteMgr.KeyWord.FILTER_FOOD_L:spriteMgr.KeyWord.FILTER_FOOD;
-		case DataMgr.FilterType.STAPLE:
+		case FilterType.STAPLE:
 			return (isLarge) ? spriteMgr.KeyWord.FILTER_STAPLE_L:spriteMgr.KeyWord.FILTER_STAPLE;
 		}
 
 		return null;
 	}
 
-	public string getIndexSpriteKeyWord( DataMgr.FilterType type, bool isLarge )
+	public string getIndexSpriteKeyWord( FilterType type, bool isLarge )
 	{
 		switch (type) 
 		{
-		case DataMgr.FilterType.COOK:
+		case FilterType.COOK:
 			return (isLarge) ? spriteMgr.KeyWord.INDEX_COOK_L:spriteMgr.KeyWord.INDEX_COOK;
 
-		case DataMgr.FilterType.FOOD:
+		case FilterType.FOOD:
 			return (isLarge) ? spriteMgr.KeyWord.INDEX_FOOD_L:spriteMgr.KeyWord.INDEX_FOOD;
 
-		case DataMgr.FilterType.STAPLE:
+		case FilterType.STAPLE:
 			return (isLarge) ? spriteMgr.KeyWord.INDEX_STAPLE_L:spriteMgr.KeyWord.INDEX_STAPLE;
 		}
 

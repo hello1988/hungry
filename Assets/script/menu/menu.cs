@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Const;
 
 public class menu 
 {
@@ -22,11 +23,11 @@ public class menu
 	/**價格*/
 	private int price;
 	/**料理方式*/
-	private DataMgr.Cook cookWay;
+	private Cook cookWay;
 	/**使用食材*/
-	private DataMgr.Food useFood;
+	private Food useFood;
 	/**主食*/
-	private DataMgr.Staple useStaple;
+	private Staple useStaple;
 
 	/**菜單主頁圖片*/
 	private Sprite[] mainSpriteList;
@@ -37,7 +38,7 @@ public class menu
 	/**輔助頁2要說出來的文字*/
 	private Dictionary<string, string> assistSpeechText;
 
-	public menu( int ID, string name, int price, DataMgr.Cook cook, DataMgr.Food food, DataMgr.Staple staple, Dictionary<string, string> speechText )
+	public menu( int ID, string name, int price, Cook cook, Food food, Staple staple, Dictionary<string, string> speechText )
 	{
 		menuID = ID;
 		menuName = name;
@@ -53,9 +54,9 @@ public class menu
 	public int getMenuID(){return menuID;}
 	public string getMenuName(){return menuName;}
 	public int getPrice(){return price;}
-	public DataMgr.Cook getCookWay(){return cookWay;}
-	public DataMgr.Food getUseFood(){return useFood;}
-	public DataMgr.Staple getUseStaple(){return useStaple;}
+	public Cook getCookWay(){return cookWay;}
+	public Food getUseFood(){return useFood;}
+	public Staple getUseStaple(){return useStaple;}
 	public Sprite[] getMainSpriteList(){return mainSpriteList;}
 	public Sprite[] getWordSpriteList(){return assist3wordList;}
 	public Dictionary<string, string> getAssistSpeechText(){return assistSpeechText;}
@@ -151,7 +152,7 @@ class menuStruct
 		speechText.Add("6", Speech6);
 		speechText.Add("8", Speech8);
 
-		menu m = new menu ( menuID, menuName, price, (DataMgr.Cook)cookWay, (DataMgr.Food)useFood, (DataMgr.Staple)useStaple, speechText );
+		menu m = new menu ( menuID, menuName, price, (Cook)cookWay, (Food)useFood, (Staple)useStaple, speechText );
 		return m;
 	}
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DataMgr : MonoBehaviour 
+namespace Const
 {
 	public enum FilterType
 	{
@@ -35,7 +35,10 @@ public class DataMgr : MonoBehaviour
 		SUSHI,		// 壽司
 		NOODLE,		// 麵
 	}
+}
 
+public class DataMgr : MonoBehaviour 
+{
 	// 店員編號
 	private string staffNumber = "";
 	// 桌號

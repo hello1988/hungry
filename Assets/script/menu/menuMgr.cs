@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Const;
 
 public class menuMgr : MonoBehaviour 
 {
@@ -34,13 +35,13 @@ public class menuMgr : MonoBehaviour
 	public void setPreferMenuToCustom( custom cus )
 	{
 		List<menu> preferMenu = new List<menu> ();
-		Dictionary<DataMgr.FilterType, List<int>> filter = cus.getPreferFilter ();
+		Dictionary<FilterType, List<int>> filter = cus.getPreferFilter ();
 
 		foreach( menu m in menuList )
 		{
-			if (!filter [DataMgr.FilterType.COOK].Contains ((int)m.getCookWay())) {continue;}
-			if (!filter [DataMgr.FilterType.FOOD].Contains ((int)m.getUseFood())) {continue;}
-			if (!filter [DataMgr.FilterType.STAPLE].Contains ((int)m.getUseStaple())) {continue;}
+			if (!filter [FilterType.COOK].Contains ((int)m.getCookWay())) {continue;}
+			if (!filter [FilterType.FOOD].Contains ((int)m.getUseFood())) {continue;}
+			if (!filter [FilterType.STAPLE].Contains ((int)m.getUseStaple())) {continue;}
 
 			preferMenu.Add (m);
 		}

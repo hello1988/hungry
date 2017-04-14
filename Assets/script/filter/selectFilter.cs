@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Const;
 
 public class selectFilter : MonoBehaviour, IPointerClickHandler
 {
 	[SerializeField]
 	private page3Ctrl pageCtrl;
 
-	private DataMgr.FilterType filterType;
+	private FilterType filterType;
 	private int filterIndex;
 
 	// Use this for initialization
@@ -22,12 +23,12 @@ public class selectFilter : MonoBehaviour, IPointerClickHandler
 		
 	}
 
-	public void setFilterType( DataMgr.FilterType type )
+	public void setFilterType( FilterType type )
 	{
 		filterType = type;
 	}
 
-	public DataMgr.FilterType getFilterType()
+	public FilterType getFilterType()
 	{
 		return filterType;
 	}
