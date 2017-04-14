@@ -3,19 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
-public class demoSlide : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+public class demoSlide : MonoBehaviour
 {
 	[SerializeField]
 	private Image numberImg;
 	[SerializeField]
 	private Sprite[] numberList;
+	[SerializeField]
+	private slidAndClick orderNumCtrl;
 
-	private Vector3 startPos;
 	private int numberIndex;
-	void Start () {
-		
+
+	void Awake () 
+	{
+		orderNumCtrl.setCallBack (slidAndClick.Direction.LEFT, minusOrderNum);
+		orderNumCtrl.setCallBack (slidAndClick.Direction.RIGHT, addOrderNum);
 	}
 	
 	// Update is called once per frame
@@ -28,25 +31,15 @@ public class demoSlide : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 		numberIndex = 0;
 	}
 
-	public void OnPointerDown (PointerEventData eventData)
+	public void addOrderNum()
 	{
-		startPos = UIMgr.Instance.getCurMousePosition ();
+		numberIndex = Math.Min ((numberIndex + 1), (numberList.Length-1));
+		updateNumberImg ();
 	}
 
-	public void OnPointerUp (PointerEventData eventData)
+	public void minusOrderNum()
 	{
-		Vector3 endPos = UIMgr.Instance.getCurMousePosition ();
-
-		float xOffset = endPos.x - startPos.x;
-		if (xOffset > 0) 
-		{
-			numberIndex = Math.Min ((numberIndex + 1), (numberList.Length-1));
-		}
-		else if (xOffset < 0) 
-		{
-			numberIndex = Math.Max ((numberIndex - 1), 0);
-		}
-
+		numberIndex = Math.Max ((numberIndex - 1), 0);
 		updateNumberImg ();
 	}
 
