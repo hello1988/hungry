@@ -18,6 +18,7 @@ public class dragAndDrop : MonoBehaviour,IDragHandler,IPointerDownHandler,IPoint
 	private Vector3 oriPos = Vector3.zero;
 	private Vector3 oriLocalPos = Vector3.zero;
 	private Vector3 touchStart = Vector3.zero;
+	private bool dragable = false;
 
 	public void Awake()
 	{
@@ -25,8 +26,15 @@ public class dragAndDrop : MonoBehaviour,IDragHandler,IPointerDownHandler,IPoint
 		oriLocalPos = transform.localPosition;
 	}
 
+	public void setDragable( bool canDrag )
+	{
+		dragable = canDrag;
+	}
+
 	public void OnDrag(PointerEventData eventData)
 	{
+		if (!dragable) {return;}
+
 		Vector3 offset =  UIMgr.Instance.getCurMousePosition() - touchStart;
 
 		transform.position = (oriPos+offset);
@@ -34,6 +42,8 @@ public class dragAndDrop : MonoBehaviour,IDragHandler,IPointerDownHandler,IPoint
 
 	public void OnPointerDown(PointerEventData eventData)
 	{
+		if (!dragable) {return;}
+
 		transform.localScale=new Vector3(0.8f,0.8f,0.8f);
 
 		touchStart = UIMgr.Instance.getCurMousePosition();
@@ -44,6 +54,8 @@ public class dragAndDrop : MonoBehaviour,IDragHandler,IPointerDownHandler,IPoint
 
 	public void OnPointerUp(PointerEventData eventData)
 	{
+		if (!dragable) {return;}
+
 		if (targetArea != null) 
 		{
 			RectTransform rect = GetComponent<RectTransform> ();

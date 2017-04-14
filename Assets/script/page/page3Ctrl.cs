@@ -8,7 +8,7 @@ using Const;
 public class page3Ctrl : pageBase 
 {
 	[SerializeField]
-	private Image focusImage;	// 過濾器(大圖)
+	private GameObject focusImage;	// 過濾器(大圖)
 	[SerializeField]
 	private GameObject filterScroll; // 過濾器捲動區
 	[SerializeField]
@@ -39,6 +39,10 @@ public class page3Ctrl : pageBase
 
 		custom cus = DataMgr.Instance.getOrderingCustom ();
 		budget.GetComponent<numberCtrl>().setValue (cus.budget);
+
+		focusImage.GetComponent<dragAndDrop> ().setDragable (false);
+		Image img = focusImage.GetComponent<Image> ();
+		img.sprite = null;
 	}
 
 	// Update is called once per frame
@@ -52,7 +56,9 @@ public class page3Ctrl : pageBase
 		FilterType type = focusFilter.getFilterType ();
 		int index = focusFilter.getFilterIndex ();
 
-		focusImage.sprite = spriteMgr.Instance.getSprite (type,true,index);
+		focusImage.GetComponent<dragAndDrop> ().setDragable (true);
+		Image img = focusImage.GetComponent<Image> ();
+		img.sprite = spriteMgr.Instance.getSprite (type,true,index);
 	}
 
 	public void onItemDrop(GameObject item)
