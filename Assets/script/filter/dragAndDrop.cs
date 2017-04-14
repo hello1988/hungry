@@ -18,7 +18,7 @@ public class dragAndDrop : MonoBehaviour,IDragHandler,IPointerDownHandler,IPoint
 	private Vector3 oriPos = Vector3.zero;
 	private Vector3 oriLocalPos = Vector3.zero;
 	private Vector3 touchStart = Vector3.zero;
-	private bool dragable = false;
+	private bool dragable = true;
 
 	public void Awake()
 	{
