@@ -27,6 +27,7 @@ public class switchCtrl : MonoBehaviour , IPointerClickHandler
 		transform.localScale = Vector3.one;
 		gameObject.SetActive (true);
 		mask.SetActive (false);
+		pageCtrl.setTipTxtActive (false);
 
 		LeanTween.moveLocalX (gameObject, 0, 0.3f).setOnComplete(showMask);
 	}
@@ -39,6 +40,8 @@ public class switchCtrl : MonoBehaviour , IPointerClickHandler
 	void hideUI()
 	{
 		mask.SetActive (false);
+		pageCtrl.setTipTxtActive (true);
+
 		LeanTween.moveLocalX (gameObject, 1600, 0.3f);
 
 	}

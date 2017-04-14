@@ -10,6 +10,9 @@ public class page5Ctrl : pageBase
 	private GameObject switchFilterUI;
 	[SerializeField]
 	private GameObject indexScroll;
+	[SerializeField]
+	private GameObject tipTxt;
+
 	private FilterType filterType =  FilterType.STAPLE;
 	void Awake () 
 	{
@@ -31,6 +34,7 @@ public class page5Ctrl : pageBase
 		UIMgr.Instance.setBackground (UIMgr.BG.F);
 
 		resetScroll ();
+		setTipTxtActive( true );
 	}
 
 	public void showSwitchFilter()
@@ -73,5 +77,10 @@ public class page5Ctrl : pageBase
 			sCtrl.setInfo (spriteMap [index], menuNumber);
 			sCtrl.setSubIndex (index);
 		}
+	}
+
+	public void setTipTxtActive( bool active )
+	{
+		tipTxt.SetActive (active);
 	}
 }
