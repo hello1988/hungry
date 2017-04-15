@@ -54,14 +54,24 @@ public class numberCtrl : MonoBehaviour
 
 	public void setValue( int value )
 	{
+		int[] valueList = new int[numberList.Count];
 		int showValue = Math.Max (0, value);
 		showValue = Math.Min (maxNumber, showValue);
 		for( int index = 0;index < numberList.Count;index++ )
 		{
 			int num = showValue % 10;
+			numberList [index].gameObject.SetActive (true);
 			numberList [index].sprite = spriteList [num];
 			showValue /= 10;
+
+			valueList [index] = num;
 		}
 
+		for( int index = numberList.Count-1;index >= 0 ;index-- )
+		{
+			if (valueList [index] > 0) {break;}
+
+			numberList [index].gameObject.SetActive (false);
+		}
 	}
 }
