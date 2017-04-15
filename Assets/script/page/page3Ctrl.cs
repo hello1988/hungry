@@ -74,7 +74,7 @@ public class page3Ctrl : pageBase
 	public void addBudget()
 	{
 		custom cus = DataMgr.Instance.getOrderingCustom ();
-		cus.budget = Math.Min( (cus.budget+20), 1000 );
+		cus.budget = Math.Min( (cus.budget+20), 980 );
 		budget.GetComponent<numberCtrl>().setValue (cus.budget);
 	}
 
