@@ -71,6 +71,7 @@
      <Compile Include="Assets\script\DontDestroy.cs" />
      <Compile Include="Assets\script\SavWav.cs" />
      <Compile Include="Assets\script\UIMgr.cs" />
+     <Compile Include="Assets\script\checkOrder\checkMenu.cs" />
      <Compile Include="Assets\script\custom\alternateCustom.cs" />
      <Compile Include="Assets\script\custom\custom.cs" />
      <Compile Include="Assets\script\demo\demoClick.cs" />

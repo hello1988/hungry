@@ -67,7 +67,7 @@ public class numberCtrl : MonoBehaviour
 			valueList [index] = num;
 		}
 
-		for( int index = numberList.Count-1;index >= 0 ;index-- )
+		for( int index = numberList.Count-1;index >= 1 ;index-- )
 		{
 			if (valueList [index] > 0) {break;}
 

@@ -30,6 +30,7 @@ public class slidAndClick : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
 
 	void Awake () {
 		touchPoint = new GameObject ("touchPoint");	
+		touchPoint.transform.SetParent (transform.parent);
 	}
 	
 	// Update is called once per frame
