@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class demoSlide : MonoBehaviour
+public class menuSlide : MonoBehaviour
 {
 	[SerializeField]
 	private Image numberImg;

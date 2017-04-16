@@ -79,12 +79,12 @@ public class checkFilter : MonoBehaviour,IPointerDownHandler,IPointerUpHandler,I
 		GameObject tPoint = getTouchPoint ();
 		tPoint.transform.position = UIMgr.Instance.getCurMousePosition ();
 		Vector3 pos = tPoint.transform.localPosition;
-		float offetX = pos.x - startPos.x;
+		float offsetX = pos.x - startPos.x;
 
-		float posX = Math.Max ( Math.Min(imgOriPos.x+offetX, imgOriPos.x), imgOriPos.x-dragDistance);
+		float posX = Math.Max ( Math.Min(imgOriPos.x+offsetX, imgOriPos.x), imgOriPos.x-dragDistance);
 		filterImg.transform.localPosition = new Vector3( posX, imgOriPos.y, imgOriPos.z ); 
 
-		posX = Math.Max ( Math.Min(delOriPos.x+offetX, delOriPos.x), delOriPos.x-dragDistance);
+		posX = Math.Max ( Math.Min(delOriPos.x+offsetX, delOriPos.x), delOriPos.x-dragDistance);
 		deleteBtn.transform.localPosition = new Vector3( posX, delOriPos.y, delOriPos.z ); 
 
 	}
