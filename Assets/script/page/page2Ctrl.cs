@@ -73,7 +73,7 @@ public class page2Ctrl : pageBase
 		for( int index = 0;index < size;index++ )
 		{
 			customList [index].gameObject.SetActive (true);
-			customList [index].init (searchList [index]);
+			customList [index].init (searchList [index], 0.2f*(index+1));
 
 			// 如果已經在確認名單的 設定為以選取
 			for (int confirmIndex = 0; confirmIndex < confirmList.Count; confirmIndex++) 

@@ -26,7 +26,7 @@ public class alternateCustom : MonoBehaviour, IPointerClickHandler
 		
 	}
 
-	public void init(custom cus)
+	public void init(custom cus, float delaySec)
 	{
 		customData = cus;
 		isSelected = false;
@@ -34,6 +34,17 @@ public class alternateCustom : MonoBehaviour, IPointerClickHandler
 
 		Image img = photo.GetComponent<Image> ();
 		img.sprite = cus.cusPhoto;
+
+		transform.localScale = Vector3.zero;
+		StartCoroutine (resume(delaySec));
+	}
+
+	public IEnumerator resume( float delaySec )
+	{
+		yield return new WaitForSeconds (delaySec);
+
+		LeanTween.scale (gameObject, Vector3.one, 0.3f);
+
 	}
 
 	public custom getCustom()
