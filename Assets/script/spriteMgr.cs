@@ -32,6 +32,10 @@ public class spriteMgr : MonoBehaviour
 		public static readonly string FILTER_STAPLE = "FILTER_STAPLE";
 		public static readonly string FILTER_STAPLE_L = "FILTER_STAPLE_L";
 
+		// 餐點確認
+		public static readonly string WANT_ORDER = "WANT_ORDER";
+		public static readonly string WANT_STAPLE = "WANT_STAPLE";
+
 	}
 
 	private Dictionary<string,Dictionary<int,Sprite>> spriteMap;
@@ -109,6 +113,16 @@ public class spriteMgr : MonoBehaviour
 		path = "filter/staple/staple_L{0}";
 		spriteMap.Add( KeyWord.FILTER_STAPLE_L, new Dictionary<int,Sprite>() );
 		downloadMgr.Instance.downloadSprite (string.Format (path, counter), downloadCallBack, new object[]{path, KeyWord.FILTER_STAPLE_L, counter});
+
+		// 餐點確認 - 餐點圖(右)
+		path = "want/orderImg/{0}";
+		spriteMap.Add( KeyWord.WANT_ORDER, new Dictionary<int,Sprite>() );
+		downloadMgr.Instance.downloadSprite (string.Format (path, counter), downloadCallBack, new object[]{path, KeyWord.WANT_ORDER, counter});
+
+		// 餐點確認 - 主食縮圖(左)
+		path = "want/staple/{0}";
+		spriteMap.Add( KeyWord.WANT_STAPLE, new Dictionary<int,Sprite>() );
+		downloadMgr.Instance.downloadSprite (string.Format (path, counter), downloadCallBack, new object[]{path, KeyWord.WANT_STAPLE, counter});
 	}
 	// Update is called once per frame
 	void Update () {

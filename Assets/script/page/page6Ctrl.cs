@@ -15,8 +15,6 @@ public class page6Ctrl : pageBase
 	private Button preMenu;
 	[SerializeField]
 	private Button nextMenu;
-	[SerializeField]
-	private GameObject touchPoint;
 
 	void Awake () 
 	{
@@ -31,20 +29,6 @@ public class page6Ctrl : pageBase
 	// Update is called once per frame
 	void Update () 
 	{
-		/*
-		if (Input.GetMouseButtonDown(0)) 
-		{
-			// 按下時觸發(click down)
-		}
-		else if (Input.GetMouseButton (0))
-		{
-			// 按住時觸發(onpress)
-		}
-		else if (Input.GetMouseButtonUp(0)) 
-		{
-			// 放開時觸發(click up)
-		}
-		*/
 	}
 
 	public override void onPageEnable()
@@ -74,7 +58,11 @@ public class page6Ctrl : pageBase
 
 	public void onItemDrop(GameObject item)
 	{
-		Debug.logger.Log (string.Format("p8 onItemDrop : {0}",item.name));
+		// Debug.logger.Log (string.Format("p6 onItemDrop : {0}",item.name));
+
+		custom orderingCus = DataMgr.Instance.getOrderingCustom ();
+		int menuID = orderingCus.getMenu(0).getMenuID();
+		orderingCus.modifyConfirmMenu (menuID,1);
 	}
 
 	public void toPreMenu()

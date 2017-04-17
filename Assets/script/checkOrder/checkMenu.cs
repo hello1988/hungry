@@ -12,7 +12,7 @@ public class checkMenu : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
 	[SerializeField]
 	private GameObject deleteBtn;
 	[SerializeField]
-	private int dragDistance = 270;
+	private int dragDistance = 245;
 
 	private Vector3 imgOriPos = Vector3.zero;
 	private Vector3 delOriPos = Vector3.zero;
@@ -44,9 +44,9 @@ public class checkMenu : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
 		touchPoint.transform.position = UIMgr.Instance.getCurMousePosition ();
 		Vector3 endPos = touchPoint.transform.localPosition;
 
-		float moveDistance = Math.Abs( endPos.x - startPos.x );
+		float moveDistance = endPos.x - startPos.x;
 		float offsetX = 0;
-		if (moveDistance >= (dragDistance / 2)) 
+		if (moveDistance <= -(dragDistance / 2)) 
 		{
 			offsetX = -dragDistance;
 		}
@@ -74,8 +74,4 @@ public class checkMenu : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
 		menuImg.sprite = sprite;	
 	}
 
-	public void OnDeleteClick()
-	{
-		Debug.logger.Log ("OnDeleteClick");
-	}
 }

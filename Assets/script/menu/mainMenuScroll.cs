@@ -40,11 +40,11 @@ public class mainMenuScroll : MonoBehaviour, IPointerDownHandler, IPointerUpHand
 		// Debug.logger.Log (string.Format("offsetY : {0}",offsetY));
 		if (offsetY > scrollDistance)
 		{
-			pageCtrl.toNextMenu ();
+			pageCtrl.toPreMenu ();
 		}
 		else if (offsetY < -scrollDistance) 
 		{
-			pageCtrl.toPreMenu ();
+			pageCtrl.toNextMenu ();
 		}
 	}
 }

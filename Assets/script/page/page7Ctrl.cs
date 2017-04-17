@@ -5,22 +5,19 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 // public class page8Ctrl : pageBase, IPointerDownHandler, IPointerUpHandler
-public class page7Ctrl : pageBase
+public class page7Ctrl : pageBase, iSyncOrderOption
 {
 	[SerializeField]
-	private Sprite[] demoSprite;
-	[SerializeField]
-	private Image img;
-	[SerializeField]
-	private GameObject checkMenu;
+	private GameObject[] syncList;
 
-	private int demoIndex;
+	private custom curCustom;
+	List<int> menuIDList;
+	private int curOrderIndex;
+
 	void Awake () 
 	{
 		Button checkButton = nextBtn.GetComponent<Button> ();
 		checkButton.onClick.AddListener (nextPage);
-
-		homeVisible = false;
 	}
 	
 	// Update is called once per frame
@@ -31,59 +28,77 @@ public class page7Ctrl : pageBase
 
 	public override void onPageEnable()
 	{
-		StopAllCoroutines ();
 		UIMgr.Instance.setBackground (UIMgr.BG.H);
 
-		checkMenu.SetActive (true);
-		img.gameObject.SetActive (false);
-		setNextBtnActive (false);
+		orderInit ();
+
+		setNextBtnActive (true);
 	}
 
-	public void onTmpCheckClick()
-	{
-		checkMenu.SetActive (false);
-		img.gameObject.SetActive (true);
-
-		demoIndex = 0;
-		setImg ();
-	}
-
-	public void onImgClick()
-	{
-		demoIndex++;
-		if (demoIndex < demoSprite.Length) 
-		{
-			setImg ();
-
-			RectTransform rect = img.GetComponent<RectTransform> ();
-			rect.sizeDelta = new Vector2 (1536, 2048);
-		}
-		else
-		{
-			img.gameObject.SetActive (false);
-			setNextBtnActive (true);
-
-			StartCoroutine (delayToNextPage());
-		}
-	}
-
-	private void setImg()
-	{
-		img.sprite = demoSprite[demoIndex];
-	}
-
-	public IEnumerator delayToNextPage()
-	{
-		yield return new WaitForSeconds (3);
-
-		nextPage ();
-	}
 
 	public void nextPage()
 	{
-		StopAllCoroutines ();
-		pageMgr.Instance.homePage();
+		pageMgr.Instance.nextPage (8);
 	}
 
+	// 增加一道餐點
+	public void addOrder (int menuID)
+	{
 
+		syncOption ("addOrder", menuID);
+	}
+
+	// 刪除一道餐點
+	public void delOrder (int menuID)
+	{
+
+		syncOption ("delOrder", menuID);
+	}
+
+	// 修改餐點的分數
+	public void modifyOrderNumber(int number)
+	{
+		int menuID = menuIDList [curOrderIndex];
+		curCustom.modifyConfirmMenu ( menuID, number );
+
+		int orderNum = curCustom.getConfirmMenu () [menuID];
+		syncOption ("modifyOrderNumber", orderNum);
+	}
+
+	// 顯示餐點
+	public void showOrder(int menuID)
+	{
+
+		syncOption ("showOrder", menuID);
+	}
+
+	// 重置餐點資料
+	public void resetOrder()
+	{
+		curCustom = DataMgr.Instance.getOrderingCustom ();
+
+		syncOption ("resetOrder");
+
+		menuIDList = curCustom.getConfirmMenuIDList ();
+		for( int index = 0;index < menuIDList.Count;index++ )
+		{
+			addOrder (menuIDList [index]);
+		}
+
+		curOrderIndex = 0;
+		showOrder(menuIDList [curOrderIndex]);
+	}
+
+	private void orderInit()
+	{
+		resetOrder ();
+	}
+
+	private void syncOption( string functionName, object arg = null )
+	{
+		foreach( GameObject obj in syncList )
+		{
+			obj.SendMessage ( functionName, arg );
+		}
+	}
 }

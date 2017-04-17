@@ -9,6 +9,7 @@ public class custom
 {
 	private static Dictionary<string,Sprite> defaultSprite;	// 預設圖片
 	private static int customIndex = 1;	// 顧客流水號
+	private static stapleComparer comparer = new stapleComparer();
 
 	public Sprite cusPhoto;	// 顧客圖
 	public String cusName;	// 顧客名字
@@ -18,6 +19,7 @@ public class custom
 	private Dictionary<FilterType, List<int>> preferFilter;	// 顧客偏好過濾器
 	private List<menu> preferMenu;	// 顧客偏好菜單
 	private int viewingIndex;	// 正在看的菜單
+	private Dictionary<int,int> confirmMenu;	// 已選取的菜單
 
 	public static void loadDefaultSprite(Sprite sprite, object userData)
 	{
@@ -43,6 +45,7 @@ public class custom
 		}
 
 		preferMenu = new List<menu>();
+		confirmMenu = new Dictionary<int,int> ();
 
 		// Test
 		preferMenu.Add( menuMgr.Instance.getMenuByID(3) );
@@ -101,5 +104,43 @@ public class custom
 		else if (offset < 0) { viewingIndex = (viewingIndex + preferMenu.Count - 1) % preferMenu.Count; }
 
 		return preferMenu [viewingIndex];
+	}
+
+	public Dictionary<int,int> getConfirmMenu()
+	{
+		return confirmMenu;
+	}
+
+	public List<int> getConfirmMenuIDList()
+	{
+		List<int> menuIDList = new List<int> (confirmMenu.Keys);
+		menuIDList.Sort (comparer);
+		return menuIDList;
+	}
+
+	public void modifyConfirmMenu( int menuID, int num )
+	{
+		if( !confirmMenu.ContainsKey(menuID) )
+		{
+			confirmMenu.Add (menuID, 0);
+		}
+
+		confirmMenu [menuID] = Math.Max( (confirmMenu [menuID]+num), 1 );
+	}
+
+	public void deleteConfirmMenu( int menuID )
+	{
+		confirmMenu.Remove (menuID);
+	}
+}
+
+public class stapleComparer: IComparer<int>
+{
+	public int Compare(int menuID1, int menuID2)
+	{
+		menu m1 = menuMgr.Instance.getMenuByID (menuID1);
+		menu m2 = menuMgr.Instance.getMenuByID (menuID2);
+		// 小->大
+		return ( (int)m1.getUseStaple () - (int)m2.getUseStaple () );
 	}
 }
