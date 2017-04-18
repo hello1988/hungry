@@ -97,7 +97,14 @@ public class DataMgr : MonoBehaviour
 
 	public List<custom> getConfirmCustomList()
 	{
-		return confirmCustomList;
+		if (confirmCustomList.Count > 0) 
+		{
+			return confirmCustomList;
+		}
+
+		List<custom> defaultList = new List<custom> ();
+		defaultList.Add (orderingCustom);
+		return defaultList;
 	}
 
 	public void setOrderingCustom( custom orderCus )

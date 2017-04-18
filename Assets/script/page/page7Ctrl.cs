@@ -10,6 +10,8 @@ public class page7Ctrl : pageBase, iSyncOrderOption
 {
 	[SerializeField]
 	private GameObject[] syncList;
+	[SerializeField]
+	private GameObject chooseUI;
 
 	private custom curCustom;
 	List<int> menuIDList;
@@ -18,7 +20,7 @@ public class page7Ctrl : pageBase, iSyncOrderOption
 	void Awake () 
 	{
 		Button checkButton = nextBtn.GetComponent<Button> ();
-		checkButton.onClick.AddListener (nextPage);
+		checkButton.onClick.AddListener (showChoosUI);
 	}
 	
 	// Update is called once per frame
@@ -30,24 +32,32 @@ public class page7Ctrl : pageBase, iSyncOrderOption
 	public override void onPageEnable()
 	{
 		UIMgr.Instance.setBackground (UIMgr.BG.H);
+		chooseUI.SetActive (false);
 
 		orderInit ();
 
 		setNextBtnActive (true);
 	}
 
-
-	public void nextPage()
+	public void showChoosUI()
 	{
+		/*
 		if (DataMgr.Instance.getConfirmCustomList ().Count <= 1) 
 		{
 			// 一個人點餐就跳過第P8
-			pageMgr.Instance.nextPage (9);
+			nextPage (9);
+			return;
 		}
-		else 
-		{
-			pageMgr.Instance.nextPage (8);
-		}
+		*/
+
+		chooseUI.SetActive (true);
+		chooseUICtrl ctrl = chooseUI.GetComponent<chooseUICtrl> ();
+		ctrl.showUI ();
+	}
+
+	public void nextPage( int pageID)
+	{
+		pageMgr.Instance.nextPage (pageID);
 	}
 
 	public void preOrder()
@@ -105,6 +115,12 @@ public class page7Ctrl : pageBase, iSyncOrderOption
 
 		curOrderIndex = 0;
 		showOrder(menuIDList [curOrderIndex]);
+	}
+
+	public void OnMaskClick()
+	{
+		chooseUICtrl ctrl = chooseUI.GetComponent<chooseUICtrl> ();
+		ctrl.hideUI ();
 	}
 
 	private void orderInit()

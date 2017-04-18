@@ -21,6 +21,7 @@ public class UIMgr : MonoBehaviour
 		E,
 		F,
 		H,
+		H2,
 	}
 
 	private static UIMgr _instance = null;
