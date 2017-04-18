@@ -1,14 +1,10 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\script\spriteMgr.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\script\page\page9Ctrl.cs">
     <Files>
-      <File FileName="Assets\script\DataMgr.cs" Line="1" Column="1" />
-      <File FileName="Assets\script\page\page7Ctrl.cs" Line="67" Column="44" />
-      <File FileName="Assets\script\checkOrder\iSyncOrderOption.cs" Line="7" Column="1" />
-      <File FileName="Assets\script\checkOrder\leftOrderCtrl.cs" Line="31" Column="44" />
-      <File FileName="Assets\script\menu\menuMgr.cs" Line="40" Column="16" />
-      <File FileName="Assets\script\checkOrder\rightOrderCtrl.cs" Line="40" Column="2" />
-      <File FileName="Assets\script\spriteMgr.cs" Line="118" Column="11" />
+      <File FileName="Assets\script\page\page9Ctrl.cs" Line="15" Column="14" />
+      <File FileName="Assets\script\page\page7Ctrl.cs" Line="47" Column="8" />
+      <File FileName="Assets\script\page\page8Ctrl.cs" Line="14" Column="6" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

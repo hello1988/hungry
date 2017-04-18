@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -38,20 +39,38 @@ public class page7Ctrl : pageBase, iSyncOrderOption
 
 	public void nextPage()
 	{
-		pageMgr.Instance.nextPage (8);
+		if (DataMgr.Instance.getConfirmCustomList ().Count <= 1) 
+		{
+			// 一個人點餐就跳過第P8
+			pageMgr.Instance.nextPage (9);
+		}
+		else 
+		{
+			pageMgr.Instance.nextPage (8);
+		}
+	}
+
+	public void preOrder()
+	{
+		curOrderIndex = Math.Max ( (curOrderIndex-1), 0);
+		showOrder (menuIDList [curOrderIndex]);
+	}
+
+	public void nextOrder()
+	{
+		curOrderIndex = Math.Min ( (curOrderIndex+1), (menuIDList.Count-1));
+		showOrder (menuIDList [curOrderIndex]);
 	}
 
 	// 增加一道餐點
 	public void addOrder (int menuID)
 	{
-
 		syncOption ("addOrder", menuID);
 	}
 
 	// 刪除一道餐點
 	public void delOrder (int menuID)
 	{
-
 		syncOption ("delOrder", menuID);
 	}
 
@@ -68,7 +87,6 @@ public class page7Ctrl : pageBase, iSyncOrderOption
 	// 顯示餐點
 	public void showOrder(int menuID)
 	{
-
 		syncOption ("showOrder", menuID);
 	}
 

@@ -71,10 +71,6 @@
      <Compile Include="Assets\script\DontDestroy.cs" />
      <Compile Include="Assets\script\SavWav.cs" />
      <Compile Include="Assets\script\UIMgr.cs" />
-     <Compile Include="Assets\script\checkOrder\checkMenu.cs" />
-     <Compile Include="Assets\script\checkOrder\iSyncOrderOption.cs" />
-     <Compile Include="Assets\script\checkOrder\leftOrderCtrl.cs" />
-     <Compile Include="Assets\script\checkOrder\rightOrderCtrl.cs" />
      <Compile Include="Assets\script\custom\alternateCustom.cs" />
      <Compile Include="Assets\script\custom\custom.cs" />
      <Compile Include="Assets\script\downloadMgr.cs" />
@@ -112,6 +108,8 @@
      <Compile Include="Assets\script\page\page5Ctrl.cs" />
      <Compile Include="Assets\script\page\page6Ctrl.cs" />
      <Compile Include="Assets\script\page\page7Ctrl.cs" />
+     <Compile Include="Assets\script\page\page8Ctrl.cs" />
+     <Compile Include="Assets\script\page\page9Ctrl.cs" />
      <Compile Include="Assets\script\page\pageBase.cs" />
      <Compile Include="Assets\script\pageMgr.cs" />
      <Compile Include="Assets\script\playAni.cs" />
@@ -119,6 +117,11 @@
      <Compile Include="Assets\script\slidAndClick.cs" />
      <Compile Include="Assets\script\spriteMgr.cs" />
      <Compile Include="Assets\script\tweenAlpha.cs" />
+     <Compile Include="Assets\script\want\checkMenu.cs" />
+     <Compile Include="Assets\script\want\iSyncOrderOption.cs" />
+     <Compile Include="Assets\script\want\leftOrderCtrl.cs" />
+     <Compile Include="Assets\script\want\orderUnit.cs" />
+     <Compile Include="Assets\script\want\rightOrderCtrl.cs" />
      <None Include="Assets\LeanTween\Examples\Archived\2dUnlitWithFade.shader" />
      <None Include="Assets\LeanTween\ReadMe.txt" />
      <None Include="Assets\Resources\menu\menu.txt" />
