@@ -1,12 +1,9 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\script\DataMgr.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\script\page\page8Ctrl.cs">
     <Files>
-      <File FileName="Assets\script\check\checkOrderCtrl.cs" Line="1" Column="1" />
-      <File FileName="Assets\script\check\nextOrderCtrl.cs" Line="1" Column="1" />
-      <File FileName="Assets\script\page\page8Ctrl.cs" Line="1" Column="1" />
-      <File FileName="Assets\script\page\page2Ctrl.cs" Line="70" Column="67" />
-      <File FileName="Assets\script\DataMgr.cs" Line="107" Column="39" />
+      <File FileName="Assets\script\check\checkOrderCtrl.cs" Line="22" Column="36" />
+      <File FileName="Assets\script\page\page8Ctrl.cs" Line="100" Column="50" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

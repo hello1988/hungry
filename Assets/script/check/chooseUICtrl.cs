@@ -26,12 +26,16 @@ public class chooseUICtrl : MonoBehaviour
 		mask.SetActive (false);
 
 		LeanTween.moveLocalX (gameObject, 0, 0.3f).setOnComplete(showMask);
+
+		UIMgr.Instance.setHomeBtnVisible (false);
 	}
 
 	public void hideUI()
 	{
 		mask.SetActive (false);
 		LeanTween.moveLocalX (gameObject, 3000, 0.3f);
+
+		UIMgr.Instance.setHomeBtnVisible (true);
 	}
 
 	public void showMask()

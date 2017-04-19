@@ -85,6 +85,9 @@ public class page6Ctrl : pageBase
 
 	public void nextPage()
 	{
+		custom cus = DataMgr.Instance.getOrderingCustom ();
+		if (cus.getConfirmMenu ().Count <= 0) {return;}
+
 		pageMgr.Instance.nextPage (7);
 	}
 

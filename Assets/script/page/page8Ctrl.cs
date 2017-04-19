@@ -48,7 +48,6 @@ public class page8Ctrl : pageBase
 
 				orderData data = new orderData ();
 				data.orderFloor = spriteMgr.Instance.getSprite (spriteMgr.KeyWord.ORDER_FLOOR, menuID);
-				data.stapleSprite = spriteMgr.Instance.getSprite (spriteMgr.KeyWord.WANT_STAPLE, (int)type);
 				data.orderNum = confirmMenu[menuID];
 				data.customPhoto = cus.cusPhoto;
 
@@ -83,8 +82,8 @@ public class page8Ctrl : pageBase
 
 		curOrder--;
 		checkOrderCtrl checkCtrl = checkOrderUI.GetComponent<checkOrderCtrl> ();
-		checkCtrl.setInfo (orderDataList[curOrder]);
-		checkCtrl.showPreOrder();
+		// checkCtrl.setInfo (orderDataList[curOrder]);
+		checkCtrl.showPreOrder(orderDataList[curOrder]);
 
 		nextOrderCtrl nextCtrl = nextOrderUI.GetComponent<nextOrderCtrl> ();
 		nextCtrl.showPreOrder ();
@@ -97,8 +96,8 @@ public class page8Ctrl : pageBase
 
 		curOrder++;
 		checkOrderCtrl checkCtrl = checkOrderUI.GetComponent<checkOrderCtrl> ();
-		checkCtrl.setInfo (orderDataList[curOrder]);
-		checkCtrl.showNextOrder();
+		// checkCtrl.setInfo (orderDataList[curOrder]);
+		checkCtrl.showNextOrder(orderDataList[curOrder]);
 
 		nextOrderCtrl nextCtrl = nextOrderUI.GetComponent<nextOrderCtrl> ();
 		nextCtrl.showNextOrder ();
@@ -108,7 +107,6 @@ public class page8Ctrl : pageBase
 public class orderData
 {
 	public Sprite orderFloor;
-	public Sprite stapleSprite;
 	public int orderNum;
 	public Sprite customPhoto;
 

@@ -9,8 +9,6 @@ public class checkOrderCtrl : MonoBehaviour
 	[SerializeField]
 	private Image orderFloor;
 	[SerializeField]
-	private Image orderStaple;
-	[SerializeField]
 	private Image orderNumber;
 	[SerializeField]
 	private Image customPhoto;
@@ -18,10 +16,11 @@ public class checkOrderCtrl : MonoBehaviour
 	private Sprite[] numberList;
 
 	private Vector3 oriPos;
-	// Use this for initialization
+	private orderData cacheData;
 	void Awake () 
 	{
 		oriPos = transform.localPosition;
+		cacheData = null;
 	}
 	
 	// Update is called once per frame
@@ -32,7 +31,6 @@ public class checkOrderCtrl : MonoBehaviour
 	public void setInfo( orderData data )
 	{
 		orderFloor.sprite = data.orderFloor;
-		orderStaple.sprite = data.stapleSprite;
 		customPhoto.sprite = data.customPhoto;
 
 		int num = Math.Min(Math.Max (data.orderNum, 1),9);
@@ -40,24 +38,36 @@ public class checkOrderCtrl : MonoBehaviour
 
 	}
 
-	public void showPreOrder()
+	public void showPreOrder( orderData data )
 	{
+		cacheData = data;
 		LeanTween.moveLocalY (gameObject, oriPos.y+1500, 0.3f).setOnComplete(showPreOrderStep2);
 	}
 
 	public void showPreOrderStep2()
 	{
+		if (cacheData != null) 
+		{
+			setInfo (cacheData);
+			cacheData = null;
+		}
 		transform.localPosition = new Vector3 ( oriPos.x, oriPos.y-1500, oriPos.z );
 		LeanTween.moveLocalY (gameObject, oriPos.y, 0.3f);
 	}
 
-	public void showNextOrder()
+	public void showNextOrder( orderData data )
 	{
+		cacheData = data;
 		LeanTween.moveLocalY (gameObject, oriPos.y-1500, 0.3f).setOnComplete(showNextOrderStep2);
 	}
 
 	public void showNextOrderStep2 ()
 	{
+		if (cacheData != null) 
+		{
+			setInfo (cacheData);
+			cacheData = null;
+		}
 		transform.localPosition = new Vector3 ( oriPos.x, oriPos.y+1500, oriPos.z );
 		LeanTween.moveLocalY (gameObject, oriPos.y, 0.3f);
 	}

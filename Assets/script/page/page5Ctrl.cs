@@ -82,5 +82,6 @@ public class page5Ctrl : pageBase
 	public void setTipTxtActive( bool active )
 	{
 		tipTxt.SetActive (active);
+		UIMgr.Instance.setHomeBtnVisible (active);
 	}
 }
