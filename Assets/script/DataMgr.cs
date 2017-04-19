@@ -103,7 +103,8 @@ public class DataMgr : MonoBehaviour
 		}
 
 		List<custom> defaultList = new List<custom> ();
-		defaultList.Add (orderingCustom);
+		// defaultList.Add (orderingCustom);
+		defaultList.Add (getOrderingCustom());
 		return defaultList;
 	}
 

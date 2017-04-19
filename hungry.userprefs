@@ -1,14 +1,18 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\script\page\page8Ctrl.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\script\DataMgr.cs">
     <Files>
-      <File FileName="Assets\script\check\checkOrderCtrl.cs" Line="57" Column="3" />
-      <File FileName="Assets\script\check\nextOrderCtrl.cs" Line="80" Column="3" />
-      <File FileName="Assets\script\page\page8Ctrl.cs" Line="95" Column="6" />
+      <File FileName="Assets\script\check\checkOrderCtrl.cs" Line="1" Column="1" />
+      <File FileName="Assets\script\check\nextOrderCtrl.cs" Line="1" Column="1" />
+      <File FileName="Assets\script\page\page8Ctrl.cs" Line="1" Column="1" />
+      <File FileName="Assets\script\page\page2Ctrl.cs" Line="70" Column="67" />
+      <File FileName="Assets\script\DataMgr.cs" Line="107" Column="39" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="E:\hungry\Assets\script\page\page2Ctrl.cs" line="81" column="12" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
