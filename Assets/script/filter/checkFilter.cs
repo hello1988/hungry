@@ -19,7 +19,6 @@ public class checkFilter : MonoBehaviour,IPointerDownHandler,IPointerUpHandler,I
 	[SerializeField]
 	private int dragDistance = 190;
 
-	private Vector3 oriPos = Vector3.zero;
 	private Vector3 imgOriPos = Vector3.zero;
 	private Vector3 delOriPos = Vector3.zero;
 	private Vector3 startPos = Vector3.zero;

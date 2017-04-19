@@ -86,13 +86,13 @@ public class nextOrderCtrl : MonoBehaviour,IPointerDownHandler, IPointerUpHandle
 	{
 		RectTransform rect = templete.GetComponent<RectTransform> ();
 		Vector3 pos = orderParent.transform.localPosition;
-		LeanTween.moveLocalY (orderParent.gameObject, (pos.y - rect.sizeDelta.y), 0.3f);
+		LeanTween.moveLocalY (orderParent.gameObject, (pos.y - rect.sizeDelta.y), tweenSec);
 	}
 
 	public void showNextOrder()
 	{
 		RectTransform rect = templete.GetComponent<RectTransform> ();
 		Vector3 pos = orderParent.transform.localPosition;
-		LeanTween.moveLocalY (orderParent.gameObject, (pos.y + rect.sizeDelta.y), 0.3f);
+		LeanTween.moveLocalY (orderParent.gameObject, (pos.y + rect.sizeDelta.y), tweenSec);
 	}
 }

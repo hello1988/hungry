@@ -16,7 +16,10 @@ namespace Const
 	{
 		FRY = 1,	// 炸
 		RAW,		// 生食
-		BROIL,		// 烤
+		GRILL,		// 烤
+		PARCH,		// 炒
+		BROIL,		// 煮
+		STEAM,		// 蒸
 	}
 
 	// 食材子分類
@@ -26,6 +29,8 @@ namespace Const
 		LAMB,		// 羊肉
 		PORK,		// 豬肉
 		CHICKEN,	// 雞肉
+		SEA_FOOD,	// 海鮮
+		VEGETABLE,	// 素
 	}
 
 	// 主食子分類
@@ -34,15 +39,24 @@ namespace Const
 		RICE = 1,	// 飯
 		SUSHI,		// 壽司
 		NOODLE,		// 麵
+		ROLL,		// 手卷
+		SWEETS,		// 甜食
+		SOUP,		// 湯
+		DRINK,		// 飲料
+		DUMPLINGS,	// 餃子
+		POT,		// 鍋物
 	}
 }
 
 public class DataMgr : MonoBehaviour 
 {
+
+#pragma warning disable 0414
 	// 店員編號
 	private string staffNumber = "";
 	// 桌號
 	private string tableNumber = "";
+#pragma warning restore 0414
 	// 顧客人數
 	private int customNum = 0;
 	// 搜尋到的顧客
