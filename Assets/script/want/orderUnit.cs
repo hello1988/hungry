@@ -1,29 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Const;
 
-public class orderUnit : MonoBehaviour 
+public class orderUnit : MonoBehaviour, IPointerClickHandler
 {
-	enum spriteMode
-	{
-		NONE,
-		DOT,
-		ORDER,
-	}
-
 	[SerializeField]
-	private Sprite dot;
+	private float minWidth = 200;
 	[SerializeField]
-	private float dotWidth;
-	[SerializeField]
-	private float stapleWidth;
+	private float maxWidth = 300;
 	[SerializeField]
 	private float tweenSec = 0.3f;
+	[SerializeField]
+	private page7Ctrl pageCtrl;
 
-	private Sprite orderImg;
-	private spriteMode mode = spriteMode.NONE;
-	private LTDescr tweenID = null;
+	private Staple stapleType;
 
 	void Start () 
 	{
@@ -35,61 +28,51 @@ public class orderUnit : MonoBehaviour
 		
 	}
 
-	public void setOrderImg( Sprite sprite )
+	public void setSelected( bool isSelected,  bool playTween = true )
 	{
-		orderImg = sprite;
+		if (isSelected) 
+		{
+			enlargeStaple (playTween);
+		}
+		else
+		{
+			narrowStaple( playTween );
+		}
 	}
 
-	public void showDot( bool playTween = true )
+	private void enlargeStaple( bool playTween )
 	{
-		if (mode == spriteMode.DOT) {return;}
-
-		mode = spriteMode.DOT;
-		float scale = (dotWidth/stapleWidth);
-
-		if (tweenID != null) 
-		{
-			LeanTween.descr (tweenID.id);
-			tweenID = null;
-		}
-
 		if (playTween) 
 		{
-			tweenID = LeanTween.scale (gameObject, Vector3.one * scale, tweenSec).setOnComplete (setDotToImage);
+			LeanTween.scale (gameObject, Vector3.one, tweenSec);
 		}
 		else 
 		{
-			setDotToImage ();
+			transform.localScale = Vector3.one;
 		}
 	}
 
-	private void setDotToImage()
+	private void narrowStaple( bool playTween )
 	{
-		transform.localScale = Vector3.one;
-		GetComponent<Image> ().sprite = dot;
-
-		RectTransform rect = GetComponent<RectTransform> ();
-		rect.sizeDelta = Vector2.one * dotWidth;
-	}
-
-	public void showOrderImg()
-	{
-		if (mode == spriteMode.ORDER) {return;}
-
-		RectTransform rect = GetComponent<RectTransform> ();
-		rect.sizeDelta = Vector2.one * stapleWidth;
-
-		mode = spriteMode.ORDER;
-		float scale = (dotWidth/stapleWidth);
-		transform.localScale = Vector3.one*scale;
-
-		GetComponent<Image> ().sprite = orderImg;
-
-		if (tweenID != null) 
+		float scale = minWidth / maxWidth;
+		if (playTween) 
 		{
-			LeanTween.descr (tweenID.id);
-			tweenID = null;
+			LeanTween.scale (gameObject, Vector3.one*scale, tweenSec);
 		}
-		tweenID = LeanTween.scale (gameObject, Vector3.one, tweenSec);
+		else 
+		{
+			transform.localScale = Vector3.one*scale;
+		}
+	}
+
+	public void setOrder( Staple type, Sprite sprite )
+	{
+		stapleType = type;
+		GetComponent<Image> ().sprite = sprite;
+	}
+
+	public void OnPointerClick (PointerEventData eventData)
+	{
+		pageCtrl.OnOrderUnitClick (stapleType);
 	}
 }

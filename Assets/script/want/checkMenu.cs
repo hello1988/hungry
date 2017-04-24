@@ -8,6 +8,8 @@ using UnityEngine.UI;
 public class checkMenu : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
 {
 	[SerializeField]
+	private slideOrder slideOrderDetect;
+	[SerializeField]
 	private Image menuImg;
 	[SerializeField]
 	private GameObject deleteBtn;
@@ -37,6 +39,8 @@ public class checkMenu : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
 	{
 		touchPoint.transform.position = UIMgr.Instance.getCurMousePosition ();
 		startPos = touchPoint.transform.localPosition;
+
+		slideOrderDetect.OnPointerDown (eventData);
 	}
 
 	public void OnPointerUp (PointerEventData eventData)
@@ -53,6 +57,8 @@ public class checkMenu : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
 
 		menuImg.transform.localPosition = new Vector3( imgOriPos.x+offsetX, imgOriPos.y, imgOriPos.z ); 
 		deleteBtn.transform.localPosition = new Vector3( delOriPos.x+offsetX, delOriPos.y, delOriPos.z ); 
+
+		slideOrderDetect.OnPointerUp (eventData);
 	}
 
 	public void OnDrag (PointerEventData eventData)

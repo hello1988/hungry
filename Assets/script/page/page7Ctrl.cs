@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Const;
 
 // public class page8Ctrl : pageBase, IPointerDownHandler, IPointerUpHandler
 public class page7Ctrl : pageBase, iSyncOrderOption
@@ -41,14 +42,12 @@ public class page7Ctrl : pageBase, iSyncOrderOption
 
 	public void showChoosUI()
 	{
-		/*
 		if (DataMgr.Instance.getConfirmCustomList ().Count <= 1) 
 		{
 			// 一個人點餐就跳過第P8
 			nextPage (9);
 			return;
 		}
-		*/
 
 		chooseUI.SetActive (true);
 		chooseUICtrl ctrl = chooseUI.GetComponent<chooseUICtrl> ();
@@ -70,6 +69,19 @@ public class page7Ctrl : pageBase, iSyncOrderOption
 	{
 		curOrderIndex = Math.Min ( (curOrderIndex+1), (menuIDList.Count-1));
 		showOrder (menuIDList [curOrderIndex]);
+	}
+
+	public void OnOrderUnitClick( Staple type )
+	{
+		for (int index = 0; index < menuIDList.Count; index++) 
+		{
+			menu m = menuMgr.Instance.getMenuByID (menuIDList[index]);
+			if (m.getUseStaple () != type) {continue;}
+
+			curOrderIndex = index;
+			showOrder (menuIDList[index]);
+			break;
+		}
 	}
 
 	// 增加一道餐點

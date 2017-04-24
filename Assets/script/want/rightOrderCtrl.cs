@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class rightOrderCtrl : MonoBehaviour, iSyncOrderOption
 {
 	[SerializeField]
+	private checkMenu orderImgCtrl;
+	[SerializeField]
 	private Image numberImg;
 	[SerializeField]
 	private Sprite[] numberList;
@@ -25,18 +27,6 @@ public class rightOrderCtrl : MonoBehaviour, iSyncOrderOption
 	void Update () {
 		
 	}
-	/*
-	void OnEnable()
-	{
-		cus = DataMgr.Instance.getOrderingCustom ();
-		Dictionary<int,int> confirmMenu = cus.getConfirmMenu ();
-		menuIDList = new List<int> (confirmMenu.Keys);
-
-		curMenuIndex = 0;
-		int menuID = menuIDList [curMenuIndex];
-		updateNumberImg (confirmMenu[menuID]);
-	}*/
-
 
 	public void OnDeleteClick()
 	{
@@ -83,11 +73,10 @@ public class rightOrderCtrl : MonoBehaviour, iSyncOrderOption
 	public void showOrder(int menuID)
 	{
 		Sprite sprite = spriteMgr.Instance.getSprite (spriteMgr.KeyWord.WANT_ORDER, menuID);
+		orderImgCtrl.setMenuImage(sprite);
 
 		custom cus = DataMgr.Instance.getOrderingCustom ();
 		Dictionary<int,int> confirmMenu = cus.getConfirmMenu ();
-
-		numberImg.sprite = sprite;
 		updateNumberImg(confirmMenu [menuID]);
 	}
 

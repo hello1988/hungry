@@ -125,6 +125,7 @@
      <Compile Include="Assets\script\want\leftOrderCtrl.cs" />
      <Compile Include="Assets\script\want\orderUnit.cs" />
      <Compile Include="Assets\script\want\rightOrderCtrl.cs" />
+     <Compile Include="Assets\script\want\slideOrder.cs" />
      <None Include="Assets\LeanTween\Examples\Archived\2dUnlitWithFade.shader" />
      <None Include="Assets\LeanTween\ReadMe.txt" />
      <None Include="Assets\Resources\menu\menu.txt" />
