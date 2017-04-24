@@ -15,7 +15,7 @@ public class page3Ctrl : pageBase
 	private GameObject budget;
 
 	private selectFilter focusFilter;
-
+	private List<selectFilter> filterList;
 
 	void Awake () 
 	{
@@ -69,6 +69,12 @@ public class page3Ctrl : pageBase
 		orderingCus.addPreferFilter ( focusFilter.getFilterType(), focusFilter.getFilterIndex() );
 
 		focusFilter.setSelected (true);
+
+		selectFilter nextFilter = getNextFilter (focusFilter);
+		if (nextFilter != null) 
+		{
+			onFilterClick (nextFilter);
+		}
 	}
 
 	public void addBudget()
@@ -110,8 +116,9 @@ public class page3Ctrl : pageBase
 
 		FilterType type = FilterType.COOK;
 		string keyWord = spriteMgr.Instance.getFilterSpriteKeyWord (type, false);
-		if (string.IsNullOrEmpty (keyWord)) {return;;}
+		if (string.IsNullOrEmpty (keyWord)) {return;}
 
+		filterList = new List<selectFilter> ();
 		Dictionary<int, Sprite> spriteMap = spriteMgr.Instance.getSpriteMap (keyWord);
 		foreach (int index in spriteMap.Keys) 
 		{
@@ -120,7 +127,35 @@ public class page3Ctrl : pageBase
 			fImg.setFilterType (type);
 			fImg.setFilterIndex (index);
 			newObj.GetComponent<Image> ().sprite = spriteMap[index];
+
+			filterList.Add (fImg);
 		}
 
+	}
+
+	private selectFilter getNextFilter( selectFilter curFilter )
+	{
+		int curIndex = -1;
+		for( int index = 0;index < filterList.Count;index++ )
+		{
+			if (curFilter.getFilterType () != filterList [index].getFilterType ()) {continue;}
+
+			if (curFilter.getFilterIndex () != filterList [index].getFilterIndex ()) {continue;}
+
+			curIndex = index;
+			break;
+		}
+
+		if (curIndex < 0) { return null; }
+
+		for( int counter = 0;counter < filterList.Count;counter++ )
+		{
+			int index = (curIndex + counter) % filterList.Count;
+			if( filterList[index].isSelected() ){continue;}
+
+			return filterList [index];
+		}
+
+		return null;
 	}
 }

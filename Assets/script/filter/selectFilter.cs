@@ -12,6 +12,7 @@ public class selectFilter : MonoBehaviour, IPointerClickHandler
 
 	private FilterType filterType;
 	private int filterIndex;
+	private bool selected = false;
 
 	// Use this for initialization
 	void Start () {
@@ -51,6 +52,7 @@ public class selectFilter : MonoBehaviour, IPointerClickHandler
 	public void setSelected(bool selected)
 	{
 		// Debug.logger.Log (string.Format("setSelected : {0}",selected));
+		this.selected = selected;
 		Image img = GetComponent<Image> ();
 		if (selected) 
 		{
@@ -60,5 +62,10 @@ public class selectFilter : MonoBehaviour, IPointerClickHandler
 		{
 			img.color = new Color32 (255, 255, 255, 255);
 		}
+	}
+
+	public bool isSelected()
+	{
+		return selected;
 	}
 }
