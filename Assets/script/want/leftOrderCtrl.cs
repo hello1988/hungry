@@ -13,6 +13,7 @@ public class leftOrderCtrl : MonoBehaviour, iSyncOrderOption
 	private GameObject template;
 
 	private Dictionary<Staple, GameObject> orderObjInfo;
+	private Staple removeType;
 
 	void Awake () 
 	{
@@ -52,15 +53,33 @@ public class leftOrderCtrl : MonoBehaviour, iSyncOrderOption
 		menu m = menuMgr.Instance.getMenuByID (menuID);
 		Staple type = m.getUseStaple ();
 
-		Destroy (orderObjInfo[type]);
-		orderObjInfo.Remove (type);
+		custom cus = DataMgr.Instance.getOrderingCustom ();
+		List<int> menuIDList = cus.getConfirmMenuIDList ();
+		foreach( int id in menuIDList )
+		{
+			menu menuData = menuMgr.Instance.getMenuByID (id);
+			if (menuData.getUseStaple () == type) 
+			{
+				return;
+			}
+		}
+
+		removeType = type;
+		LeanTween.scale (orderObjInfo [type], Vector3.zero, 0.3f).setOnComplete (delOrder_step2);
+
+	}
+
+	public void delOrder_step2()
+	{
+		if (removeType == null) {return;}
+		if (!orderObjInfo.ContainsKey(removeType)) {return;}
+
+		Destroy (orderObjInfo[removeType]);
+		orderObjInfo.Remove (removeType);
 	}
 
 	// 修改餐點的分數
-	public void modifyOrderNumber(int orderNum)
-	{
-		
-	}
+	public void modifyOrderNumber(int orderNum){}
 
 	// 顯示餐點
 	public void showOrder(int menuID)

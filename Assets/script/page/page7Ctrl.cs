@@ -84,6 +84,21 @@ public class page7Ctrl : pageBase, iSyncOrderOption
 		}
 	}
 
+	public void OnDeleteOrderClick()
+	{
+		if (menuIDList.Count <= 1) {return;}
+
+		int menuID = menuIDList [curOrderIndex];
+		curCustom.deleteConfirmMenu (menuID);
+
+		// IDList 重抓 index 修正
+		menuIDList = curCustom.getConfirmMenuIDList ();
+		curOrderIndex = Math.Min ( curOrderIndex, menuIDList.Count-1 );
+
+		delOrder (menuID);
+		LeanTween.delayedCall (0.5f, showOrder);
+	}
+
 	// 增加一道餐點
 	public void addOrder (int menuID)
 	{
@@ -104,6 +119,12 @@ public class page7Ctrl : pageBase, iSyncOrderOption
 
 		int orderNum = curCustom.getConfirmMenu () [menuID];
 		syncOption ("modifyOrderNumber", orderNum);
+	}
+
+	// 顯示餐點
+	public void showOrder()
+	{
+		showOrder (menuIDList [curOrderIndex]);
 	}
 
 	// 顯示餐點

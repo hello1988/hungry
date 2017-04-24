@@ -60,7 +60,12 @@ public class rightOrderCtrl : MonoBehaviour, iSyncOrderOption
 	// 刪除一道餐點
 	public void delOrder (int menuID)
 	{
+		LeanTween.scale(gameObject, Vector3.zero, 0.3f);
+	}
 
+	public void delOrder_step2()
+	{
+		
 	}
 
 	// 修改餐點的分數
@@ -78,6 +83,7 @@ public class rightOrderCtrl : MonoBehaviour, iSyncOrderOption
 		custom cus = DataMgr.Instance.getOrderingCustom ();
 		Dictionary<int,int> confirmMenu = cus.getConfirmMenu ();
 		updateNumberImg(confirmMenu [menuID]);
+		transform.localScale = Vector3.one;
 	}
 
 	// 重置餐點資料

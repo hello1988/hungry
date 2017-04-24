@@ -77,7 +77,10 @@ public class checkMenu : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
 
 	public void setMenuImage ( Sprite sprite )
 	{
-		menuImg.sprite = sprite;	
+		menuImg.sprite = sprite;
+
+		menuImg.transform.localPosition = imgOriPos;
+		deleteBtn.transform.localPosition = delOriPos;
 	}
 
 }
