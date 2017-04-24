@@ -75,6 +75,11 @@ public class page3Ctrl : pageBase
 		{
 			onFilterClick (nextFilter);
 		}
+		else
+		{
+			Image img = focusImage.GetComponent<Image> ();
+			img.sprite = null;
+		}
 	}
 
 	public void addBudget()

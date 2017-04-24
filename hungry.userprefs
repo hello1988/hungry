@@ -2,8 +2,8 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\script\page\page3Ctrl.cs">
     <Files>
-      <File FileName="Assets\script\page\page3Ctrl.cs" Line="61" Column="39" />
-      <File FileName="Assets\script\filter\selectFilter.cs" Line="15" Column="23" />
+      <File FileName="Assets\script\page\page3Ctrl.cs" Line="80" Column="36" />
+      <File FileName="Assets\script\filter\selectFilter.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
