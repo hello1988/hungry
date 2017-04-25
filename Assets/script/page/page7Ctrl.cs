@@ -57,6 +57,12 @@ public class page7Ctrl : pageBase, iSyncOrderOption
 
 	public void nextPage( int pageID)
 	{
+		// 回到第三頁 表示換下一個點餐
+		if (pageID == 3) 
+		{
+			DataMgr.Instance.nextCustom ();
+		}
+
 		pageMgr.Instance.nextPage (pageID);
 	}
 

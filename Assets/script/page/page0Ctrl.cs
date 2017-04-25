@@ -48,18 +48,25 @@ public class page0Ctrl : pageBase
 				continue;
 			}
 
+			string sVal = inputText.text;
 			// 特例 顧客人數特別處理
 			if (index == 2) 
 			{
 				int iVal;
 				if (!int.TryParse (inputText.text, out iVal)) 
 				{
-					inputText.text = "";
+					sVal = "";
 					break;
+				}
+
+				if (iVal > 7) 
+				{
+					sVal = "7";
+					inputText.text = "7";
 				}
 			}
 
-			collectList [index] = inputText.text;
+			collectList [index] = sVal;
 			inputText.contentType = (index < 2) ? InputField.ContentType.Alphanumeric : InputField.ContentType.IntegerNumber;
 			setTipImage( index + 1 );
 			break;

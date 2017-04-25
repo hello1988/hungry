@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -47,6 +48,7 @@ namespace Const
 		DUMPLINGS = 8,	// 餃子
 		POT = 9,		// 鍋物
 	}
+
 }
 
 public class DataMgr : MonoBehaviour 
@@ -96,7 +98,7 @@ public class DataMgr : MonoBehaviour
 
 	public void setCustomNum( int num )
 	{
-		customNum = num;
+		customNum = Math.Min( num, 7 );
 	}
 
 	public List<custom> getSearchCustomList()
@@ -108,6 +110,16 @@ public class DataMgr : MonoBehaviour
 	public void setConfirmCustomList( List<custom> cusList )
 	{
 		confirmCustomList = cusList;
+
+		int newCustomNum = customNum - confirmCustomList.Count;
+		if (newCustomNum > 0) 
+		{
+			for( int count = 0; count < newCustomNum;count++ )
+			{
+				custom newCustom = custom.createDefaultCustom (string.Format("新顧客{0}",count+1));
+				confirmCustomList.Add (newCustom);
+			}
+		}
 	}
 
 	public List<custom> getConfirmCustomList()
@@ -118,7 +130,6 @@ public class DataMgr : MonoBehaviour
 		}
 
 		List<custom> defaultList = new List<custom> ();
-		// defaultList.Add (orderingCustom);
 		defaultList.Add (getOrderingCustom());
 		return defaultList;
 	}
@@ -145,6 +156,26 @@ public class DataMgr : MonoBehaviour
 		return orderingCustom;
 	}
 
+	public void nextCustom()
+	{
+		if (orderingCustom == null) 
+		{
+			orderingCustom = confirmCustomList [0];
+		}
+		else 
+		{
+			for (int index = 0;index < confirmCustomList.Count;index++) 
+			{
+				if (confirmCustomList [index].customID != orderingCustom.customID) {continue;}
+
+				if ((index + 1) >= confirmCustomList.Count) {break;}
+
+				orderingCustom = confirmCustomList [index + 1];
+				break;
+			}
+		}
+	}
+
 	// TEST
 	private void prepareFakeCustom()
 	{
@@ -156,6 +187,31 @@ public class DataMgr : MonoBehaviour
 		cus = new custom ();
 		cus.cusPhoto = Resources.Load<Sprite>("custom/photo2");
 		cus.cusName = "王小明";
+		searchCustomList.Add (cus);
+
+		cus = new custom ();
+		cus.cusPhoto = Resources.Load<Sprite>("custom/photo1");
+		cus.cusName = "路人1號";
+		searchCustomList.Add (cus);
+
+		cus = new custom ();
+		cus.cusPhoto = Resources.Load<Sprite>("custom/photo2");
+		cus.cusName = "路人2號";
+		searchCustomList.Add (cus);
+
+		cus = new custom ();
+		cus.cusPhoto = Resources.Load<Sprite>("custom/photo2");
+		cus.cusName = "路人3號";
+		searchCustomList.Add (cus);
+
+		cus = new custom ();
+		cus.cusPhoto = Resources.Load<Sprite>("custom/photo1");
+		cus.cusName = "路人4號";
+		searchCustomList.Add (cus);
+
+		cus = new custom ();
+		cus.cusPhoto = Resources.Load<Sprite>("custom/photo2");
+		cus.cusName = "路人5號";
 		searchCustomList.Add (cus);
 	}
 
