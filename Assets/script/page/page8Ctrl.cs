@@ -20,6 +20,7 @@ public class page8Ctrl : pageBase
 	{
 		Button checkButton = nextBtn.GetComponent<Button> ();
 		checkButton.onClick.AddListener (nextPage);
+		circleColor = homeCtrl.CIRCLE_COLOR.GRAY;
 	}
 	
 	// Update is called once per frame

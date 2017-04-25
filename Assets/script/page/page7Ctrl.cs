@@ -22,6 +22,7 @@ public class page7Ctrl : pageBase, iSyncOrderOption
 	{
 		Button checkButton = nextBtn.GetComponent<Button> ();
 		checkButton.onClick.AddListener (showChoosUI);
+		circleColor = homeCtrl.CIRCLE_COLOR.GRAY;
 	}
 	
 	// Update is called once per frame

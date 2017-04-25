@@ -52,6 +52,12 @@ public class UIMgr : MonoBehaviour
 		home.SetActive (visible);
 	}
 
+	public void setCircleColor( homeCtrl.CIRCLE_COLOR circleColor )
+	{
+		homeCtrl ctrl = home.GetComponent<homeCtrl> ();
+		ctrl.setCircleColor (circleColor);
+	}
+
 	public float getplaneDistance()
 	{
 		return canvasObj.GetComponent<Canvas> ().planeDistance;

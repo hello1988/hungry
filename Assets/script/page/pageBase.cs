@@ -9,6 +9,7 @@ public class pageBase : MonoBehaviour
 	protected GameObject nextBtn;
 
 	protected bool homeVisible = true;
+	protected homeCtrl.CIRCLE_COLOR circleColor = homeCtrl.CIRCLE_COLOR.YELLOW;
 
 	public virtual void onPageEnable(){}
 
@@ -18,6 +19,7 @@ public class pageBase : MonoBehaviour
 		if (UIMgr.Instance == null) {return;}
 			
 		UIMgr.Instance.setHomeBtnVisible (homeVisible);
+		UIMgr.Instance.setCircleColor (circleColor);
 	}
 
 	public void setNextBtnActive( bool isActive )
