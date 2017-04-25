@@ -20,6 +20,7 @@ namespace Const
 		PARCH = 4,		// 炒
 		BROIL = 5,		// 煮
 		STEAM = 6,		// 蒸
+		DECOCT = 7,		// 煎
 	}
 
 	// 食材子分類

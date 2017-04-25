@@ -11,8 +11,6 @@ public class checkFilter : MonoBehaviour,IPointerDownHandler,IPointerUpHandler,I
 	[SerializeField]
 	private Image filterImg;
 	[SerializeField]
-	private GameObject deleteBtn;
-	[SerializeField]
 	private page4Ctrl pageCtrl;
 	[SerializeField]
 	private ScrollRect scrollRectParent;
@@ -20,7 +18,6 @@ public class checkFilter : MonoBehaviour,IPointerDownHandler,IPointerUpHandler,I
 	private int dragDistance = 190;
 
 	private Vector3 imgOriPos = Vector3.zero;
-	private Vector3 delOriPos = Vector3.zero;
 	private Vector3 startPos = Vector3.zero;
 	private GameObject touchPoint;
 
@@ -55,7 +52,6 @@ public class checkFilter : MonoBehaviour,IPointerDownHandler,IPointerUpHandler,I
 		}
 
 		filterImg.transform.localPosition = new Vector3( imgOriPos.x+offsetX, imgOriPos.y, imgOriPos.z ); 
-		deleteBtn.transform.localPosition = new Vector3( delOriPos.x+offsetX, delOriPos.y, delOriPos.z ); 
 	}
 
 	public void OnBeginDrag (PointerEventData eventData)
@@ -83,9 +79,6 @@ public class checkFilter : MonoBehaviour,IPointerDownHandler,IPointerUpHandler,I
 		float posX = Math.Max ( Math.Min(imgOriPos.x+offsetX, imgOriPos.x), imgOriPos.x-dragDistance);
 		filterImg.transform.localPosition = new Vector3( posX, imgOriPos.y, imgOriPos.z ); 
 
-		posX = Math.Max ( Math.Min(delOriPos.x+offsetX, delOriPos.x), delOriPos.x-dragDistance);
-		deleteBtn.transform.localPosition = new Vector3( posX, delOriPos.y, delOriPos.z ); 
-
 	}
 
 	public void setInfo( FilterType type, int index, Sprite sprite )
@@ -95,7 +88,6 @@ public class checkFilter : MonoBehaviour,IPointerDownHandler,IPointerUpHandler,I
 		filterImg.sprite = sprite;
 
 		imgOriPos = filterImg.transform.localPosition;
-		delOriPos = deleteBtn.transform.localPosition;
 	}
 
 	public void deleteFilter()

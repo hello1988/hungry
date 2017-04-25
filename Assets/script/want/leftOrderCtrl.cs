@@ -71,7 +71,7 @@ public class leftOrderCtrl : MonoBehaviour, iSyncOrderOption
 
 	public void delOrder_step2()
 	{
-		if (removeType == null) {return;}
+		// if (removeType == null) {return;}
 		if (!orderObjInfo.ContainsKey(removeType)) {return;}
 
 		Destroy (orderObjInfo[removeType]);

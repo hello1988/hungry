@@ -43,6 +43,16 @@ public class page3Ctrl : pageBase
 		focusImage.GetComponent<dragAndDrop> ().setDragable (false);
 		Image img = focusImage.GetComponent<Image> ();
 		img.sprite = null;
+
+		if (filterList != null) 
+		{
+			for( int index = 0;index < filterList.Count;index++ )
+			{
+				if( filterList[index].isSelected() ){continue;}
+
+				onFilterClick (filterList [index]);
+			}
+		}
 	}
 
 	// Update is called once per frame
@@ -136,6 +146,7 @@ public class page3Ctrl : pageBase
 			filterList.Add (fImg);
 		}
 
+		onFilterClick (filterList [0]);
 	}
 
 	private selectFilter getNextFilter( selectFilter curFilter )
