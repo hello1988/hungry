@@ -14,37 +14,37 @@ namespace Const
 	// 料理方式子分類
 	public enum Cook
 	{
-		FRY = 1,	// 炸
-		RAW,		// 生食
-		GRILL,		// 烤
-		PARCH,		// 炒
-		BROIL,		// 煮
-		STEAM,		// 蒸
+		FRY = 1,		// 炸
+		RAW = 2,		// 生食
+		GRILL = 3,		// 烤
+		PARCH = 4,		// 炒
+		BROIL = 5,		// 煮
+		STEAM = 6,		// 蒸
 	}
 
 	// 食材子分類
 	public enum Food
 	{
-		BEEF = 1,	// 牛肉
-		LAMB,		// 羊肉
-		PORK,		// 豬肉
-		CHICKEN,	// 雞肉
-		SEA_FOOD,	// 海鮮
-		VEGETABLE,	// 素
+		BEEF = 1,		// 牛肉
+		LAMB = 2,		// 羊肉
+		PORK = 3,		// 豬肉
+		CHICKEN = 4,	// 雞肉
+		SEA_FOOD = 5,	// 海鮮
+		VEGETABLE = 6,	// 素
 	}
 
 	// 主食子分類
 	public enum Staple
 	{
-		RICE = 1,	// 飯
-		SUSHI,		// 壽司
-		NOODLE,		// 麵
-		ROLL,		// 手卷
-		SWEETS,		// 甜食
-		SOUP,		// 湯
-		DRINK,		// 飲料
-		DUMPLINGS,	// 餃子
-		POT,		// 鍋物
+		RICE = 1,		// 飯
+		SUSHI = 2,		// 壽司
+		NOODLE = 3,		// 麵
+		ROLL = 4,		// 手卷
+		SWEETS = 5,		// 甜食
+		SOUP = 6,		// 湯
+		DRINK = 7,		// 飲料
+		DUMPLINGS = 8,	// 餃子
+		POT = 9,		// 鍋物
 	}
 }
 
