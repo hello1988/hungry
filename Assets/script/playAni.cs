@@ -15,8 +15,8 @@ public class playAni : MonoBehaviour
 	private int frame = 0;
 
 	// Use this for initialization
-	void Start () {
-		
+	void Awake () {
+		target.sprite = spriteList [0];
 	}
 	
 	// Update is called once per frame
