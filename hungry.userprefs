@@ -1,15 +1,16 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/script/menu/sauseCtrl.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\script\menu\switchMenuCtrl.cs">
     <Files>
-      <File FileName="Assets/script/menu/sauseCtrl.cs" Line="1" Column="1" />
-      <File FileName="Assets/script/menu/sauceDrag.cs" Line="10" Column="26" />
+      <File FileName="Assets\script\custom\custom.cs" Line="127" Column="1" />
+      <File FileName="Assets\script\page\page5Ctrl.cs" Line="67" Column="3" />
+      <File FileName="Assets\script\menu\switchMenuCtrl.cs" Line="94" Column="87" />
+      <File FileName="Assets\script\menu\menu.cs" Line="8" Column="26" />
+      <File FileName="Assets\script\page\page6Ctrl.cs" Line="94" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="E:\hungry\Assets\script\page\page2Ctrl.cs" line="81" column="12" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
