@@ -48,9 +48,14 @@ public class custom
 		confirmMenu = new Dictionary<int,int> ();
 
 		// Test
-		preferMenu.Add( menuMgr.Instance.getMenuByID(3) );
-		preferMenu.Add( menuMgr.Instance.getMenuByID(2) );
-		preferMenu.Add( menuMgr.Instance.getMenuByID(1) );
+		for( int index = 1;index <= 30;index++ )
+		{
+			menu m = menuMgr.Instance.getMenuByID (index);
+			if (m == null) {continue;}
+
+			preferMenu.Add (m);
+		}
+
 		viewingIndex = 0;
 
 		if (defaultSprite != null) {return;}
