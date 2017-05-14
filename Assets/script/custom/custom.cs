@@ -90,11 +90,42 @@ public class custom
 	public void setPreferMenu(  List<menu> menuList )
 	{
 		preferMenu = menuList;
+		for (int index = 0; index < preferMenu.Count; index++) {
+			Debug.logger.Log (string.Format("{0}:{1}",index, preferMenu[index].getMenuID()));
+		}
 	}
 
 	public List<menu> getPreferMenu()
 	{
 		return preferMenu;
+	}
+
+	public void sortMenu( FilterType type, int filterIdx )
+	{
+		// 符合filterIdx的菜單
+		List<menu> menu1 = new List<menu> ();
+		// 不符合filterIdx的菜單
+		List<menu> menu2 = new List<menu> ();
+		foreach( menu m in preferMenu )
+		{
+			if(m.getSubIndexByType(type) == filterIdx)
+			{
+				menu1.Add (m);
+			}
+			else
+			{
+				menu2.Add (m);
+			}
+		}
+
+		menuComparer mc = new menuComparer (type);
+		menu2.Sort (mc);
+		menu1.AddRange (menu2);
+		preferMenu = menu1;
+		viewingIndex = 0;
+		for (int index = 0; index < preferMenu.Count; index++) {
+			Debug.logger.Log (string.Format("{0}:{1}",index, preferMenu[index].getMenuID()));
+		}
 	}
 
 	/**

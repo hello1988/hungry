@@ -40,8 +40,8 @@ public class menuMgr : MonoBehaviour
 		foreach( menu m in menuList )
 		{
 			if (!filter [FilterType.COOK].Contains ((int)m.getCookWay())) {continue;}
-			if (!filter [FilterType.FOOD].Contains ((int)m.getUseFood())) {continue;}
-			if (!filter [FilterType.STAPLE].Contains ((int)m.getUseStaple())) {continue;}
+			// if (!filter [FilterType.FOOD].Contains ((int)m.getUseFood())) {continue;}
+			// if (!filter [FilterType.STAPLE].Contains ((int)m.getUseStaple())) {continue;}
 
 			preferMenu.Add (m);
 		}

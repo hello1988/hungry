@@ -5,6 +5,21 @@ using UnityEngine;
 using UnityEngine.UI;
 using Const;
 
+public class menuComparer:IComparer<menu>
+{
+	private FilterType filterType;
+
+	public menuComparer( FilterType type )
+	{
+		filterType = type;
+	}
+
+	public int Compare (menu x, menu y)
+	{
+		return x.getSubIndexByType(filterType) - y.getSubIndexByType(filterType);
+	}
+}
+
 public class menu 
 {
 	private static readonly string mainSpritePath = "menu/{0}/{1}";
@@ -120,6 +135,20 @@ public class menu
 		assist3wordList [index] = sprite;
 	}
 
+	public int getSubIndexByType( FilterType type )
+	{
+		switch (type) 
+		{
+		case FilterType.COOK:
+			return (int)getCookWay();
+		case FilterType.FOOD:
+			return (int)getUseFood ();
+		case FilterType.STAPLE:
+			return (int)getUseStaple ();
+		}
+
+		return -1;
+	}
 }
 
 #pragma warning disable 0649

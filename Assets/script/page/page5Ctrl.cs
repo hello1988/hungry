@@ -44,6 +44,11 @@ public class page5Ctrl : pageBase
 
 	public void OnSubFilterClick( GameObject clickedObj )
 	{
+		custom cus = DataMgr.Instance.getOrderingCustom ();
+		subFilterCtrl ctrl = clickedObj.GetComponent<subFilterCtrl>();
+		int idx = ctrl.getSubIndex();
+		cus.sortMenu (filterType, idx);
+
 		nextPage();
 	}
 
@@ -60,18 +65,28 @@ public class page5Ctrl : pageBase
 
 	public void resetScroll()
 	{
-		// TODO 之後再做顧客偏好篩選
-		System.Random seed = new System.Random();
+		Dictionary<int,int> filterMap = new Dictionary<int, int> ();
 		custom orderingCustom = DataMgr.Instance.getOrderingCustom();
+		foreach( menu m in orderingCustom.getPreferMenu() )
+		{
+			int subIdx = m.getSubIndexByType (filterType);
+			if( !filterMap.ContainsKey(subIdx) )
+			{
+				filterMap.Add (subIdx, 0);
+			}
+			filterMap [subIdx] += 1;
+		}
+
 		scrollCtrl ctrl = indexScroll.GetComponent<scrollCtrl> ();
 		ctrl.reset ();
 
 		Dictionary<int, Sprite> spriteMap = spriteMgr.Instance.getIndexSpriteMap (filterType, false);
 		foreach( int index in spriteMap.Keys )
 		{
+			if (!filterMap.ContainsKey (index)) {continue;}
+
 			GameObject newObj = ctrl.addItem ();
-			// TODO 幾道菜等表單建好再計算
-			int menuNumber = (seed.Next () % 9) + 1;
+			int menuNumber = filterMap[index];
 
 			subFilterCtrl sCtrl = newObj.GetComponent<subFilterCtrl> ();
 			sCtrl.setInfo (spriteMap [index], menuNumber);

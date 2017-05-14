@@ -11,8 +11,8 @@ public class page3Ctrl : pageBase
 	private GameObject focusImage;	// 過濾器(大圖)
 	[SerializeField]
 	private GameObject filterScroll; // 過濾器捲動區
-	[SerializeField]
-	private GameObject budget;
+	// [SerializeField]
+	// private GameObject budget;
 
 	private selectFilter focusFilter;
 	private List<selectFilter> filterList;
@@ -22,8 +22,8 @@ public class page3Ctrl : pageBase
 		Button checkButton = nextBtn.GetComponent<Button> ();
 		checkButton.onClick.AddListener (nextPage);
 
-		budget.GetComponent<slidAndClick> ().setCallBack (slidAndClick.Direction.UP, addBudget);
-		budget.GetComponent<slidAndClick> ().setCallBack (slidAndClick.Direction.DOWN, minusBudget);
+		// budget.GetComponent<slidAndClick> ().setCallBack (slidAndClick.Direction.UP, addBudget);
+		// budget.GetComponent<slidAndClick> ().setCallBack (slidAndClick.Direction.DOWN, minusBudget);
 	}
 
 	void Start()
@@ -37,8 +37,8 @@ public class page3Ctrl : pageBase
 		setNextBtnActive(true);
 		resetScrollItem ();
 
-		custom cus = DataMgr.Instance.getOrderingCustom ();
-		budget.GetComponent<numberCtrl>().setValue (cus.budget);
+		// custom cus = DataMgr.Instance.getOrderingCustom ();
+		// budget.GetComponent<numberCtrl>().setValue (cus.budget);
 
 		focusImage.GetComponent<dragAndDrop> ().setDragable (false);
 		Image img = focusImage.GetComponent<Image> ();
@@ -96,14 +96,14 @@ public class page3Ctrl : pageBase
 	{
 		custom cus = DataMgr.Instance.getOrderingCustom ();
 		cus.budget = Math.Min( (cus.budget+20), 980 );
-		budget.GetComponent<numberCtrl>().setValue (cus.budget);
+		// budget.GetComponent<numberCtrl>().setValue (cus.budget);
 	}
 
 	public void minusBudget()
 	{
 		custom cus = DataMgr.Instance.getOrderingCustom ();
 		cus.budget = Math.Max( (cus.budget-20), 0 );
-		budget.GetComponent<numberCtrl>().setValue (cus.budget);
+		// budget.GetComponent<numberCtrl>().setValue (cus.budget);
 	}
 
 	public void nextPage()
@@ -129,19 +129,21 @@ public class page3Ctrl : pageBase
 	{
 		scrollCtrl ctrl = filterScroll.GetComponent<scrollCtrl> ();
 
-		FilterType type = FilterType.COOK;
-		string keyWord = spriteMgr.Instance.getFilterSpriteKeyWord (type, false);
+		string keyWord = spriteMgr.Instance.getFilterSpriteKeyWord (FilterType.COOK, false);
 		if (string.IsNullOrEmpty (keyWord)) {return;}
 
 		filterList = new List<selectFilter> ();
 		Dictionary<int, Sprite> spriteMap = spriteMgr.Instance.getSpriteMap (keyWord);
-		foreach (int index in spriteMap.Keys) 
+		foreach(Cook cook in Enum.GetValues(typeof(Cook)))
 		{
+			int index = (int)cook;
 			GameObject newObj = ctrl.addItem ();
 			selectFilter fImg = newObj.GetComponent<selectFilter> ();
-			fImg.setFilterType (type);
+			fImg.setFilterType (FilterType.COOK);
 			fImg.setFilterIndex (index);
-			newObj.GetComponent<Image> ().sprite = spriteMap[index];
+
+			Sprite sprite = (spriteMap.ContainsKey(index))?spriteMap[index]:null;
+			newObj.GetComponent<Image> ().sprite = sprite;
 
 			filterList.Add (fImg);
 		}

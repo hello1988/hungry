@@ -19,6 +19,8 @@ public class switchMenuCtrl : MonoBehaviour
 	private switchMenuDrag leftBar;
 	[SerializeField]
 	private GameObject switchFilter;
+	[SerializeField]
+	private page6Ctrl pageCtrl;
 
 	FilterType filterType;
 	void Awake () 
@@ -74,32 +76,45 @@ public class switchMenuCtrl : MonoBehaviour
 
 	public void resetScroll ()
 	{
-		// TODO 之後再做顧客偏好篩選
+		Dictionary<int,int> filterMap = new Dictionary<int, int> ();
 		custom orderingCustom = DataMgr.Instance.getOrderingCustom();
-		System.Random seed = new System.Random();
+		foreach( menu m in orderingCustom.getPreferMenu() )
+		{
+			int subIdx = m.getSubIndexByType (filterType);
+			if( !filterMap.ContainsKey(subIdx) )
+			{
+				filterMap.Add (subIdx, 0);
+			}
+			filterMap [subIdx] += 1;
+		}
+
 		scrollCtrl ctrl = subFilterScroll.GetComponent<scrollCtrl> ();
 		ctrl.reset ();
 
 		Dictionary<int, Sprite> spriteMap = spriteMgr.Instance.getIndexSpriteMap (filterType, true);
 		foreach( int index in spriteMap.Keys )
 		{
-			for( int c = 0; c < 3;c++)
-			{
-				GameObject newObj = ctrl.addItem ();
-				// TODO 幾道菜等表單建好再計算
-				int menuNumber = (seed.Next () % 9) + 1;
+			if( filterMap.ContainsKey(index) ){continue;}
 
-				subFilterCtrl sCtrl = newObj.GetComponent<subFilterCtrl> ();
-				sCtrl.setInfo (spriteMap [index], menuNumber);
-				sCtrl.setSubIndex (index);
-			}
+			GameObject newObj = ctrl.addItem ();
+			int menuNumber = filterMap[index];
+
+			subFilterCtrl sCtrl = newObj.GetComponent<subFilterCtrl> ();
+			sCtrl.setInfo (spriteMap [index], menuNumber);
+			sCtrl.setSubIndex (index);
 		}
 	}
 
 	public void OnSubFilterClick( GameObject clickedObj )
 	{
-		Debug.logger.Log ("OnSubFilterClick");
 		hideMenu (0.3f);
+
+		custom cus = DataMgr.Instance.getOrderingCustom ();
+		subFilterCtrl ctrl = clickedObj.GetComponent<subFilterCtrl>();
+		int idx = ctrl.getSubIndex();
+		cus.sortMenu (filterType, idx);
+
+		pageCtrl.onPageEnable ();
 	}
 
 	public void OnFilterBtnClick()

@@ -20,6 +20,11 @@ public class subFilterCtrl : MonoBehaviour, IPointerClickHandler
 		
 	}
 
+	public int getSubIndex()
+	{
+		return subIndex;
+	}
+
 	public void setSubIndex( int idx )
 	{
 		subIndex = idx;

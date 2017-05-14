@@ -50,6 +50,9 @@ public class page4Ctrl : pageBase
 
 	public void nextPage()
 	{
+		custom cus = DataMgr.Instance.getOrderingCustom ();
+		menuMgr.Instance.setPreferMenuToCustom (cus);
+
 		pageMgr.Instance.nextPage (5);
 	}
 
