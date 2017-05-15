@@ -21,6 +21,7 @@ namespace Const
 		BROIL = 4,		// 煮
 		STEAM = 5,		// 蒸
 		DECOCT = 6,		// 煎
+		DESSERT = 7,	// 甜點
 	}
 
 	// 食材子分類
@@ -32,7 +33,7 @@ namespace Const
 		SEA_FOOD = 4,	// 海鮮
 		VEGETABLE = 5,	// 素
 	}
-
+	 
 	// 主食子分類
 	public enum Staple
 	{
