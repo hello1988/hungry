@@ -30,19 +30,11 @@ public class spriteMgr : MonoBehaviour
 		public static readonly string FILTER_COOK = "FILTER_COOK";
 		public static readonly string FILTER_COOK_L = "FILTER_COOK_L";
 
-		// 過濾器 - 食材子分類圖
-		// public static readonly string FILTER_FOOD = "FILTER_FOOD";
-		// public static readonly string FILTER_FOOD_L = "FILTER_FOOD_L";
-
-		// 過濾器 - 主食子分類圖
-		// public static readonly string FILTER_STAPLE = "FILTER_STAPLE";
-		// public static readonly string FILTER_STAPLE_L = "FILTER_STAPLE_L";
-
 		// 餐點確認
 		public static readonly string WANT_ORDER = "WANT_ORDER";
 		public static readonly string WANT_STAPLE = "WANT_STAPLE";
 		public static readonly string ORDER_STAPLE_L = "ORDER_STAPLE_L";
-		public static readonly string ORDER_FLOOR = "ORDER_FLOOR";
+		// public static readonly string ORDER_FLOOR = "ORDER_FLOOR";
 
 	}
 
@@ -106,28 +98,6 @@ public class spriteMgr : MonoBehaviour
 		spriteMap.Add( KeyWord.FILTER_COOK_L, new Dictionary<int,Sprite>() );
 		downloadMgr.Instance.downloadSprite (string.Format (path, counter), downloadCallBack, new object[]{path, KeyWord.FILTER_COOK_L, counter, COOK_WAY_COUNT});
 
-		// 過濾器 - 食材子分類圖
-		// counter = 1;
-		// path = "filter/food/food{0}";
-		// spriteMap.Add( KeyWord.FILTER_FOOD, new Dictionary<int,Sprite>() );
-		// downloadMgr.Instance.downloadSprite (string.Format (path, counter), downloadCallBack, new object[]{path, KeyWord.FILTER_FOOD, counter, USE_FOOD_COUNT});
-
-		// counter = 1;
-		// path = "filter/food/food_L{0}";
-		// spriteMap.Add( KeyWord.FILTER_FOOD_L, new Dictionary<int,Sprite>() );
-		// downloadMgr.Instance.downloadSprite (string.Format (path, counter), downloadCallBack, new object[]{path, KeyWord.FILTER_FOOD_L, counter, USE_FOOD_COUNT});
-
-		// 過濾器 - 主食子分類圖
-		// counter = 1;
-		// path = "filter/staple/staple{0}";
-		// spriteMap.Add( KeyWord.FILTER_STAPLE, new Dictionary<int,Sprite>() );
-		// downloadMgr.Instance.downloadSprite (string.Format (path, counter), downloadCallBack, new object[]{path, KeyWord.FILTER_STAPLE, counter, USE_STAPLE_COUNT});
-
-		// counter = 1;
-		// path = "filter/staple/staple_L{0}";
-		// spriteMap.Add( KeyWord.FILTER_STAPLE_L, new Dictionary<int,Sprite>() );
-		// downloadMgr.Instance.downloadSprite (string.Format (path, counter), downloadCallBack, new object[]{path, KeyWord.FILTER_STAPLE_L, counter, USE_STAPLE_COUNT});
-
 		// 餐點確認 - 餐點圖(右)
 		counter = 1;
 		path = "want/orderImg/{0}";
@@ -145,12 +115,6 @@ public class spriteMgr : MonoBehaviour
 		path = "check/L{0}";
 		spriteMap.Add( KeyWord.ORDER_STAPLE_L, new Dictionary<int,Sprite>() );
 		downloadMgr.Instance.downloadSprite (string.Format (path, counter), downloadCallBack, new object[]{path, KeyWord.ORDER_STAPLE_L, counter, USE_STAPLE_COUNT});
-
-		// 餐點確認 - 主食縮圖
-		counter = 1;
-		path = "check/{0}";
-		spriteMap.Add( KeyWord.ORDER_FLOOR, new Dictionary<int,Sprite>() );
-		downloadMgr.Instance.downloadSprite (string.Format (path, counter), downloadCallBack, new object[]{path, KeyWord.ORDER_FLOOR, counter, MENU_COUNT});
 
 	}
 	// Update is called once per frame

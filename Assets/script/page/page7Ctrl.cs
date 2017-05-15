@@ -43,13 +43,14 @@ public class page7Ctrl : pageBase, iSyncOrderOption
 
 	public void showChoosUI()
 	{
+		/*
 		if (DataMgr.Instance.getConfirmCustomList ().Count <= 1) 
 		{
 			// 一個人點餐就跳過第P8
 			nextPage (9);
 			return;
 		}
-
+		*/
 		chooseUI.SetActive (true);
 		chooseUICtrl ctrl = chooseUI.GetComponent<chooseUICtrl> ();
 		ctrl.showUI ();

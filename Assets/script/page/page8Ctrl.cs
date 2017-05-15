@@ -48,7 +48,7 @@ public class page8Ctrl : pageBase
 				Staple type = m.getUseStaple ();
 
 				orderData data = new orderData ();
-				data.orderFloor = spriteMgr.Instance.getSprite (spriteMgr.KeyWord.ORDER_FLOOR, menuID);
+				data.orderFloor = spriteMgr.Instance.getSprite (spriteMgr.KeyWord.WANT_ORDER, menuID);
 				data.orderNum = confirmMenu[menuID];
 				data.customPhoto = cus.cusPhoto;
 
