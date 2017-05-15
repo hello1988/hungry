@@ -14,7 +14,7 @@ public class custom
 	public Sprite cusPhoto;	// 顧客圖
 	public String cusName;	// 顧客名字
 	public readonly int customID;	// 顧客流水號
-	public int budget = 300;
+	public int budget = 0;
 
 	private Dictionary<FilterType, List<int>> preferFilter;	// 顧客偏好過濾器
 	private List<menu> preferMenu;	// 顧客偏好菜單

@@ -11,8 +11,8 @@ public class page3Ctrl : pageBase
 	private GameObject focusImage;	// 過濾器(大圖)
 	[SerializeField]
 	private GameObject filterScroll; // 過濾器捲動區
-	// [SerializeField]
-	// private GameObject budget;
+	 [SerializeField]
+	 private GameObject budgetUI;
 
 	private selectFilter focusFilter;
 	private List<selectFilter> filterList;
@@ -53,6 +53,7 @@ public class page3Ctrl : pageBase
 				onFilterClick (filterList [index]);
 			}
 		}
+		showBudgetUI (0);
 	}
 
 	// Update is called once per frame
@@ -92,18 +93,15 @@ public class page3Ctrl : pageBase
 		}
 	}
 
-	public void addBudget()
+	public void showBudgetUI()
 	{
-		custom cus = DataMgr.Instance.getOrderingCustom ();
-		cus.budget = Math.Min( (cus.budget+20), 980 );
-		// budget.GetComponent<numberCtrl>().setValue (cus.budget);
+		showBudgetUI(1);
 	}
 
-	public void minusBudget()
+	public void showBudgetUI(int mode)
 	{
-		custom cus = DataMgr.Instance.getOrderingCustom ();
-		cus.budget = Math.Max( (cus.budget-20), 0 );
-		// budget.GetComponent<numberCtrl>().setValue (cus.budget);
+		budgetCtrl ctrl = budgetUI.GetComponent<budgetCtrl> ();
+		ctrl.showUI (mode);
 	}
 
 	public void nextPage()
