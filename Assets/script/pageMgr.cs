@@ -33,6 +33,11 @@ public class pageMgr : MonoBehaviour
 
 	void Start()
 	{
+	}
+
+	public void OnSpriteMgrReady()
+	{
+		Debug.logger.Log (string.Format("OnSpriteMgrReady : {0}",startPage));
 		if ((pageList == null) || (pageList.Length == 0)) {return;}
 
 		foreach( GameObject page in pageList )
@@ -45,7 +50,7 @@ public class pageMgr : MonoBehaviour
 		showPage.onPageEnable ();
 		curPage = startPage;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		
