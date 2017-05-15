@@ -7,9 +7,9 @@ using Const;
 public class spriteMgr : MonoBehaviour 
 {
 	/**料理方式共6種*/
-	private static readonly int COOK_WAY_COUNT = 7;
-	private static readonly int USE_FOOD_COUNT = 6;
-	private static readonly int USE_STAPLE_COUNT = 9;
+	private static readonly int COOK_WAY_COUNT = 6;
+	private static readonly int USE_FOOD_COUNT = 5;
+	private static readonly int USE_STAPLE_COUNT = 8;
 	private static readonly int MENU_COUNT = 21;
 
 	public class KeyWord

@@ -18,21 +18,19 @@ namespace Const
 		FRY = 1,		// 炸
 		RAW = 2,		// 生食
 		GRILL = 3,		// 烤
-		PARCH = 4,		// 炒
-		BROIL = 5,		// 煮
-		STEAM = 6,		// 蒸
-		DECOCT = 7,		// 煎
+		BROIL = 4,		// 煮
+		STEAM = 5,		// 蒸
+		DECOCT = 6,		// 煎
 	}
 
 	// 食材子分類
 	public enum Food
 	{
 		BEEF = 1,		// 牛肉
-		LAMB = 2,		// 羊肉
-		PORK = 3,		// 豬肉
-		CHICKEN = 4,	// 雞肉
-		SEA_FOOD = 5,	// 海鮮
-		VEGETABLE = 6,	// 素
+		PORK = 2,		// 豬肉
+		CHICKEN = 3,	// 雞肉
+		SEA_FOOD = 4,	// 海鮮
+		VEGETABLE = 5,	// 素
 	}
 
 	// 主食子分類
@@ -43,10 +41,9 @@ namespace Const
 		NOODLE = 3,		// 麵
 		ROLL = 4,		// 手卷
 		SWEETS = 5,		// 甜食
-		SOUP = 6,		// 湯
-		DRINK = 7,		// 飲料
-		DUMPLINGS = 8,	// 餃子
-		POT = 9,		// 鍋物
+		DUMPLINGS = 6,	// 餃子
+		POT = 7,		// 鍋物
+		OTHER = 8,		// 其他
 	}
 
 }
