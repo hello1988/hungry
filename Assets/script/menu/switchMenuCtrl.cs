@@ -94,7 +94,7 @@ public class switchMenuCtrl : MonoBehaviour
 		Dictionary<int, Sprite> spriteMap = spriteMgr.Instance.getIndexSpriteMap (filterType, true);
 		foreach( int index in spriteMap.Keys )
 		{
-			if( filterMap.ContainsKey(index) ){continue;}
+			if( !filterMap.ContainsKey(index) ){continue;}
 
 			GameObject newObj = ctrl.addItem ();
 			int menuNumber = filterMap[index];

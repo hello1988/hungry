@@ -90,9 +90,9 @@ public class custom
 	public void setPreferMenu(  List<menu> menuList )
 	{
 		preferMenu = menuList;
-		for (int index = 0; index < preferMenu.Count; index++) {
-			Debug.logger.Log (string.Format("{0}:{1}",index, preferMenu[index].getMenuID()));
-		}
+//		for (int index = 0; index < preferMenu.Count; index++) {
+//			Debug.logger.Log (string.Format("{0}:{1}",index, preferMenu[index].getMenuID()));
+//		}
 	}
 
 	public List<menu> getPreferMenu()
@@ -123,9 +123,9 @@ public class custom
 		menu1.AddRange (menu2);
 		preferMenu = menu1;
 		viewingIndex = 0;
-		for (int index = 0; index < preferMenu.Count; index++) {
-			Debug.logger.Log (string.Format("{0}:{1}",index, preferMenu[index].getMenuID()));
-		}
+//		for (int index = 0; index < preferMenu.Count; index++) {
+//			Debug.logger.Log (string.Format("{0}:{1}",index, preferMenu[index].getMenuID()));
+//		}
 	}
 
 	/**
