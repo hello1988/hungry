@@ -39,6 +39,8 @@ public class spriteMgr : MonoBehaviour
 	}
 
 	private Dictionary<string,Dictionary<int,Sprite>> spriteMap;
+	private Dictionary<string, object[]> loadArg;
+
 	private static spriteMgr _instance = null;
 	public static spriteMgr Instance
 	{
@@ -53,34 +55,34 @@ public class spriteMgr : MonoBehaviour
 	void Start()
 	{
 		spriteMap = new Dictionary<string,Dictionary<int,Sprite>> ();
+		loadArg = new Dictionary<string, object[]> ();
 		// 料理方式子分類圖
-		StartCoroutine( loadResourceSprite(COOK_WAY_COUNT, "index/cook/cook{0}", KeyWord.INDEX_COOK) );
-		StartCoroutine( loadResourceSprite(COOK_WAY_COUNT, "index/cook/cook_L{0}", KeyWord.INDEX_COOK_L) );
+		loadArg.Add (KeyWord.INDEX_COOK, new object[]{ COOK_WAY_COUNT, "index/cook/cook{0}" });
+		loadArg.Add (KeyWord.INDEX_COOK_L, new object[]{ COOK_WAY_COUNT, "index/cook/cook_L{0}" });
 
 		// 食材子分類圖
-		StartCoroutine( loadResourceSprite(USE_FOOD_COUNT, "index/food/food{0}", KeyWord.INDEX_FOOD) );
-		StartCoroutine( loadResourceSprite(USE_FOOD_COUNT, "index/food/food_L{0}", KeyWord.INDEX_FOOD_L) );
+		loadArg.Add (KeyWord.INDEX_FOOD, new object[]{ USE_FOOD_COUNT, "index/food/food{0}" });
+		loadArg.Add (KeyWord.INDEX_FOOD_L, new object[]{ USE_FOOD_COUNT, "index/food/food_L{0}" });
 
 		// 主食子分類圖
-		StartCoroutine( loadResourceSprite(USE_STAPLE_COUNT, "index/staple/staple{0}", KeyWord.INDEX_STAPLE) );
-		StartCoroutine( loadResourceSprite(USE_STAPLE_COUNT, "index/staple/staple_L{0}", KeyWord.INDEX_STAPLE_L) );
+		loadArg.Add (KeyWord.INDEX_STAPLE, new object[]{ USE_STAPLE_COUNT, "index/staple/staple{0}" });
+		loadArg.Add (KeyWord.INDEX_STAPLE_L, new object[]{ USE_STAPLE_COUNT, "index/staple/staple_L{0}" });
 
 
 		// 過濾器 - 料理方式子分類圖
-		StartCoroutine( loadResourceSprite(COOK_WAY_COUNT, "filter/cook/cook{0}", KeyWord.FILTER_COOK) );
-		StartCoroutine( loadResourceSprite(COOK_WAY_COUNT, "filter/cook/cook_L{0}", KeyWord.FILTER_COOK_L) );
+		loadArg.Add (KeyWord.FILTER_COOK, new object[]{ COOK_WAY_COUNT, "filter/cook/cook{0}" });
+		loadArg.Add (KeyWord.FILTER_COOK_L, new object[]{ COOK_WAY_COUNT, "filter/cook/cook_L{0}" });
 
 
 		// 餐點確認 - 餐點圖(右)
-		StartCoroutine( loadResourceSprite(MENU_COUNT, "want/orderImg/{0}", KeyWord.WANT_ORDER) );
+		loadArg.Add (KeyWord.WANT_ORDER, new object[]{ MENU_COUNT, "want/orderImg/{0}" });
 
 		// 餐點確認 - 主食縮圖(左)
-		StartCoroutine( loadResourceSprite(USE_STAPLE_COUNT, "want/staple/{0}", KeyWord.WANT_STAPLE) );
+		loadArg.Add (KeyWord.WANT_STAPLE, new object[]{ USE_STAPLE_COUNT, "want/staple/{0}" });
 
 		// 餐點確認 - 確認大圖
-		StartCoroutine( loadResourceSprite(USE_STAPLE_COUNT, "check/L{0}", KeyWord.ORDER_STAPLE_L) );
+		loadArg.Add (KeyWord.ORDER_STAPLE_L, new object[]{ USE_STAPLE_COUNT, "check/L{0}" });
 
-		Resources.UnloadUnusedAssets ();
 		pageMgr.Instance.OnSpriteMgrReady ();
 
 	}
@@ -91,6 +93,7 @@ public class spriteMgr : MonoBehaviour
 
 	public Sprite getSprite( string keyWord, int spriteIndex )
 	{
+		checkSprite( keyWord );
 		if (!spriteMap.ContainsKey (keyWord)) { return null; }
 
 		if (!spriteMap[keyWord].ContainsKey (spriteIndex)) { return null; }
@@ -109,11 +112,13 @@ public class spriteMgr : MonoBehaviour
 		string keyWord = getIndexSpriteKeyWord( type, isLarge );
 		if (string.IsNullOrEmpty (keyWord)) { return new Dictionary<int, Sprite> ();}
 
+		checkSprite( keyWord );
 		return spriteMap [keyWord];
 	}
 
 	public Dictionary<int,Sprite> getSpriteMap( string keyWord )
 	{
+		checkSprite( keyWord );
 		return spriteMap [keyWord];
 	}
 
@@ -145,10 +150,8 @@ public class spriteMgr : MonoBehaviour
 		return null;
 	}
 
-	private IEnumerator loadResourceSprite(int maxCounter, string path, string keyWord)
+	private void loadResourceSprite(int maxCounter, string path, string keyWord)
 	{
-		Debug.logger.Log (string.Format("loadResourceSprite({0},{1},{2})",maxCounter, path, keyWord));
-
 		spriteMap.Add( keyWord, new Dictionary<int,Sprite>() );
 
 		Sprite sprite = null;
@@ -163,9 +166,19 @@ public class spriteMgr : MonoBehaviour
 			}
 			else 
 			{
-				// Debug.logger.LogError ("[Yu-Ning]", string.Format("找不到圖片 : Resources/{0}",string.Format (path, counter) ));
+				Debug.logger.LogError ("[Yu-Ning]", string.Format("找不到圖片 : Resources/{0}",string.Format (path, counter) ));
 			}
 		}
-		yield return new WaitForSeconds (1.0f);
+	}
+
+	private void checkSprite( string keyWord )
+	{
+		if (spriteMap.ContainsKey (keyWord)) {return;}
+
+		if (!loadArg.ContainsKey (keyWord)) {return;}
+
+		int maxCount = (int)loadArg [keyWord] [0];
+		string path = (string)loadArg [keyWord] [1];
+		loadResourceSprite (maxCount, path, keyWord);
 	}
 }

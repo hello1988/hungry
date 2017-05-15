@@ -63,7 +63,8 @@ public class menu
 		useStaple = staple;
 		assistSpeechText = speechText;
 
-		loadMenuSprite ();
+		int assistNum = assistSpriteNum.Length;
+		assist1SpriteList = new Sprite[assistNum][];
 	}
 
 	public int getMenuID(){return menuID;}
@@ -72,67 +73,55 @@ public class menu
 	public Cook getCookWay(){return cookWay;}
 	public Food getUseFood(){return useFood;}
 	public Staple getUseStaple(){return useStaple;}
-	public Sprite[] getMainSpriteList(){return mainSpriteList;}
-	public Sprite[] getWordSpriteList(){return assist3wordList;}
 	public Dictionary<string, string> getAssistSpeechText(){return assistSpeechText;}
 
-	private void loadMenuSprite()
+	public Sprite[] getMainSpriteList()
 	{
-		mainSpriteList = new Sprite[mainSpriteNum];
-		for( int index = 0;index < mainSpriteNum;index++ )
+		if (mainSpriteList == null) 
 		{
-			downloadMgr.Instance.downloadSprite (string.Format(mainSpritePath,menuID,(index+1)),loadMainSprite,index);
-		}
-
-		int assistNum = assistSpriteNum.Length;
-		assist1SpriteList = new Sprite[assistNum][];
-		for( int index = 0;index < assistNum;index++ )
-		{
-			int loadSpriteNum = assistSpriteNum [index];
-			assist1SpriteList[index] = new Sprite[ loadSpriteNum ];
-			for( int jIndex = 0;jIndex < loadSpriteNum;jIndex++ )
+			mainSpriteList = new Sprite[mainSpriteNum];
+			string path = "";
+			for( int index = 0;index < mainSpriteNum;index++ )
 			{
-				// Debug.logger.Log (string.Format("down path : {0}",string.Format(assistSpritePath,menuID,(index+1),(jIndex+1))));
-				downloadMgr.Instance.downloadSprite ( string.Format(assistSpritePath,menuID,(index+1),(jIndex+1)), loadAssistSprite, new int[]{index, jIndex});
+				path = string.Format (mainSpritePath, menuID, (index + 1));
+				mainSpriteList[index] = Resources.Load<Sprite>(path);
 			}
 		}
-
-		assist3wordList = new Sprite[assistWordNum];
-		for( int index = 0;index < assistWordNum;index++ )
-		{
-			// Debug.logger.Log (string.Format("down path : {0}",string.Format (assistWordPath, menuID, (index + 1))));
-			downloadMgr.Instance.downloadSprite (string.Format(assistWordPath,menuID,(index+1)),loadWordSpriteList,index);
-		}
+		return mainSpriteList;
 	}
-
-	public void loadMainSprite(Sprite sprite, object userData)
-	{
-		// Debug.logger.Log (string.Format("loadMainSprite({0},{1})",sprite, userData));
-		int index = (int)userData;
-		mainSpriteList [index] = sprite;
-	}
-
-	public void loadAssistSprite(Sprite sprite, object userData)
-	{
-		int[] idx = (int[])userData;
-		// Debug.logger.Log (string.Format("loadAssistSprite({0},( {1}, {2} ))",sprite, idx [0], idx [1]));
-
-		assist1SpriteList [idx [0]] [idx [1]] = sprite;
-	}
-
 
 	public Sprite[] getAssistSpriteList( int assistIdx )
 	{
 		if ((assistIdx < 0) || (assistIdx >= assist1SpriteList.Length)) {return null;}
 
+		if (assist1SpriteList [assistIdx] == null) 
+		{
+			int loadSpriteNum = assistSpriteNum [assistIdx];
+			assist1SpriteList[assistIdx] = new Sprite[ loadSpriteNum ];
+			string path = "";
+			for( int index = 0;index < loadSpriteNum;index++ )
+			{
+				path = string.Format (assistSpritePath, menuID, (assistIdx + 1), (index + 1));
+				assist1SpriteList[assistIdx][index] = Resources.Load<Sprite>(path);
+			}
+		}
+
 		return assist1SpriteList[assistIdx];
 	}
 
-	public void loadWordSpriteList(Sprite sprite, object userData)
+	public Sprite[] getWordSpriteList()
 	{
-		// Debug.logger.Log (string.Format("loadMainSprite({0},{1})",sprite, userData));
-		int index = (int)userData;
-		assist3wordList [index] = sprite;
+		if (assist3wordList == null) 
+		{
+			string path = "";
+			assist3wordList = new Sprite[assistWordNum];
+			for( int index = 0;index < assistWordNum;index++ )
+			{
+				path = string.Format (assistWordPath, menuID, (index + 1));
+				assist3wordList[index] = Resources.Load<Sprite>(path);
+			}
+		}
+		return assist3wordList;
 	}
 
 	public int getSubIndexByType( FilterType type )

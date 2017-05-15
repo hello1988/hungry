@@ -37,7 +37,6 @@ public class pageMgr : MonoBehaviour
 
 	public void OnSpriteMgrReady()
 	{
-		Debug.logger.Log (string.Format("OnSpriteMgrReady : {0}",startPage));
 		if ((pageList == null) || (pageList.Length == 0)) {return;}
 
 		foreach( GameObject page in pageList )
