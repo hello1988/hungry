@@ -62,13 +62,7 @@ public class page8Ctrl : pageBase
 		checkCtrl.setInfo (orderDataList[curOrder]);
 
 		nextOrderCtrl nextCtrl = nextOrderUI.GetComponent<nextOrderCtrl> ();
-		nextCtrl.resetOrder ();
-		for (int index = 1; index < orderDataList.Count; index++) 
-		{
-			orderData data = orderDataList [index];
-			nextCtrl.addOrder (data.nextSprite);
-		}
-
+		nextCtrl.showDot (0);
 	}
 
 	public void nextPage()
@@ -87,7 +81,9 @@ public class page8Ctrl : pageBase
 		checkCtrl.showPreOrder(orderDataList[curOrder]);
 
 		nextOrderCtrl nextCtrl = nextOrderUI.GetComponent<nextOrderCtrl> ();
-		nextCtrl.showPreOrder ();
+
+		int dotIndex = (curOrder <= 0) ? 0: 1;
+		nextCtrl.showDot (dotIndex);
 	}
 
 	public void nextOrder()
@@ -101,7 +97,9 @@ public class page8Ctrl : pageBase
 		checkCtrl.showNextOrder(orderDataList[curOrder]);
 
 		nextOrderCtrl nextCtrl = nextOrderUI.GetComponent<nextOrderCtrl> ();
-		nextCtrl.showNextOrder ();
+
+		int dotIndex = (curOrder >= (orderDataList.Count-1)) ? 2: 1;
+		nextCtrl.showDot (dotIndex);
 	}
 }
 

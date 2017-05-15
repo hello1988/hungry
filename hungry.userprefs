@@ -1,12 +1,9 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\script\menu\switchMenuCtrl.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/script/page/page3Ctrl.cs">
     <Files>
-      <File FileName="Assets\script\custom\custom.cs" Line="127" Column="1" />
-      <File FileName="Assets\script\page\page5Ctrl.cs" Line="67" Column="3" />
-      <File FileName="Assets\script\menu\switchMenuCtrl.cs" Line="94" Column="87" />
-      <File FileName="Assets\script\menu\menu.cs" Line="8" Column="26" />
-      <File FileName="Assets\script\page\page6Ctrl.cs" Line="94" Column="2" />
+      <File FileName="Assets/script/page/page3Ctrl.cs" Line="63" Column="2" />
+      <File FileName="Assets/script/menu/menu.cs" Line="66" Column="42" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
