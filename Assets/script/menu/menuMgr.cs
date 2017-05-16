@@ -40,8 +40,6 @@ public class menuMgr : MonoBehaviour
 		foreach( menu m in menuList )
 		{
 			if (!filter [FilterType.COOK].Contains ((int)m.getCookWay())) {continue;}
-			// if (!filter [FilterType.FOOD].Contains ((int)m.getUseFood())) {continue;}
-			// if (!filter [FilterType.STAPLE].Contains ((int)m.getUseStaple())) {continue;}
 
 			preferMenu.Add (m);
 		}
@@ -64,7 +62,9 @@ public class menuMgr : MonoBehaviour
 	public void menuToSpeech( string audioKey, string txt )
 	{
 		textToSpeech tts = GetComponent<textToSpeech> ();
-		StartCoroutine (tts.speech (audioKey, txt, "zh-tw"));
+		// StartCoroutine (tts.speech (audioKey, txt, "zh-tw"));
+
+		tts.speech (audioKey);
 	}
 
 	private void buildMenuMap()
@@ -79,6 +79,9 @@ public class menuMgr : MonoBehaviour
 		{
 			menuList.Add (mStruct.createMenu());
 		}
+
+//		textToSpeech tts = GetComponent<textToSpeech> ();
+//		tts.onMenuReady (menuList);
 	}
 
 }

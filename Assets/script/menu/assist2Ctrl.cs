@@ -29,7 +29,7 @@ public class assist2Ctrl : MonoBehaviour
 		Dictionary<string, string> speechTextMap = curMenu.getAssistSpeechText ();
 		if (!speechTextMap.ContainsKey ( speechKey )) {return;}
 
-		string audioKey = string.Format ("menuSpeech_{0}_{1}",curMenu.getMenuID(), speechKey);
+		string audioKey = textToSpeech.getAudioKey (curMenu.getMenuID(), speechKey);
 		menuMgr.Instance.menuToSpeech (audioKey, speechTextMap[speechKey]);
 	}
 }
