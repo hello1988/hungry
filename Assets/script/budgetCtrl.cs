@@ -17,6 +17,8 @@ public class budgetCtrl : MonoBehaviour
 	private Image customPhoto;
 	[SerializeField]
 	private InputField inputBudget;
+	[SerializeField]
+	private float delaySec = 3;
 
 
 	// Use this for initialization
@@ -56,6 +58,10 @@ public class budgetCtrl : MonoBehaviour
 			{
 				StartCoroutine (changeToMode1 ());
 			}
+			else
+			{
+				LeanTween.delayedCall (delaySec, hideUI);
+			}
 		}
 	}
 
@@ -86,7 +92,7 @@ public class budgetCtrl : MonoBehaviour
 
 	private IEnumerator changeToMode1()
 	{
-		yield return new WaitForSeconds (3);
+		yield return new WaitForSeconds (delaySec);
 		mode0.SetActive (false);
 		mode1.SetActive (true);
 
