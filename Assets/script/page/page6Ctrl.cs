@@ -16,6 +16,7 @@ public class page6Ctrl : pageBase
 	[SerializeField]
 	private Button nextMenu;
 
+	private List<int> assist3List = new List<int>();
 	void Awake () 
 	{
 		Button checkButton = nextBtn.GetComponent<Button> ();
@@ -23,6 +24,12 @@ public class page6Ctrl : pageBase
 
 		preMenu.onClick.AddListener (toPreMenu);
 		nextMenu.onClick.AddListener (toNextMenu);
+
+		assist3List.Add (3);
+		assist3List.Add (7);
+		assist3List.Add (8);
+		assist3List.Add (14);
+		assist3List.Add (21);
 
 	}
 	
@@ -41,14 +48,16 @@ public class page6Ctrl : pageBase
 	{
 		if( (assistIndex < 0) || (assistIndex >= assistList.Length)){return ;}
 
+		// 調味料有些不能開
+		custom curCustom = DataMgr.Instance.getOrderingCustom ();
+		menu m = curCustom.getMenu (0);
+		if ( (assistIndex == 3) && ( !assist3List.Contains( m.getMenuID()) ) ) {return;}
+
 		// mainMenu.SetActive (false);
 		foreach( GameObject assist in assistList )
 		{
 			assist.SetActive (false);
 		}
-
-		custom curCustom = DataMgr.Instance.getOrderingCustom ();
-		menu m = curCustom.getMenu (0);
 
 		assistList [assistIndex].transform.position = UIMgr.Instance.getCurMousePosition();
 		assistCtrl ctrl = assistList [assistIndex].GetComponent<assistCtrl> ();
