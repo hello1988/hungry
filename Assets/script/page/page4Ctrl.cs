@@ -53,6 +53,8 @@ public class page4Ctrl : pageBase
 		custom cus = DataMgr.Instance.getOrderingCustom ();
 		menuMgr.Instance.setPreferMenuToCustom (cus);
 
+		if( cus.getPreferMenu().Count <= 0 ){return;}
+
 		pageMgr.Instance.nextPage (5);
 	}
 

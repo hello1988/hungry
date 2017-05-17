@@ -21,9 +21,6 @@ public class page3Ctrl : pageBase
 	{
 		Button checkButton = nextBtn.GetComponent<Button> ();
 		checkButton.onClick.AddListener (nextPage);
-
-		// budget.GetComponent<slidAndClick> ().setCallBack (slidAndClick.Direction.UP, addBudget);
-		// budget.GetComponent<slidAndClick> ().setCallBack (slidAndClick.Direction.DOWN, minusBudget);
 	}
 
 	void Start()
@@ -90,6 +87,8 @@ public class page3Ctrl : pageBase
 		{
 			Image img = focusImage.GetComponent<Image> ();
 			img.sprite = null;
+
+			focusImage.GetComponent<dragAndDrop> ().setDragable (false);
 		}
 	}
 
