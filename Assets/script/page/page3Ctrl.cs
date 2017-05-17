@@ -105,6 +105,11 @@ public class page3Ctrl : pageBase
 
 	public void nextPage()
 	{
+		custom orderingCus = DataMgr.Instance.getOrderingCustom ();
+		Dictionary<FilterType, List<int>> filter = orderingCus.getPreferFilter ();
+
+		if (filter [FilterType.COOK].Count <= 0) {return;}
+
 		pageMgr.Instance.nextPage (4);
 	}
 
