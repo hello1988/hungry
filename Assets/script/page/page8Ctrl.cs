@@ -10,8 +10,6 @@ public class page8Ctrl : pageBase
 {
 	[SerializeField]
 	private GameObject checkOrderUI;
-	[SerializeField]
-	private GameObject nextOrderUI;
 
 	private List<orderData> orderDataList;
 	private int curOrder = 0;
@@ -61,8 +59,6 @@ public class page8Ctrl : pageBase
 		checkOrderCtrl checkCtrl = checkOrderUI.GetComponent<checkOrderCtrl> ();
 		checkCtrl.setInfo (orderDataList[curOrder]);
 
-		nextOrderCtrl nextCtrl = nextOrderUI.GetComponent<nextOrderCtrl> ();
-		nextCtrl.showDot (0);
 	}
 
 	public void nextPage()
@@ -80,10 +76,6 @@ public class page8Ctrl : pageBase
 		// checkCtrl.setInfo (orderDataList[curOrder]);
 		checkCtrl.showPreOrder(orderDataList[curOrder]);
 
-		nextOrderCtrl nextCtrl = nextOrderUI.GetComponent<nextOrderCtrl> ();
-
-		int dotIndex = (curOrder <= 0) ? 0: 1;
-		nextCtrl.showDot (dotIndex);
 	}
 
 	public void nextOrder()
@@ -96,10 +88,6 @@ public class page8Ctrl : pageBase
 		// checkCtrl.setInfo (orderDataList[curOrder]);
 		checkCtrl.showNextOrder(orderDataList[curOrder]);
 
-		nextOrderCtrl nextCtrl = nextOrderUI.GetComponent<nextOrderCtrl> ();
-
-		int dotIndex = (curOrder >= (orderDataList.Count-1)) ? 2: 1;
-		nextCtrl.showDot (dotIndex);
 	}
 }
 
