@@ -188,27 +188,27 @@ public class DataMgr : MonoBehaviour
 		searchCustomList.Add (cus);
 
 		cus = new custom ();
-		cus.cusPhoto = Resources.Load<Sprite>("custom/photo1");
+		cus.cusPhoto = Resources.Load<Sprite>("custom/photo3");
 		cus.cusName = "路人1號";
 		searchCustomList.Add (cus);
 
 		cus = new custom ();
-		cus.cusPhoto = Resources.Load<Sprite>("custom/photo2");
+		cus.cusPhoto = Resources.Load<Sprite>("custom/photo4");
 		cus.cusName = "路人2號";
 		searchCustomList.Add (cus);
 
 		cus = new custom ();
-		cus.cusPhoto = Resources.Load<Sprite>("custom/photo2");
+		cus.cusPhoto = Resources.Load<Sprite>("custom/photo5");
 		cus.cusName = "路人3號";
 		searchCustomList.Add (cus);
 
 		cus = new custom ();
-		cus.cusPhoto = Resources.Load<Sprite>("custom/photo1");
+		cus.cusPhoto = Resources.Load<Sprite>("custom/photo6");
 		cus.cusName = "路人4號";
 		searchCustomList.Add (cus);
 
 		cus = new custom ();
-		cus.cusPhoto = Resources.Load<Sprite>("custom/photo2");
+		cus.cusPhoto = Resources.Load<Sprite>("custom/photo7");
 		cus.cusName = "路人5號";
 		searchCustomList.Add (cus);
 	}
