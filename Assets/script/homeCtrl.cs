@@ -36,6 +36,7 @@ public class homeCtrl : MonoBehaviour
 	void OnEnable()
 	{
 		hideMenu ();
+		hideCustomInfo ();
 	}
 
 	// Update is called once per frame
@@ -70,6 +71,11 @@ public class homeCtrl : MonoBehaviour
 		mask.SetActive (false);
 	}
 
+	public void hideMenuOnly()
+	{
+		menu.SetActive (false);
+	}
+
 	public void onBackClick()
 	{
 		hideMenu ();
@@ -84,6 +90,7 @@ public class homeCtrl : MonoBehaviour
 		}
 		else 
 		{
+			hideHomeUI (true);
 			showCustomInfo ();
 		}
 
@@ -98,6 +105,7 @@ public class homeCtrl : MonoBehaviour
 	public void OnMaskClick()
 	{
 		hideHomeUI ();
+		hideCustomInfo ();
 	}
 
 	private void showCustomInfo()
@@ -112,11 +120,18 @@ public class homeCtrl : MonoBehaviour
 		customUI.SetActive (false);
 	}
 
-	private void hideHomeUI()
+	private void hideHomeUI( bool showMask = false )
 	{
-		LeanTween.scale (menu, Vector3.zero, 0.3f).setOnComplete(hideMenu);
+		if (showMask) 
+		{
+			LeanTween.scale (menu, Vector3.zero, 0.3f).setOnComplete(hideMenuOnly);
+		} 
+		else 
+		{
+			LeanTween.scale (menu, Vector3.zero, 0.3f).setOnComplete(hideMenu);
+		}
 		LeanTween.moveLocal (menu, circle.transform.localPosition, 0.3f);
-		mask.SetActive (false);
+		mask.SetActive (showMask);
 	}
 
 	private void showHomeUI()
