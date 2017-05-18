@@ -35,6 +35,7 @@ public class assistCtrl : MonoBehaviour
 		LeanTween.moveLocal (gameObject, oriPos, 0.3f);
 		mainMenu.SetActive (true);
 
+		UIMgr.Instance.setHomeBtnVisible (true);
 	}
 
 	public void hide()
@@ -54,6 +55,8 @@ public class assistCtrl : MonoBehaviour
 		{
 			initObj.SendMessage ("assistInit");
 		}
+
+		UIMgr.Instance.setHomeBtnVisible (backBtn == null);
 	}
 
 	public void setSprite( Sprite[] sprites )
