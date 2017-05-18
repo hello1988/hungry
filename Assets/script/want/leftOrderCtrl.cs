@@ -10,7 +10,7 @@ public class leftOrderCtrl : MonoBehaviour, iSyncOrderOption
 	[SerializeField]
 	private page7Ctrl pageCtrl;
 	[SerializeField]
-	private GameObject template;
+	private scrollCtrl stapleScroll;
 
 	private Dictionary<Staple, GameObject> orderObjInfo;
 	private Staple removeType;
@@ -33,18 +33,15 @@ public class leftOrderCtrl : MonoBehaviour, iSyncOrderOption
 
 		if (orderObjInfo.ContainsKey (type)) {return;}
 
-		GameObject clone = Instantiate<GameObject> (template);
-		clone.transform.SetParent ( transform );
-		clone.name = string.Format ("order{0}",(int)type);
-		clone.transform.localScale = Vector3.one;
+		GameObject newItem = stapleScroll.addItem ();
 
-		orderUnit unit = clone.GetComponent<orderUnit> ();
+		orderUnit unit = newItem.GetComponent<orderUnit> ();
 		Sprite sprite = spriteMgr.Instance.getSprite (spriteMgr.KeyWord.WANT_STAPLE, (int)type);
 		unit.setOrder ( type, sprite );
 		unit.setSelected (false, false);
 
-		orderObjInfo.Add (type, clone);
-		clone.SetActive (true);
+		orderObjInfo.Add (type, newItem);
+		newItem.SetActive (true);
 	}
 
 	// 刪除一道餐點
@@ -74,7 +71,7 @@ public class leftOrderCtrl : MonoBehaviour, iSyncOrderOption
 		// if (removeType == null) {return;}
 		if (!orderObjInfo.ContainsKey(removeType)) {return;}
 
-		Destroy (orderObjInfo[removeType]);
+		stapleScroll.delItem (orderObjInfo[removeType].name);
 		orderObjInfo.Remove (removeType);
 	}
 
@@ -84,7 +81,6 @@ public class leftOrderCtrl : MonoBehaviour, iSyncOrderOption
 	// 顯示餐點
 	public void showOrder(int menuID)
 	{
-		rePosition ();
 		menu m = menuMgr.Instance.getMenuByID (menuID);
 
 		foreach (Staple type in orderObjInfo.Keys)
@@ -106,28 +102,7 @@ public class leftOrderCtrl : MonoBehaviour, iSyncOrderOption
 	// 重置餐點資料
 	public void resetOrder()
 	{
-		foreach( Staple type in orderObjInfo.Keys )
-		{
-			Destroy (orderObjInfo[type]);
-		}
+		stapleScroll.reset ();
 		orderObjInfo.Clear ();
-	}
-
-	private void rePosition ()
-	{
-		RectTransform rect = template.GetComponent<RectTransform> ();
-		Vector3 startPos = template.transform.localPosition;
-
-		int counter = 0;
-		foreach (Staple type in Enum.GetValues(typeof(Staple)))
-		{
-			if (!orderObjInfo.ContainsKey (type)) {continue;}
-
-			GameObject obj = orderObjInfo[type];
-			float posY = startPos.y - (rect.sizeDelta.y + 10) * counter;
-			obj.transform.localPosition = new Vector3 (startPos.x, posY, startPos.z );
-			counter++;
-		}
-
 	}
 }
