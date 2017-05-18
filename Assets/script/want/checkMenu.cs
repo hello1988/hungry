@@ -35,6 +35,11 @@ public class checkMenu : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
 		
 	}
 
+	void OnEnable()
+	{
+		menuImg.sprite = null;
+	}
+
 	public void OnPointerDown (PointerEventData eventData)
 	{
 		touchPoint.transform.position = UIMgr.Instance.getCurMousePosition ();
@@ -77,9 +82,14 @@ public class checkMenu : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, 
 
 	public void setMenuImage ( Sprite sprite )
 	{
-		menuImg.sprite = sprite;
-
 		menuImg.transform.localPosition = imgOriPos;
+
+		// menuImg.sprite = sprite;
+		playAniAlpha ani = menuImg.GetComponent<playAniAlpha>();
+		ani.setAniList ( new Sprite[]{menuImg.sprite, sprite} );
+		ani.setLoop (false);
+		ani.play ();
+
 		deleteBtn.transform.localPosition = delOriPos;
 	}
 

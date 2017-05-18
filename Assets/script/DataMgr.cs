@@ -47,6 +47,7 @@ namespace Const
 		OTHER = 8,		// 其他
 	}
 
+	public delegate void backAction();
 }
 
 public class DataMgr : MonoBehaviour 

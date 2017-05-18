@@ -28,12 +28,6 @@ public class rightOrderCtrl : MonoBehaviour, iSyncOrderOption
 		
 	}
 
-	public void OnDeleteClick()
-	{
-		Debug.logger.Log ("OnDeleteClick");
-
-	}
-
 	public void addOrderNum()
 	{
 		pageCtrl.modifyOrderNumber (1);

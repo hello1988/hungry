@@ -74,6 +74,7 @@
      <Compile Include="Assets\script\budgetCtrl.cs" />
      <Compile Include="Assets\script\check\checkOrderCtrl.cs" />
      <Compile Include="Assets\script\check\chooseUICtrl.cs" />
+     <Compile Include="Assets\script\check\playAniAlpha.cs" />
      <Compile Include="Assets\script\custom\alternateCustom.cs" />
      <Compile Include="Assets\script\custom\custom.cs" />
      <Compile Include="Assets\script\downloadMgr.cs" />
